@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  const lines = argv[0].split(\"\\n\")\n  return alfredArgs(lines[Math.floor(Math.random() * lines.length)])\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Returns one random line from passed-in text",
+  "taskName" : "Get Random Line"
+}

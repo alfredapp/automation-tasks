@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "const topWindow = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0].windows[0]\nconst windowProperties = topWindow.properties()\n\nJSON.stringify({\n  x: windowProperties.position[0],\n  y: windowProperties.position[1],\n  width: windowProperties.size[0],\n  height: windowProperties.size[1]\n})",
+  "scriptType" : 7,
+  "taskDescription" : "Returns a JSON with the topmost window's bounds",
+  "taskName" : "Get Window Bounds"
+}

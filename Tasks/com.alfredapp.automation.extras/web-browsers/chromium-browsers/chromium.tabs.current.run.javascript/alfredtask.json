@@ -1,0 +1,69 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Google Chrome",
+            "Google Chrome"
+          ],
+          [
+            "Microsoft Edge",
+            "Microsoft Edge"
+          ],
+          [
+            "Brave Browser",
+            "Brave Browser"
+          ],
+          [
+            "Vivaldi",
+            "Vivaldi"
+          ],
+          [
+            "Opera",
+            "Opera"
+          ],
+          [
+            "Custom...",
+            "custom"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Browser",
+      "type" : "popupbutton",
+      "variable" : "popup_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Google Chrome Canary",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
+      "label" : "Custom",
+      "type" : "textfield",
+      "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "required" : true,
+        "trim" : true,
+        "verticalsize" : 9
+      },
+      "description" : "",
+      "label" : "JavaScript",
+      "type" : "textarea",
+      "variable" : "javascript_code"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${javascript_code}\"\n",
+  "scriptType" : 5,
+  "taskDescription" : "Executes JavaScript in Chromium browser's current tab",
+  "taskName" : "Run JavaScript in Chromium Browser Tab"
+}

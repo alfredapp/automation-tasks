@@ -1,0 +1,79 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Google Chrome",
+            "Google Chrome"
+          ],
+          [
+            "Microsoft Edge",
+            "Microsoft Edge"
+          ],
+          [
+            "Brave Browser",
+            "Brave Browser"
+          ],
+          [
+            "Vivaldi",
+            "Vivaldi"
+          ],
+          [
+            "Opera",
+            "Opera"
+          ],
+          [
+            "Custom...",
+            "custom"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Browser",
+      "type" : "popupbutton",
+      "variable" : "popup_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Google Chrome Canary",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
+      "label" : "Custom",
+      "type" : "textfield",
+      "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "URL",
+            "url"
+          ],
+          [
+            "Title",
+            "title"
+          ],
+          [
+            "URL|Title",
+            "url_title"
+          ]
+        ]
+      },
+      "description" : "Format examples:\n• URL: https:\/\/www.alfredapp.com\/\n• Title: Alfred - Productivity App for macOS\n• URL|Title: https:\/\/www.alfredapp.com\/|Alfred - Productivity App for macOS",
+      "label" : "Output Format",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${out_format}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns the URL or title of the frontmost Chromium browser tab",
+  "taskName" : "Get Current Chromium Browser Tab"
+}

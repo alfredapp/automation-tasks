@@ -1,0 +1,93 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Left Half",
+            "half-left"
+          ],
+          [
+            "Right Half",
+            "half-right"
+          ],
+          [
+            "Centre Half",
+            "half-centrewidth"
+          ],
+          [
+            "Top Half",
+            "half-top"
+          ],
+          [
+            "Bottom Half",
+            "half-bottom"
+          ],
+          [
+            "Top Left Quarter",
+            "quarter-top-left"
+          ],
+          [
+            "Top Right Quarter",
+            "quarter-top-right"
+          ],
+          [
+            "Bottom Left Quarter",
+            "quarter-bottom-left"
+          ],
+          [
+            "Bottom Right Quarter",
+            "quarter-bottom-right"
+          ],
+          [
+            "Centre Quarter",
+            "quarter-centrewidth-centreheight"
+          ],
+          [
+            "Left Third",
+            "third-left"
+          ],
+          [
+            "Right Third",
+            "third-right"
+          ],
+          [
+            "Centre Third",
+            "third-centrewidth"
+          ],
+          [
+            "Left Two Thirds",
+            "twothirds-left"
+          ],
+          [
+            "Right Two Thirds",
+            "twothirds-right"
+          ],
+          [
+            "Centre Two Thirds (Width)",
+            "twothirds-centrewidth"
+          ],
+          [
+            "Maximise",
+            "maximise"
+          ],
+          [
+            "Centre",
+            "centre"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Snap To",
+      "type" : "popupbutton",
+      "variable" : "preset"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "if [[ \"$(sw_vers -productVersion | cut -d. -f1)\" -lt 12 ]]; then\n  echo 'Setting window bounds requires macOS Monterey (12) or above.' >&2\n  exit 1\nfi\n\n..\/window-bounds.js 'current' \"${preset}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Sets topmost window's bounds relative to screen dimensions",
+  "taskName" : "Set Window Bounds from Preset"
+}

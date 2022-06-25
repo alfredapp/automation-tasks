@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "\/bin\/cat \"${1}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Outputs the contents of the passed-in file",
+  "taskName" : "Read File Contents"
+}

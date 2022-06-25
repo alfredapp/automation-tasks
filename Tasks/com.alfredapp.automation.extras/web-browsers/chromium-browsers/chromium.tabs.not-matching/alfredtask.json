@@ -1,0 +1,91 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Google Chrome",
+            "Google Chrome"
+          ],
+          [
+            "Microsoft Edge",
+            "Microsoft Edge"
+          ],
+          [
+            "Brave Browser",
+            "Brave Browser"
+          ],
+          [
+            "Vivaldi",
+            "Vivaldi"
+          ],
+          [
+            "Opera",
+            "Opera"
+          ],
+          [
+            "Custom...",
+            "custom"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Browser",
+      "type" : "popupbutton",
+      "variable" : "popup_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Google Chrome Canary",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
+      "label" : "Custom",
+      "type" : "textfield",
+      "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. alfredapp.com",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "URL",
+            "url"
+          ],
+          [
+            "Title",
+            "title"
+          ],
+          [
+            "URL|Title",
+            "url_title"
+          ]
+        ]
+      },
+      "description" : "Format examples:\n• URL: https:\/\/www.alfredapp.com\/\n• Title: Alfred - Productivity App for macOS\n• URL|Title: https:\/\/www.alfredapp.com\/|Alfred - Productivity App for macOS",
+      "label" : "Output Format",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.not-matching\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${out_format}\" \"${match_string}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns all Chromium browser tabs not containing specified text in URL",
+  "taskName" : "Get Chromium Browser Tabs Not Matching URL"
+}

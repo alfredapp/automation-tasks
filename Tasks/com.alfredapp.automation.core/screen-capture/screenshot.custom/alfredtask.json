@@ -1,0 +1,70 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 100",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "X Origin",
+      "type" : "textfield",
+      "variable" : "x"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 100",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Input numbers for the top left corner coordinates.",
+      "label" : "Y Origin",
+      "type" : "textfield",
+      "variable" : "y"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 640",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Width",
+      "type" : "textfield",
+      "variable" : "width"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 480",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Input numbers for the width and height.",
+      "label" : "Height",
+      "type" : "textfield",
+      "variable" : "height"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Force screen capture to go to the clipboard"
+      },
+      "description" : "",
+      "label" : "Save to Clipboard",
+      "type" : "checkbox",
+      "variable" : "to_clipboard"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function screenshot_name {\n  local -r date_name=\"Screenshot $(date '+%F') at $(date '+%H.%M.%S')\"\n\n  if [[ ! -e \"${date_name}.png\" ]]; then\n    printf '%s.png' \"${date_name}\"\n    return\n  fi\n\n  local count=1\n\n  while [[ -e \"${date_name} ${count}.png\" ]]; do\n    count=\"$(bc <<< \"${count} + 1\")\"\n  done\n\n  printf '%s %s.png' \"${date_name}\" \"${count}\"\n}\n\nopts=()\nreadonly screenshot=\"${HOME}\/Desktop\/$(screenshot_name)\"\n\n[[ \"${to_clipboard}\" -eq 1 ]] && opts+=(-c)\n\n\/usr\/sbin\/screencapture \"${opts[@]}\" -R \"${x},${y},${width},${height}\" \"${screenshot}\"\n\nprintf '%s' \"${screenshot}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Grabs a custom screen area",
+  "taskName" : "Custom Area Screenshot"
+}

@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function run(argv) {\n  const finder = Application(\"Finder\")\n  return argv.every(p => finder.exists(Path(p)))\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Returns true if all passed-in paths exist, else returns false",
+  "taskName" : "Does Path Exist?"
+}

@@ -1,0 +1,23 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in URL will be opened",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "URL",
+      "type" : "textfield",
+      "variable" : "url"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 2,
+  "outputType" : 0,
+  "script" : "if [[ -n \"${url}\" ]]; then\n  .\/run 'Safari' \"${url}\"\nelse\n  .\/run 'Safari' \"${@}\"\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Makes a new Safari window with the passed-in or configured URL",
+  "taskName" : "Open New Safari Window"
+}

@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --optimizeColorForSharing \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskDescription" : "May reduce file size",
+  "taskName" : "Optimise Image Colour for Sharing"
+}

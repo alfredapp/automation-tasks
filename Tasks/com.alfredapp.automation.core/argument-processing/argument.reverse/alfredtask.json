@@ -1,0 +1,8 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction shuffle(array) {\n  for (let i = array.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [array[i], array[j]] = [array[j], array[i]];\n  }\n\n  return array\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.reverse())\n}",
+  "scriptType" : 7,
+  "taskName" : "Reverse Argument Order"
+}

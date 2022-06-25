@@ -1,0 +1,28 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Horizontal",
+            "horizontal"
+          ],
+          [
+            "Vertical",
+            "vertical"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Flip",
+      "type" : "popupbutton",
+      "variable" : "direction"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --flip \"${direction}\" \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskName" : "Flip Image"
+}

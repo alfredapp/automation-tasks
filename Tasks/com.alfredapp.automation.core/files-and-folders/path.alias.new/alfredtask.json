@@ -1,0 +1,22 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~\/Desktop",
+        "filtermode" : 1,
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 0,
+  "script" : "on run argv\r  repeat with itemNumber from (count of argv) to 1 by -1\r    set pathString to item itemNumber of argv\r    tell application \"Finder\" to make alias to (POSIX file pathString as alias) at POSIX file (system attribute \"save_in\")\r  end repeat\rend run",
+  "scriptType" : 6,
+  "taskDescription" : "Creates a shortcut to the passed-in path",
+  "taskName" : "Make Finder Alias"
+}

@@ -1,0 +1,15 @@
+#!/usr/bin/osascript -l JavaScript
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function run(argv) {
+  const browser = Application(argv[0])
+  const currentTab = browser.windows[0].currentTab
+  const tabURL = currentTab.url()
+
+  currentTab.close()
+  return alfredArgs(tabURL)
+}
+

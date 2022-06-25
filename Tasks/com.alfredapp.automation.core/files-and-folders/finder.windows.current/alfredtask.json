@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction posixPath(finderWindow) {\n  return $.NSURL.alloc.initWithString(finderWindow.url()).fileSystemRepresentation\n}\n\nconst finder = Application(\"Finder\")\n\ntry {\n  alfredArgs(posixPath(finder.finderWindows[0].target))\n} catch { \/\/ Finder windows like \"Recents\" and \"AirDrop\" cause an error\n  alfredArgs(posixPath(finder.desktop))\n}",
+  "scriptType" : 7,
+  "taskDescription" : "If no Finder window is valid, returns the Desktop path",
+  "taskName" : "Get Path to Frontmost Finder Window"
+}

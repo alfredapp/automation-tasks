@@ -1,0 +1,22 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "required" : false
+      },
+      "description" : "When configured, passed-in paths are ignored.",
+      "label" : "Folder",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly json_args=\"$(..\/directory-children 'by_added' \"${target_path}\")\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  readonly json_args=\"$(..\/directory-children 'by_added' \"${@}\")\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi\n\nosascript -l JavaScript -e 'function run(argv) {\n  return JSON.parse(argv[0])[\"alfredworkflow\"][\"arg\"][0]\n}' \"${json_args}\" | tr -d '\\n'",
+  "scriptType" : 5,
+  "taskDescription" : "Returns most recently added path of configured or passed-in folder",
+  "taskName" : "Get Most Recently Added Path"
+}

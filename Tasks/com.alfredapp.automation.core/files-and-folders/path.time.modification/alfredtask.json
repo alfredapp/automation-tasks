@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "stat -f \"%m\" \"${1}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns when path was last modified, in Epoch time",
+  "taskName" : "Get Path Modification Time"
+}

@@ -1,0 +1,44 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Force screen capture to go to the clipboard"
+      },
+      "description" : "",
+      "label" : "Save to Clipboard",
+      "type" : "checkbox",
+      "variable" : "to_clipboard"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Capture the cursor as well as the screen"
+      },
+      "description" : "",
+      "label" : "Visible Cursor",
+      "type" : "checkbox",
+      "variable" : "get_cursor"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Capture all monitors in addition to the main one"
+      },
+      "description" : "",
+      "label" : "All Screens",
+      "type" : "checkbox",
+      "variable" : "all_screens"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function screenshot_name {\n  local -r date_name=\"Screenshot $(date '+%F') at $(date '+%H.%M.%S')\"\n\n  if [[ ! -e \"${date_name}.png\" ]]; then\n    printf '%s.png' \"${date_name}\"\n    return\n  fi\n\n  local count=1\n\n  while [[ -e \"${date_name} ${count}.png\" ]]; do\n    count=\"$(bc <<< \"${count} + 1\")\"\n  done\n\n  printf '%s %s.png' \"${date_name}\" \"${count}\"\n}\n\nopts=()\nreadonly screenshot=\"${HOME}\/Desktop\/$(screenshot_name)\"\n\n[[ \"${to_clipboard}\" -eq 1 ]] && opts+=(-c)\n[[ \"${get_cursor}\" -eq 1 ]] && opts+=(-C)\n[[ \"${all_screens}\" -eq 1 ]] || opts+=(-m)\n\n\/usr\/sbin\/screencapture \"${opts[@]}\" \"${screenshot}\"\n\nprintf '%s' \"${screenshot}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Grabs the entire screen",
+  "taskName" : "Full Screen Screenshot"
+}

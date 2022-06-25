@@ -1,0 +1,57 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Safari",
+            "Safari"
+          ],
+          [
+            "Safari Technology Preview",
+            "Safari Technology Preview"
+          ],
+          [
+            "Custom...",
+            "custom"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Browser",
+      "type" : "popupbutton",
+      "variable" : "popup_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Safari Technology Preview",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
+      "label" : "Custom",
+      "type" : "textfield",
+      "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. alfredapp.com",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.matching.close\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${match_string}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Closes all Webkit browser tabs containing specified text in URL",
+  "taskName" : "Close Webkit Browser Tabs with Matching URL"
+}

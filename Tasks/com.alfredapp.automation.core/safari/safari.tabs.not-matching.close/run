@@ -1,0 +1,22 @@
+#!/usr/bin/osascript -l JavaScript
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function run(argv) {
+  const browser = Application(argv[0])
+  const matchString = argv[1]
+
+  const matchingTabs = browser
+    .windows()
+    .flatMap(window => window.tabs())
+    .filter(tab => tab !== null)
+    .filter(tab => !tab.url().includes(matchString))
+
+  const tabURLs = matchingTabs.map(tab => tab.url())
+
+  // Close in reverse order
+  matchingTabs.reverse().forEach(tab => tab.close())
+  return alfredArgs(tabURLs)
+}

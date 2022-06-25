@@ -1,0 +1,107 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~\/Desktop",
+        "filtermode" : 1,
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Write file even if it exists"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    },
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "PNG",
+            "png"
+          ],
+          [
+            "JPEG",
+            "jpeg"
+          ],
+          [
+            "GIF",
+            "gif"
+          ],
+          [
+            "TIFF",
+            "tiff"
+          ],
+          [
+            "BMP",
+            "bmp"
+          ],
+          [
+            "HEIC",
+            "heic"
+          ],
+          [
+            "JPEG 2000",
+            "jp2"
+          ],
+          [
+            "PSD",
+            "psd"
+          ],
+          [
+            "PDF",
+            "pdf"
+          ],
+          [
+            "QTIF",
+            "qtif"
+          ],
+          [
+            "SGI",
+            "sgi"
+          ],
+          [
+            "TGA",
+            "tga"
+          ],
+          [
+            "EXR",
+            "exr"
+          ],
+          [
+            "ASTC",
+            "astc"
+          ],
+          [
+            "KTX",
+            "ktx"
+          ],
+          [
+            "PBM",
+            "pbm"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output Format",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "function alfred_args {\n  \/usr\/bin\/osascript -l JavaScript -e 'function run(argv) { return JSON.stringify({ alfredworkflow: { arg: argv } }) }' \"${@}\"\n}\n\nfor image in \"${@}\"; do\n  image_name_noext=\"$(basename \"${image%.*}\")\"\n  image_output=\"${save_in}\/${image_name_noext}.${out_format}\"\n\n  if [[ \"${overwrite}\" -eq 0 && -f \"${image_output}\" ]]; then\n    echo \"File exists: ${image_output}\" >&2\n    exit 1\n  fi\ndone\n\nimages=()\n\nfor image in \"${@}\"; do\n  image_name_noext=\"$(basename \"${image%.*}\")\"\n  image_output=\"${save_in}\/${image_name_noext}.${out_format}\"\n\n  images+=(\"$(sips --setProperty 'format' \"${out_format}\" \"${image}\" --out \"${image_output}\" | tail -1 | sed 's\/^ *\/\/')\")\ndone\n\nalfred_args \"${images[@]}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns path to converted image",
+  "taskName" : "Convert Image Format"
+}

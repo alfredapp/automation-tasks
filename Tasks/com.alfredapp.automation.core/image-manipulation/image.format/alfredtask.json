@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "readonly image=\"${1}\"\n\n..\/get-image-property 'format' \"${image}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns format of passed-in image",
+  "taskName" : "Get Image Format"
+}

@@ -1,0 +1,33 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Width",
+            "width"
+          ],
+          [
+            "Height",
+            "height"
+          ],
+          [
+            "Width and Height",
+            "both"
+          ]
+        ]
+      },
+      "description" : "For an image 640px wide and 480px tall:\n• Width: 640\n• Height: 480\n• Width and Height: 640x480",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "property"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "readonly image=\"${1}\"\nreadonly width=\"$(..\/get-image-property 'pixelWidth' \"${image}\")\"\nreadonly height=\"$(..\/get-image-property 'pixelHeight' \"${image}\")\"\n\ncase \"${property}\" in\n  width) echo -n \"${width}\";;\n  height) echo -n \"${height}\";;\n  both) echo -n \"${width}x${height}\";;\n  *) echo \"Invalid dimensions: ${property}\" >&2; exit 1;;\nesac",
+  "scriptType" : 5,
+  "taskDescription" : "Returns the pixel width, height, or both of an image",
+  "taskName" : "Get Image Dimensions"
+}

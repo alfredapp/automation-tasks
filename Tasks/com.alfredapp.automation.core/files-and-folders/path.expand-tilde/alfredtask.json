@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.map(a => $(a).stringByExpandingTildeInPath.js))\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Replaces leading \"~\" with home folder path",
+  "taskName" : "Expand Tilde in Path"
+}

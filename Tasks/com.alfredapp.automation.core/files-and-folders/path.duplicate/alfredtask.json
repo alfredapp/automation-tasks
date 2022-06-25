@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 0,
+  "script" : "const finder = Application(\"Finder\")\n\nfunction run(argv) {\n  argv.forEach(p => finder.duplicate(Path(p)))\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Creates duplicates of the passed-in path",
+  "taskName" : "Duplicate Paths"
+}

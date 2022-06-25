@@ -1,0 +1,22 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~",
+        "filtermode" : 0,
+        "required" : false
+      },
+      "description" : "Defaults to the home folder.",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "echo -n \"${target_path}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns the picked file or folder",
+  "taskName" : "Pick Path"
+}

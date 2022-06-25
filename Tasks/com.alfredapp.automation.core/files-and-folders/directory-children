@@ -1,0 +1,58 @@
+#!/usr/bin/osascript -l JavaScript
+
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
+}
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function isDir(path) {
+  const ref = Ref()
+  $.NSFileManager.defaultManager.fileExistsAtPathIsDirectory(path, ref)
+  return ref[0]
+}
+
+function byName(pathsArray) {
+  return pathsArray
+    .map(p => p.path.js)
+    .sort()
+}
+
+function byAdded(pathsArray) {
+  return pathsArray
+    .map(url => {
+      const ref = $()
+      url.getResourceValueForKeyError(ref, $.NSURLAddedToDirectoryDateKey.js, undefined)
+      return { path: url.path.js, AddedToDirectoryDate: ref.js }
+    })
+    .sort((a, b) => b.AddedToDirectoryDate - a.AddedToDirectoryDate)
+    .map(p => p.path)
+}
+
+function run(argv) {
+  const sortOrder = argv[0]
+  const dirPaths = argv.slice(1).map(path => $(path).stringByExpandingTildeInPath.js)
+
+  dirPaths.forEach(path => { if (!isDir(path)) throw "Not a folder: " + path })
+
+  const dirContents = dirPaths.flatMap(path => {
+    return $.NSFileManager.defaultManager
+      .contentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(
+        $.NSURL.fileURLWithPathIsDirectory(path, true),
+        [$.NSURLAddedToDirectoryDateKey.js],
+        undefined, undefined
+      ).js
+      .filter(url => !url.path.lastPathComponent.js.startsWith("."))
+  })
+
+  switch (sortOrder) {
+    case "by_name": return alfredArgs(byName(dirContents))
+    case "by_added": return alfredArgs(byAdded(dirContents))
+    default: throw "Unrecognised sort order: " + sortOrder
+  }
+}

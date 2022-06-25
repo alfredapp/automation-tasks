@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "\/usr\/bin\/sort --human-numeric-sort <<< \"${1}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Sorts lines alphabetically, interpreting numbers as a human would",
+  "taskName" : "Sort Lines"
+}

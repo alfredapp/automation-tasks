@@ -1,0 +1,33 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Unix time",
+            "%s"
+          ],
+          [
+            "ISO 8601",
+            "%FT%T%z"
+          ],
+          [
+            "RFC 2822",
+            "%a, %d %b %Y %T %z"
+          ]
+        ]
+      },
+      "description" : "Format examples:\n• Unix time: 1267350060\n• ISO 8601: 2010-02-28T09:41:00+0000\n• RFC 2822: Sun, 28 Feb 2010 09:41:00 +0000",
+      "label" : "Output Format",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "date \"+${out_format}\" | tr -d '\\n'",
+  "scriptType" : 5,
+  "taskDescription" : "Returns the current time in a specific format",
+  "taskName" : "Get Current Time"
+}

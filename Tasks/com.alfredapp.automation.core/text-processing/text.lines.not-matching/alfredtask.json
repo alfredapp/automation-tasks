@@ -1,0 +1,34 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. bananas",
+        "required" : true,
+        "trim" : false
+      },
+      "description" : "",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to \"Match for\" as a regular expression."
+      },
+      "description" : "",
+      "label" : "Regex",
+      "type" : "checkbox",
+      "variable" : "regex"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "if [[ \"${regex}\" -eq 1 ]]; then\n  \/usr\/bin\/grep --invert-match --extended-regexp \"${match_string}\" <<< \"${1}\"\nelse\n  \/usr\/bin\/grep --invert-match --fixed-strings \"${match_string}\" <<< \"${1}\"\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Returns lines not matching a pattern",
+  "taskName" : "Get Non-matching Lines"
+}

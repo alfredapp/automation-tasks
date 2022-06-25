@@ -1,0 +1,21 @@
+#!/usr/bin/osascript -l JavaScript
+
+function run(argv) {
+  const browser = Application(argv[0])
+  const privateWindow = argv[1] === "1" ? { mode: "incognito" } : {}
+  const urls = argv.slice(2)
+
+  // With no arguments, open empty window
+  if (urls.length === 0) {
+    browser.Window(privateWindow).make()
+    browser.activate()
+    return
+  }
+
+  // Open in reverse order so they show in given order
+  urls.reverse().forEach(url => {
+    browser.Window(privateWindow).make()
+    browser.windows[0].activeTab.url = url
+    browser.activate()
+  })
+}

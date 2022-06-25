@@ -1,0 +1,23 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "required" : true,
+        "trim" : true,
+        "verticalsize" : 9
+      },
+      "description" : "",
+      "label" : "JavaScript",
+      "type" : "textarea",
+      "variable" : "javascript_code"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : ".\/run 'Safari' \"${javascript_code}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Executes JavaScript in Safari's current tab",
+  "taskName" : "Run JavaScript in Safari Tab"
+}

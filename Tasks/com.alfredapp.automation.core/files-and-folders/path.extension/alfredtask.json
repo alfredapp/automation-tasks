@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs($(argv[0]).pathExtension.js)\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Returns extension of passed-in file",
+  "taskName" : "Get File Extension"
+}

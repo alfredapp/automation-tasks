@@ -1,0 +1,34 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 500",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Longest Side",
+      "type" : "textfield",
+      "variable" : "max_size"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow resulting image dimensions to be larger than the original"
+      },
+      "description" : "Increasing image proportions may result in loss of detail.",
+      "label" : "Scale Up",
+      "type" : "checkbox",
+      "variable" : "enlarge"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  old_width=\"$(..\/get-image-property 'pixelWidth' \"${image}\")\"\n  old_height=\"$(..\/get-image-property 'pixelHeight' \"${image}\")\"\n\n  if [[ \"${enlarge}\" -eq 0 && \"${max_size}\" -gt \"${old_width}\" && \"${max_size}\" -gt \"${old_height}\" ]]; then\n    echo \"Desired size would result in scaling up, and the option is turned off: ${image}\" >&2\n    exit 0\n  fi\ndone\n\nfor image in \"${@}\"; do\n  \/usr\/bin\/sips --resampleHeightWidthMax \"${max_size}\" \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskDescription" : "Resizes image so width and height aren't greater than specified size",
+  "taskName" : "Resize Image by Longest Side"
+}

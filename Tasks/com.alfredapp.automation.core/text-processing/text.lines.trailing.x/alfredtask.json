@@ -1,0 +1,23 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "1",
+        "placeholder" : "",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Trailing Lines",
+      "type" : "textfield",
+      "variable" : "lines_number"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "tail -\"${lines_number}\" <<< \"${1}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Returns number of lines from end of passed-in text",
+  "taskName" : "Get Trailing Lines"
+}

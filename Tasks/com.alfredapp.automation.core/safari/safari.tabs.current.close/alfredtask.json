@@ -1,0 +1,8 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : ".\/run 'Safari'",
+  "scriptType" : 5,
+  "taskName" : "Close Current Safari Tab"
+}

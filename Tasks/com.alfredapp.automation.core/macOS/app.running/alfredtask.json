@@ -1,0 +1,10 @@
+{
+  "inputDescription" : "Application name or bundle identifier",
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function run(argv) {\n  try {\n    return argv.every(path => Application(path).running())\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Returns true if all passed-in apps are running, else returns false",
+  "taskName" : "Is App Running?"
+}

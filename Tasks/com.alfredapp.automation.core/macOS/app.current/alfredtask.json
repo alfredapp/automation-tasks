@@ -1,0 +1,29 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Name",
+            "name"
+          ],
+          [
+            "Bundle Identifier",
+            "bundle_id"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst frontmost = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0]\n\nswitch ($.getenv(\"out_format\")) {\n  case \"name\": alfredArgs(frontmost.name()); break\n  case \"bundle_id\": alfredArgs(frontmost.bundleIdentifier()); break\n  default: throw \"Unrecognised type: \" + $.getenv(\"out_format\")\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Returns the name or bundle identifier of the frontmost application",
+  "taskName" : "Identify Frontmost App"
+}

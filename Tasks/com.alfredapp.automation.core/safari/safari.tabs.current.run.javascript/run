@@ -1,0 +1,11 @@
+#!/usr/bin/osascript -l JavaScript
+
+function run(argv) {
+  const browser = Application(argv[0])
+  const javascriptCode = argv[1]
+
+  return browser.doJavaScript(
+    javascriptCode,
+    { in: browser.windows[0].currentTab }
+  )
+}

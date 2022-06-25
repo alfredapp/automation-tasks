@@ -1,0 +1,46 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 640",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Width",
+      "type" : "textfield",
+      "variable" : "width"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 480",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Input numbers for the width and height.",
+      "label" : "Height",
+      "type" : "textfield",
+      "variable" : "height"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow resulting image dimensions to be larger than the original"
+      },
+      "description" : "Padding is applied with invisible pixels.",
+      "label" : "Pad sides",
+      "type" : "checkbox",
+      "variable" : "enlarge"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  old_width=\"$(..\/get-image-property 'pixelWidth' \"${image}\")\"\n  old_height=\"$(..\/get-image-property 'pixelHeight' \"${image}\")\"\n\n  if [[ \"${enlarge}\" -eq 0 ]] && [[ \"${width}\" -gt \"${old_width}\" || \"${height}\" -gt \"${old_height}\" ]]; then\n    echo \"Input values would result in padding, and the option is turned off: ${image}\" >&2\n    exit 0\n  fi\ndone\n\nfor image in \"${@}\"; do\n  \/usr\/bin\/sips --cropToHeightWidth \"${height}\" \"${width}\" \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskDescription" : "Crop image from its centre",
+  "taskName" : "Crop Image from Centre"
+}

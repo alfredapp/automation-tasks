@@ -1,0 +1,23 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. alfredapp.com",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : ".\/run 'Safari' \"${match_string}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Closes all Safari tabs not containing specified text in URL",
+  "taskName" : "Close Safari Tabs Not Matching URL"
+}

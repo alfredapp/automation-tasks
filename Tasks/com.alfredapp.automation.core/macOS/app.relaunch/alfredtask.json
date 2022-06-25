@@ -1,0 +1,34 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Messages, Safari",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Comma-separated list of app names, paths, or bundle identifiers. Add apps to the list on-demand by passing them as arguments: take advantage of the \"Arg and Vars\" and \"Split Arg\" Utilities.",
+      "label" : "Relaunch",
+      "type" : "textfield",
+      "variable" : "app_list"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Do not bring apps to front"
+      },
+      "description" : "",
+      "label" : "Background",
+      "type" : "checkbox",
+      "variable" : "in_background"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\",\")\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const apps = argv.concat(fromVar).map(app => Application(app))\n\n  apps.forEach(app => app.quit())\n  \/\/ Asking an app to quit does not block execution, so wait until all have exited\n  while (apps.some(app => app.running())) delay(0.2)\n\n  if ($.getenv(\"in_background\") === \"0\") {\n    apps.forEach(app => app.activate())\n  } else {\n    apps.forEach(app => app.launch())\n  }\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Quits and reopens passed-in and configured apps",
+  "taskName" : "Relaunch Apps"
+}

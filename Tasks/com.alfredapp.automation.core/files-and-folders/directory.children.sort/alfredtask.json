@@ -1,0 +1,40 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "required" : false
+      },
+      "description" : "When configured, passed-in paths are ignored.",
+      "label" : "Folder",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Alphabetically",
+            "by_name"
+          ],
+          [
+            "By Most Recently Added",
+            "by_added"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Sort",
+      "type" : "popupbutton",
+      "variable" : "sort_order"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/directory-children \"${sort_order}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/directory-children \"${sort_order}\" \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Returns contents of configured or passed-in folder",
+  "taskName" : "List Folder Contents"
+}

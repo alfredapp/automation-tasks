@@ -1,0 +1,80 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Google Chrome",
+            "Google Chrome"
+          ],
+          [
+            "Microsoft Edge",
+            "Microsoft Edge"
+          ],
+          [
+            "Brave Browser",
+            "Brave Browser"
+          ],
+          [
+            "Vivaldi",
+            "Vivaldi"
+          ],
+          [
+            "Opera",
+            "Opera"
+          ],
+          [
+            "Custom...",
+            "custom"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Browser",
+      "type" : "popupbutton",
+      "variable" : "popup_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Google Chrome Canary",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
+      "label" : "Custom",
+      "type" : "textfield",
+      "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in URL will be opened",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "URL",
+      "type" : "textfield",
+      "variable" : "url"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : ""
+      },
+      "description" : "",
+      "label" : "Private Window",
+      "type" : "checkbox",
+      "variable" : "private_window"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 2,
+  "outputType" : 0,
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\nif [[ -n \"${url}\" ]]; then\n  .\/run \"${browser}\" \"${private_window}\" \"${url}\"\nelse\n  .\/run \"${browser}\" \"${private_window}\" \"${@}\"\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Makes a new Chromium browser window with the passed-in or configured URL",
+  "taskName" : "Open New Chromium Browser Window"
+}

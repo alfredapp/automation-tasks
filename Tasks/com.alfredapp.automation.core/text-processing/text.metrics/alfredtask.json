@@ -1,0 +1,33 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Words",
+            "words"
+          ],
+          [
+            "Lines",
+            "lines"
+          ],
+          [
+            "Characters",
+            "characters"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Count",
+      "type" : "popupbutton",
+      "variable" : "metric"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "case \"${metric}\" in\n  words) wc -w <<< \"${1}\" | tr -d ' \\n';;\n  lines) wc -l <<< \"${1}\" | tr -d ' \\n';;\n  characters) wc -m <<< \"${1}\" | tr -d ' \\n';;\n  *) echo \"Invalid metric: ${metric}\" >&2; exit 1;;\nesac",
+  "scriptType" : 5,
+  "taskDescription" : "Returns the word, line, or character count from text",
+  "taskName" : "Get Text Metrics"
+}

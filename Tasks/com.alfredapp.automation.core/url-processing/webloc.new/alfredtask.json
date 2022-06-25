@@ -1,0 +1,44 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~\/Desktop",
+        "filtermode" : 1,
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Write file even if it exists"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Shorten file name by removing web path"
+      },
+      "description" : "When enabled, \"https:\/\/example.com\/some\/path\" becomes \"example.com.webloc\".\nWhen disabled, it becomes \"example.com_some_path.webloc\".",
+      "label" : "Hostname Only",
+      "type" : "checkbox",
+      "variable" : "hostname_only"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 2,
+  "outputType" : 1,
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction writeFile(path, text) {\n  $.NSString\n    .alloc\n    .initWithUTF8String(text)\n    .writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, undefined)\n}\n\nfunction run(argv) {\n  const webFiles = argv.map(url => {\n    const urlObject = $.NSURL.URLWithString(url)\n    const urlHost = urlObject.host.js\n    const urlPath = urlObject.path.js\n      .replace(\/\\\/$\/, \"\") \/\/ Remove trailing \"\/\"\n      .replace(\/[^\\w]\/g, \"_\") \/\/ Replace non-word characters with \"_\"\n\n    const file = (envVar(\"hostname_only\") === \"1\" || urlPath === \"\") ?\n      `${envVar(\"save_in\")}\/${urlHost}.webloc` :\n      `${envVar(\"save_in\")}\/${urlHost}${urlPath}.webloc`\n\n    if (envVar(\"overwrite\") === \"0\" && $.NSFileManager.defaultManager.fileExistsAtPath(file)) throw `File exists: ${file}`\n\n    const weblocContents = `<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-\/\/Apple\/\/DTD PLIST 1.0\/\/EN\" \"http:\/\/www.apple.com\/DTDs\/PropertyList-1.0.dtd\"><plist version=\"1.0\"><dict><key>URL<\/key><string>${url}<\/string><\/dict><\/plist>`\n\n    writeFile(file, weblocContents)\n    return file\n  })\n\n  return alfredArgs(webFiles)\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Creates a .webloc from a URL",
+  "taskName" : "Make Web Shortcut"
+}

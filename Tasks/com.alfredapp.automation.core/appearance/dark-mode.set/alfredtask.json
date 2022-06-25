@@ -1,0 +1,33 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "On",
+            "on"
+          ],
+          [
+            "Off",
+            "off"
+          ],
+          [
+            "Toggle",
+            "toggle"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Dark Mode",
+      "type" : "popupbutton",
+      "variable" : "target_mode"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "ObjC.import(\"stdlib\")\n\nconst appearance = Application(\"System Events\").appearancePreferences\n\nswitch ($.getenv(\"target_mode\")) {\n  case \"on\": appearance.darkMode = true; break\n  case \"off\": appearance.darkMode = false; break\n  case \"toggle\": appearance.darkMode = !appearance.darkMode(); break\n  default: throw \"Invalid mode: \" + $.getenv(\"target_mode\")\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Enable, disable, or toggle Dark Mode",
+  "taskName" : "Set Dark Mode"
+}

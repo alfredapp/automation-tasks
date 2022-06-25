@@ -1,0 +1,46 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : ",",
+        "placeholder" : "",
+        "required" : true,
+        "trim" : false
+      },
+      "description" : "Text to break line on.",
+      "label" : "Delimiter",
+      "type" : "textfield",
+      "variable" : "delimiter"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 3",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Column",
+      "type" : "textfield",
+      "variable" : "column"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Remove whitespace from both ends"
+      },
+      "description" : "",
+      "label" : "Trim Output",
+      "type" : "checkbox",
+      "variable" : "trim_output"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "ObjC.import(\"stdlib\")\n\nconst delimiter = $.getenv(\"delimiter\")\nconst column = parseInt($.getenv(\"column\")) - 1 \/\/ Correct user input for zero-based array\nconst trimOutput = $.getenv(\"trim_output\") === \"1\" ? true : false\n\nif (column < 0) throw \"Column number must be higher than zero\"\n\nfunction run(argv) {\n  return argv[0]\n    .split(\"\\n\")\n    .map(line => {\n      return trimOutput ?\n        line.split(delimiter)[column].trim() :\n        line.split(delimiter)[column]\n    })\n    .join(\"\\n\")\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Splits lines on a delimiter and returns a column",
+  "taskName" : "Get Column from Text"
+}

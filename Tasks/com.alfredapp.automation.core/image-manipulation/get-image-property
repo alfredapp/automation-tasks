@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+readonly program="$(basename "${0}")"
+
+function usage {
+  echo "
+    Grab raw value of an image property via sips
+
+    Usage:
+      ${program} <property_name> <image_path>
+  " | sed -E 's/^ {4}//'
+}
+
+if [[ "${1}" =~ ^(-h|--help)$ ]]; then
+  usage
+  exit 1
+fi
+
+if [[ -z "${2}" ]]; then
+  usage
+  exit 1
+fi
+
+readonly property="${1}"
+readonly image="${2}"
+
+/usr/bin/sips --getProperty "${property}" "${image}" | \
+  tail -1 | \
+  sed "s/^ *${property}: //" |
+  tr -d '\n'

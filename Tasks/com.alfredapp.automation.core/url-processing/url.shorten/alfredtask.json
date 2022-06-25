@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 2,
+  "outputType" : 1,
+  "script" : "function alfred_args {\n  \/usr\/bin\/osascript -l JavaScript -e 'function run(argv) { return JSON.stringify({ alfredworkflow: { arg: argv } }) }' \"${@}\"\n}\n\nurls=()\n\nfor url in \"${@}\"; do\n  urls+=(\"$(\/usr\/bin\/curl curl --silent \"https:\/\/is.gd\/create.php?format=simple&url=${url}\")\")\ndone\n\nalfred_args \"${urls[@]}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Uses is.gd to shorten a URL",
+  "taskName" : "Shorten URL"
+}

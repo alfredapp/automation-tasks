@@ -1,0 +1,29 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Base64",
+            "base64"
+          ],
+          [
+            "Hexadecimal",
+            "hex"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output Representation",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "case \"${out_format}\" in\n  base64) base64 \"${1}\" | tr -d '\\n';;\n  hex) xxd -plain \"${1}\" | tr -d '\\n';;\n  *) echo \"Invalid representation: ${out_format}\" >&2; exit 1;;\nesac",
+  "scriptType" : 5,
+  "taskDescription" : "Binary-encodes passed-in file",
+  "taskName" : "Binary Encode File"
+}

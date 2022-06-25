@@ -1,0 +1,8 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "on run argv\r  tell application \"Finder\"\n    -- Open in reverse order so they show in given order\r    repeat with itemNumber from count of argv to 1 by -1\r      set pathString to item itemNumber of argv\r      make new Finder window to folder (POSIX file pathString as alias)\n      activate\r    end repeat\r  end tell\rend run",
+  "scriptType" : 6,
+  "taskName" : "Open New Finder Window"
+}

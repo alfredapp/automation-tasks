@@ -1,0 +1,35 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 640",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Width",
+      "type" : "textfield",
+      "variable" : "width"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 480",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Height",
+      "type" : "textfield",
+      "variable" : "height"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --resampleHeightWidth \"${height}\" \"${width}\" \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskDescription" : "Aspect ratio may be altered",
+  "taskName" : "Resize Image to Exact Dimensions"
+}

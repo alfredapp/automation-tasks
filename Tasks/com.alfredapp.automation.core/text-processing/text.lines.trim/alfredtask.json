@@ -1,0 +1,33 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Remove leading whitespace"
+      },
+      "description" : "",
+      "label" : "Leading",
+      "type" : "checkbox",
+      "variable" : "leading"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Remove trailing whitespace"
+      },
+      "description" : "",
+      "label" : "Trailing",
+      "type" : "checkbox",
+      "variable" : "trailing"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  const leading = envVar(\"leading\") === \"1\" ? true : false\n  const trailing = envVar(\"trailing\") === \"1\" ? true : false\n  const lines = argv[0].split(\"\\n\")\n\n  if (leading && trailing) return alfredArgs(lines.map(line => line.trim()).join(\"\\n\"))\n  if (leading) return alfredArgs(lines.map(line => line.trimStart()).join(\"\\n\"))\n  if (trailing) return alfredArgs(lines.map(line => line.trimEnd()).join(\"\\n\"))\n  return alfredArgs(lines.join(\"\\n\"))\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Removes surrounding whitespace from every line",
+  "taskName" : "Trim Line Whitespace"
+}

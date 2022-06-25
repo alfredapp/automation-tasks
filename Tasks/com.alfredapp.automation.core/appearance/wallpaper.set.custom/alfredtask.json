@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "function run(argv) {\n  Application(\"System Events\").currentDesktop.picture = argv[0]\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Sets the passed-in image as the wallpaper",
+  "taskName" : "Change Wallpaper"
+}

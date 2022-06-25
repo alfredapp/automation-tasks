@@ -1,0 +1,34 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. bananas",
+        "required" : true,
+        "trim" : false
+      },
+      "description" : "",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to \"Match for\" as a regular expression."
+      },
+      "description" : "",
+      "label" : "Regex",
+      "type" : "checkbox",
+      "variable" : "regex"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst match_string = $.getenv(\"match_string\")\nconst regex = $.getenv(\"regex\") === \"1\" ? true : false\n\nfunction run(argv) {\n  return regex ?\n    alfredArgs(argv.filter(a => a.match(match_string))) :\n    alfredArgs(argv.filter(a => a.includes(match_string)))\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Returns arguments matching a pattern",
+  "taskName" : "Get Matching Arguments"
+}

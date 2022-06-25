@@ -1,0 +1,23 @@
+#!/usr/bin/osascript -l JavaScript
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function run(argv) {
+  const browser = Application(argv[0])
+  const outFormat = argv[1]
+
+  const tabs = browser
+    .windows()
+    .flatMap(window => window.tabs())
+    .filter(tab => tab !== null)
+    .map(tab => [tab.url(), tab.name()])
+
+  switch (outFormat) {
+    case "url": return alfredArgs(tabs.map(tab => tab[0]))
+    case "title": return alfredArgs(tabs.map(tab => tab[1]))
+    case "url_title": return alfredArgs(tabs.map(tab => tab[0] + "|" + tab[1]))
+    default: throw "Unrecognised type: " + outFormat
+  }
+}

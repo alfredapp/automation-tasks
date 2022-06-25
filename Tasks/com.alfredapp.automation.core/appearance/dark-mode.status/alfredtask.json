@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "Application(\"System Events\").appearancePreferences.darkMode()",
+  "scriptType" : 7,
+  "taskDescription" : "Returns true if Dark Mode is enabled, else returns false",
+  "taskName" : "Get Dark Mode Status"
+}

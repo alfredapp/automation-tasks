@@ -1,0 +1,35 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 640",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Width",
+      "type" : "textfield",
+      "variable" : "width"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 480",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Input numbers for the width and height.",
+      "label" : "Height",
+      "type" : "textfield",
+      "variable" : "height"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "if [[ \"$(sw_vers -productVersion | cut -d. -f1)\" -lt 12 ]]; then\n  echo 'Setting window bounds requires macOS Monterey (12) or above.' >&2\n  exit 1\nfi\n\n..\/window-bounds.js 'current' 'custom-sizefromwindowcentre' \"${width}\" \"${height}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Sets custom size for topmost window, anchored to its centre",
+  "taskName" : "Set Custom Window Size"
+}

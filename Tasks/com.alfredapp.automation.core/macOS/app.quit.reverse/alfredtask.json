@@ -1,0 +1,45 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Messages, Safari",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Comma-separated list of app names, paths, or bundle identifiers. Add apps to the list on-demand by passing them as arguments: take advantage of the \"Arg and Vars\" and \"Split Arg\" Utilities.",
+      "label" : "Do Not Quit",
+      "type" : "textfield",
+      "variable" : "app_list"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Alfred"
+      },
+      "description" : "",
+      "label" : "Add to List",
+      "type" : "checkbox",
+      "variable" : "keep_alfred"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Finder"
+      },
+      "description" : "",
+      "label" : "",
+      "type" : "checkbox",
+      "variable" : "keep_finder"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\",\")\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const alfred = $.getenv(\"keep_alfred\") === \"1\" ? [\"Alfred\", \"Alfred Preferences\"] : []\n  const finder = $.getenv(\"keep_finder\") === \"1\" ? [\"Finder\"] : []\n\n  keepAlive = argv.concat(fromVar, alfred, finder)\n\n  Application(\"System Events\")\n    .applicationProcesses\n    .where({ backgroundOnly: false })\n    .name()\n    .filter(app => !keepAlive.includes(app))\n    .forEach(app => Application(app).quit())\n}",
+  "scriptType" : 7,
+  "taskDescription" : "Quits every app except ones passed-in and configured",
+  "taskName" : "Quit All Apps, with Exceptions"
+}

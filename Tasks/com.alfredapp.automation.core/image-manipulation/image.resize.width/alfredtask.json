@@ -1,0 +1,34 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 640",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Width",
+      "type" : "textfield",
+      "variable" : "width"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow resulting image dimensions to be larger than the original"
+      },
+      "description" : "Increasing image proportions may result in loss of detail.",
+      "label" : "Scale Up",
+      "type" : "checkbox",
+      "variable" : "enlarge"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  old_width=\"$(..\/get-image-property 'pixelWidth' \"${image}\")\"\n\n  if [[ \"${enlarge}\" -eq 0 && \"${width}\" -gt \"${old_width}\" ]]; then\n    echo \"Desired size would result in scaling up, and the option is turned off: ${image}\" >&2\n    exit 0\n  fi\ndone\n\nfor image in \"${@}\"; do\n  \/usr\/bin\/sips --resampleWidth \"${width}\" \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskDescription" : "Aspect ratio will be maintained",
+  "taskName" : "Resize Image by Width"
+}

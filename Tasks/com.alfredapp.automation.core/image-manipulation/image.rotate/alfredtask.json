@@ -1,0 +1,22 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. 90",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Degrees Clockwise",
+      "type" : "textfield",
+      "variable" : "degrees"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --rotate \"${degrees}\" \"${image}\"\ndone",
+  "scriptType" : 5,
+  "taskName" : "Rotate Image"
+}

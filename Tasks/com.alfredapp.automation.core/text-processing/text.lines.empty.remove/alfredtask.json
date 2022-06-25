@@ -1,0 +1,22 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Also remove lines with nothing but tabs and spaces"
+      },
+      "description" : "",
+      "label" : "Whitespace is Empty",
+      "type" : "checkbox",
+      "variable" : "all_whitespace"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "if [[ \"${all_whitespace}\" -eq 1 ]]; then\n  sed '\/^[[:space:]]*$\/d' <<< \"${1}\"\nelse\n  sed '\/^$\/d' <<< \"${1}\"\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Returns passed-in text, with empty lines removed",
+  "taskName" : "Delete Empty Lines"
+}
