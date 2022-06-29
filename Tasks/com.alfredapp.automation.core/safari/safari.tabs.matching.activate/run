@@ -1,0 +1,45 @@
+#!/usr/bin/osascript -l JavaScript
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function run(argv) {
+  const browser = Application(argv[0])
+  const matchString = argv[1]
+  const firstLast = argv[2]
+
+  const windows = firstLast === "first" ? browser.windows() : browser.windows().reverse()
+
+  for (const window of windows) {
+    // Grab wanted tab
+    const matchingTabs = window
+      .tabs()
+      .filter(tab => tab !== null)
+      .filter(tab => tab.url().includes(matchString))
+
+    if (matchingTabs.length === 0) continue // Skip if no matches
+
+    // Swith to tab
+    const wantedTab = firstLast === "first" ? matchingTabs.at(0) : matchingTabs.at(-1)
+    window.currentTab = wantedTab
+
+    // Raise window with tab
+    const windowIndex = window.index()
+
+    Application("System Events")
+      .processes[browser.name()]
+      .windows()[windowIndex - 1]
+      .actions["AXRaise"]
+      .perform()
+
+    // Bring browser to front
+    browser.activate()
+
+    // Output URL
+    return alfredArgs(wantedTab.url())
+  }
+
+  // No tab matched
+  return alfredArgs([])
+}

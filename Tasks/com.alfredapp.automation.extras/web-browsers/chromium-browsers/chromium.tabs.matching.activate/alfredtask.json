@@ -1,0 +1,87 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "Google Chrome",
+            "Google Chrome"
+          ],
+          [
+            "Microsoft Edge",
+            "Microsoft Edge"
+          ],
+          [
+            "Brave Browser",
+            "Brave Browser"
+          ],
+          [
+            "Vivaldi",
+            "Vivaldi"
+          ],
+          [
+            "Opera",
+            "Opera"
+          ],
+          [
+            "Custom...",
+            "custom"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Browser",
+      "type" : "popupbutton",
+      "variable" : "popup_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Google Chrome Canary",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
+      "label" : "Custom",
+      "type" : "textfield",
+      "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. alfredapp.com",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "First Match",
+            "first"
+          ],
+          [
+            "Last Match",
+            "last"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Switch to",
+      "type" : "popupbutton",
+      "variable" : "first_last"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${match_string}\" \"${first_last}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Switches to a Chromium browser tab containing specified text in URL",
+  "taskName" : "Switch to Chromium Browser Tab with Matching URL"
+}

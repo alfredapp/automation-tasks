@@ -1,0 +1,41 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. alfredapp.com",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "First Match",
+            "first"
+          ],
+          [
+            "Last Match",
+            "last"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Switch to",
+      "type" : "popupbutton",
+      "variable" : "first_last"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : ".\/run 'Safari' \"${match_string}\" \"${first_last}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Switches to a Safari tab containing specified text in URL",
+  "taskName" : "Switch to Safari Tab with Matching URL"
+}
