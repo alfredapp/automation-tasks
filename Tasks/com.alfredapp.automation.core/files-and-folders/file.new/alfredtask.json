@@ -2,7 +2,7 @@
   "inputMulti" : 2,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n\tconst fileManager = $.NSFileManager.defaultManager\n  const paths = argv.map(path => $(path).stringByExpandingTildeInPath.js)\n\n  paths.forEach(path => {\n    if (!path.startsWith(\"\/\")) throw \"Invalid path: \" + path\n    fileManager.createDirectoryAtPathWithIntermediateDirectoriesAttributesError($(path).stringByDeletingLastPathComponent.js, true, undefined, undefined)\n\t\tfileManager.createFileAtPathContentsAttributes(path, undefined, undefined)\n  })\n\n  return alfredArgs(paths)\n}",
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  const fileManager = $.NSFileManager.defaultManager\n  const paths = argv.map(path => $(path).stringByExpandingTildeInPath.js)\n\n  paths.forEach(path => {\n    if (!path.startsWith(\"\/\")) throw \"Invalid path: \" + path\n    fileManager.createDirectoryAtPathWithIntermediateDirectoriesAttributesError($(path).stringByDeletingLastPathComponent.js, true, undefined, undefined)\n    fileManager.createFileAtPathContentsAttributes(path, undefined, undefined)\n  })\n\n  return alfredArgs(paths)\n}",
   "scriptType" : 7,
   "taskDescription" : "Makes a new empty file, including intermediary folders",
   "taskName" : "Make New Empty File"
