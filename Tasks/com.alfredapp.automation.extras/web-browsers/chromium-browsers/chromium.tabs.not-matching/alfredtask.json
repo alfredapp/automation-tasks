@@ -70,12 +70,20 @@
             "title"
           ],
           [
+            "URL⇥Title",
+            "url_tab_title"
+          ],
+          [
+            "Title⇥URL",
+            "title_tab_url"
+          ],
+          [
             "URL|Title",
             "url_title"
           ]
         ]
       },
-      "description" : "Format examples:\n• URL: https:\/\/www.alfredapp.com\/\n• Title: Alfred - Productivity App for macOS\n• URL|Title: https:\/\/www.alfredapp.com\/|Alfred - Productivity App for macOS",
+      "description" : "⇥ represents a tab.",
       "label" : "Output Format",
       "type" : "popupbutton",
       "variable" : "out_format"

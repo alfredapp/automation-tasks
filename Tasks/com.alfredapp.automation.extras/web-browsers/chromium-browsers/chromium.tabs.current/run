@@ -13,6 +13,8 @@ function run(argv) {
   switch (outFormat) {
     case "url": return alfredArgs(activeTab.url())
     case "title": return alfredArgs(activeTab.name())
+    case "url_tab_title": return alfredArgs(activeTab.url() + "\t" + activeTab.name())
+    case "title_tab_url": return alfredArgs(activeTab.name() + "\t" + activeTab.url())
     case "url_title": return alfredArgs(activeTab.url() + "|" + activeTab.name())
     default: throw "Unrecognised type: " + outFormat
   }
