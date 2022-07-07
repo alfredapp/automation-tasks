@@ -27,7 +27,7 @@
   "inputMulti" : -1,
   "inputType" : 0,
   "outputType" : 0,
-  "script" : "ObjC.import(\"stdlib\")\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\",\")\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const apps = argv.concat(fromVar).map(app => Application(app))\n\n  apps.forEach(app => app.quit())\n  \/\/ Asking an app to quit does not block execution, so wait until all have exited\n  while (apps.some(app => app.running())) delay(0.2)\n\n  if ($.getenv(\"in_background\") === \"0\") {\n    apps.forEach(app => app.activate())\n  } else {\n    apps.forEach(app => app.launch())\n  }\n}",
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\",\")\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const apps = argv.concat(fromVar)\n\n  apps.forEach(appName => {\n    try {\n      const app = Application(appName)\n      app.quit()\n      while (app.running()) delay(0.2) \/\/ Asking to quit does not block execution, so wait until it exits\n      $.getenv(\"in_background\") === \"0\" ? app.activate() : app.launch()\n    } catch (ignore) { }\n  })\n}",
   "scriptType" : 7,
   "taskDescription" : "Quits and reopens passed-in and configured apps",
   "taskName" : "Relaunch Apps"

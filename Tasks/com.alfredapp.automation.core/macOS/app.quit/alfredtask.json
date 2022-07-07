@@ -16,7 +16,7 @@
   "inputMulti" : -1,
   "inputType" : 0,
   "outputType" : 0,
-  "script" : "\/\/ TODO: Needs 0+ Input\n\/\/ TODO: Testing\n\nObjC.import(\"stdlib\")\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\",\")\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const apps = argv.concat(fromVar)\n\n  apps.forEach(app => Application(app).quit())\n}",
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\",\")\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const apps = argv.concat(fromVar)\n\n  apps.forEach(app => {\n    try { Application(app).quit() }\n    catch (ignore) { }\n  })\n}",
   "scriptType" : 7,
   "taskDescription" : "Quits passed-in and configured apps",
   "taskName" : "Quit Apps"
