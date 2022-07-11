@@ -195,21 +195,21 @@ function run(argv) {
         frame.x,
         frame.y,
         frame.w / 3,
-        frame.h / 3
+        frame.h
       )
     case "third-right":
       return reshapeWindow(frame, topWindow,
         frame.x + frame.w / 1.5,
         frame.y,
         frame.w / 3,
-        frame.h / 3
+        frame.h
       )
     case "third-centrewidth":
       return reshapeWindow(frame, topWindow,
         frame.x + frame.w / 3,
         frame.y,
         frame.w / 3,
-        frame.h / 3
+        frame.h
       )
     case "twothirds-left":
       return reshapeWindow(frame, topWindow,
