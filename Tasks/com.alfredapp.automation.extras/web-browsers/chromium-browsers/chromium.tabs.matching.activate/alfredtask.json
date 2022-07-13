@@ -75,12 +75,23 @@
       "label" : "Switch to",
       "type" : "popupbutton",
       "variable" : "first_last"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${match_string}\" \"${first_last}\"",
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${first_last}\"",
   "scriptType" : 5,
   "taskDescription" : "Switches to a Chromium browser tab containing specified text in URL",
   "taskName" : "Switch to Chromium Browser Tab with Matching URL"

@@ -57,13 +57,24 @@
       "label" : "Match For",
       "type" : "textfield",
       "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.matching.close\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${match_string}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.matching.close\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${match_string}\"",
   "scriptType" : 5,
-  "taskDescription" : "Closes all Chromium browser tabs containing specified text in URL",
+  "taskDescription" : "Closes Chromium browser tabs containing specified text in URL",
   "taskName" : "Close Chromium Browser Tabs with Matching URL"
 }

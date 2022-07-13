@@ -11,13 +11,24 @@
       "label" : "Match For",
       "type" : "textfield",
       "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : ".\/run 'Safari' \"${match_string}\"",
+  "script" : ".\/run 'Safari' \"${all_windows}\" \"${match_string}\"",
   "scriptType" : 5,
-  "taskDescription" : "Closes all Safari tabs not containing specified text in URL",
+  "taskDescription" : "Closes Safari tabs not containing specified text in URL",
   "taskName" : "Close Safari Tabs Not Matching URL"
 }

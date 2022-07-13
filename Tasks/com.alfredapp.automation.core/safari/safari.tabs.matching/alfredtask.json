@@ -37,13 +37,24 @@
       "label" : "Output Format",
       "type" : "popupbutton",
       "variable" : "out_format"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : ".\/run 'Safari' \"${out_format}\" \"${match_string}\"",
+  "script" : ".\/run 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns all Safari tabs containing specified text in URL",
+  "taskDescription" : "Returns Safari tabs containing specified text in URL",
   "taskName" : "Get Safari Tabs with Matching URL"
 }

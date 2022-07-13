@@ -6,12 +6,13 @@ function alfredArgs(args) {
 
 function run(argv) {
   const browser = Application(argv[0])
-  const matchString = argv[1]
-  const firstLast = argv[2]
+  const windows = argv[1] === "1" ? browser.windows() : [browser.windows()[0]]
+  const matchString = argv[2]
+  const firstLast = argv[3]
 
-  const windows = firstLast === "first" ? browser.windows() : browser.windows().reverse()
+  const orderedWindows = firstLast === "first" ? windows : windows.slice().reverse()
 
-  for (const window of windows) {
+  for (const window of orderedWindows) {
     // Grab wanted tab
     const matchingTabs = window
       .tabs()
@@ -25,11 +26,11 @@ function run(argv) {
     window.currentTab = wantedTab
 
     // Raise window with tab
-    const windowIndex = window.index()
+    const windowIndex = window.index() - 1
 
     Application("System Events")
       .processes[browser.name()]
-      .windows()[windowIndex - 1]
+      .windows()[windowIndex]
       .actions["AXRaise"]
       .perform()
 

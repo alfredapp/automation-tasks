@@ -6,10 +6,10 @@ function alfredArgs(args) {
 
 function run(argv) {
   const browser = Application(argv[0])
-  const outFormat = argv[1]
+  const windows = argv[1] === "1" ? browser.windows() : [browser.windows()[0]]
+  const outFormat = argv[2]
 
-  const tabs = browser
-    .windows()
+  const tabs = windows
     .flatMap(window => window.tabs())
     .filter(tab => tab !== null)
     .map(tab => [tab.url(), tab.name()])
