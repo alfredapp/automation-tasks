@@ -6,7 +6,7 @@ const systemEvents = Application("System Events")
 const screens = $.NSScreen.screens.js
 const screenPrimary = screens.find(screen => screen.frame.origin.x === 0 && screen.frame.origin.y === 0)
 const menuBarPadding = $.NSMenu.menuBarHeight + 1 // Frame begins 1 point below Menu Bar
-const topWindow = systemEvents.applicationProcesses.where({ frontmost: true })[0].windows[0]
+const topWindow = systemEvents.applicationProcesses.where({ frontmost: true })[0].windows.where({ subrole: "AXStandardWindow" })[0]
 
 // $.NSScreen.mainScreen should return screen with active window,
 // but while it works in Script Editor, when run from osascript it returns the primary screen
