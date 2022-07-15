@@ -1,11 +1,18 @@
 #!/usr/bin/osascript -l JavaScript
 
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
 function run(argv) {
   const browser = Application(argv[0])
   const javascriptCode = argv[1]
 
-  return browser.doJavaScript(
+  const output = browser.doJavaScript(
     javascriptCode,
     { in: browser.windows[0].currentTab }
   )
+
+  if (output === null) return // Instead of returning null on empy output
+  return alfredArgs(output)
 }

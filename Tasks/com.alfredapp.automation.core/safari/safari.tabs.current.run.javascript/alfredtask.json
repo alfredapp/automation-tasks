@@ -15,7 +15,7 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
-  "outputType" : 0,
+  "outputType" : 1,
   "script" : ".\/run 'Safari' \"${javascript_code}\"",
   "scriptType" : 5,
   "taskDescription" : "Executes JavaScript in Safari's current tab",

@@ -61,7 +61,7 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
-  "outputType" : 0,
+  "outputType" : 1,
   "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${javascript_code}\"\n",
   "scriptType" : 5,
   "taskDescription" : "Executes JavaScript in Chromium browser's current tab",
