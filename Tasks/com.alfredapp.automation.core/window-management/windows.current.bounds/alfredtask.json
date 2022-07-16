@@ -1,9 +1,41 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "pairs" : [
+          [
+            "All Details",
+            "all_details"
+          ],
+          [
+            "X Origin",
+            "x"
+          ],
+          [
+            "Y Origin",
+            "y"
+          ],
+          [
+            "Width",
+            "width"
+          ],
+          [
+            "Height",
+            "height"
+          ]
+        ]
+      },
+      "description" : "\"All Details\" outputs in JSON format. Other options output a number.",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "const topWindow = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0].windows[0]\nconst windowProperties = topWindow.properties()\n\nJSON.stringify({\n  x: windowProperties.position[0],\n  y: windowProperties.position[1],\n  width: windowProperties.size[0],\n  height: windowProperties.size[1]\n})",
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  const outFormat = $.getenv(\"out_format\")\n  const topWindow = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0].windows.where({ subrole: \"AXStandardWindow\" })[0]\n  const windowProperties = topWindow.properties()\n\n  const windowBounds = {\n    x: windowProperties.position[0],\n    y: windowProperties.position[1],\n    width: windowProperties.size[0],\n    height: windowProperties.size[1]\n  }\n\n  switch (outFormat) {\n    case \"all_details\": return alfredArgs(JSON.stringify(windowBounds))\n    case \"x\": return alfredArgs(windowBounds.x)\n    case \"y\": return alfredArgs(windowBounds.y)\n    case \"width\": return alfredArgs(windowBounds.width)\n    case \"height\": return alfredArgs(windowBounds.height)\n  }\n}",
   "scriptType" : 7,
-  "taskDescription" : "Returns a JSON with the topmost window's bounds",
+  "taskDescription" : "Returns the topmost window's bounds",
   "taskName" : "Get Window Bounds"
 }
