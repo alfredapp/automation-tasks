@@ -2,7 +2,7 @@
   "inputMulti" : 2,
   "inputType" : 1,
   "outputType" : 0,
-  "script" : "on run argv\n  set pathList to {}\n\n  repeat with pathString in argv\n    copy ((POSIX file pathString) as alias) to the end of the pathList\n end repeat\n\n  tell application \"Finder\" to delete pathList\nend run",
+  "script" : "on run argv\n  set pathList to {}\n\n  repeat with pathString in argv\n    set end of pathList to POSIX file pathString as alias\n end repeat\n\n  tell application \"Finder\" to delete pathList\nend run",
   "scriptType" : 6,
   "taskDescription" : "Sends the passed-in path to the trash",
   "taskName" : "Send to Trash"
