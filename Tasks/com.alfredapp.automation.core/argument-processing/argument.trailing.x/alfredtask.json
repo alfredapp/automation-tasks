@@ -8,7 +8,7 @@
         "trim" : true
       },
       "description" : "",
-      "label" : "Leading Arguments",
+      "label" : "Trailing Arguments",
       "type" : "textfield",
       "variable" : "arguments_number"
     }
