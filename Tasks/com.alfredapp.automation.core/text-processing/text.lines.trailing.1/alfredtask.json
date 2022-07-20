@@ -2,7 +2,7 @@
   "inputMulti" : 1,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "tail -1 <<< \"${1}\" | tr -d '\\n'",
+  "script" : "# Use \"echo\" to prevent extra newline in \"tail\" STDIN\necho -n \"${1}\" | tail -1 | tr -d '\\n'",
   "scriptType" : 5,
   "taskDescription" : "Returns last line from passed-in text, without trailing newline",
   "taskName" : "Get Last Line"
