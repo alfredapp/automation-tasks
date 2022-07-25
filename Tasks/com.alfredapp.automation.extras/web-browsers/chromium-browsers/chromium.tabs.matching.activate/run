@@ -4,11 +4,17 @@ function alfredArgs(args) {
   return JSON.stringify({ alfredworkflow: { arg: args } })
 }
 
+function lookFor(matchString, inText, useRegex) {
+  if (useRegex) return RegExp(matchString).test(inText)
+  return inText.includes(matchString)
+}
+
 function run(argv) {
   const browser = Application(argv[0])
   const windows = argv[1] === "1" ? browser.windows() : [browser.windows()[0]]
   const matchString = argv[2]
   const firstLast = argv[3]
+  const regex = argv[4] === "1"
 
   const orderedWindows = firstLast === "first" ? windows : windows.slice().reverse()
 
@@ -18,7 +24,7 @@ function run(argv) {
       .tabs()
       .filter(tab => tab !== null)
       .map((tab, index) => [tab.url(), index])
-      .filter(tab => tab[0].includes(matchString))
+      .filter(tab => lookFor(matchString, tab[0], regex))
 
     if (matchingTabs.length === 0) continue // Skip if no matches
 

@@ -41,10 +41,21 @@
         "required" : true,
         "trim" : true
       },
-      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "description" : "",
       "label" : "Match For",
       "type" : "textfield",
       "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to match for as a regular expression"
+      },
+      "description" : "",
+      "label" : "Regex",
+      "type" : "checkbox",
+      "variable" : "regex"
     },
     {
       "config" : {
@@ -61,7 +72,7 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.matching.close\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${match_string}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.matching.close\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "taskDescription" : "Closes Webkit browser tabs containing specified text in URL",
   "taskName" : "Close Webkit Browser Tabs with Matching URL"

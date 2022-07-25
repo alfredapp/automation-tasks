@@ -41,10 +41,32 @@
         "required" : true,
         "trim" : true
       },
-      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "description" : "",
       "label" : "Match For",
       "type" : "textfield",
       "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to match for as a regular expression"
+      },
+      "description" : "",
+      "label" : "Regex",
+      "type" : "checkbox",
+      "variable" : "regex"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
     },
     {
       "config" : {
@@ -71,23 +93,12 @@
       "label" : "Output Format",
       "type" : "popupbutton",
       "variable" : "out_format"
-    },
-    {
-      "config" : {
-        "default" : true,
-        "required" : false,
-        "text" : "If unchecked, only consider the frontmost window"
-      },
-      "description" : "",
-      "label" : "All Windows",
-      "type" : "checkbox",
-      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.not-matching\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${out_format}\" \"${match_string}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.not-matching\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "taskDescription" : "Returns Webkit browser tabs not containing specified text in URL",
   "taskName" : "Get Webkit Browser Tabs Not Matching URL"

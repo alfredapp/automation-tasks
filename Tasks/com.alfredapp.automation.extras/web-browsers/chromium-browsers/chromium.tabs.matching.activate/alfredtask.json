@@ -53,10 +53,32 @@
         "required" : true,
         "trim" : true
       },
-      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "description" : "",
       "label" : "Match For",
       "type" : "textfield",
       "variable" : "match_string"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to match for as a regular expression"
+      },
+      "description" : "",
+      "label" : "Regex",
+      "type" : "checkbox",
+      "variable" : "regex"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
     },
     {
       "config" : {
@@ -72,26 +94,15 @@
         ]
       },
       "description" : "",
-      "label" : "Switch to",
+      "label" : "Switch To",
       "type" : "popupbutton",
       "variable" : "first_last"
-    },
-    {
-      "config" : {
-        "default" : true,
-        "required" : false,
-        "text" : "If unchecked, only consider the frontmost window"
-      },
-      "description" : "",
-      "label" : "All Windows",
-      "type" : "checkbox",
-      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${first_last}\"",
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${first_last}\" \"${regex}\"",
   "scriptType" : 5,
   "taskDescription" : "Switches to a Chromium browser tab containing specified text in URL",
   "taskName" : "Switch to Chromium Browser Tab with Matching URL"

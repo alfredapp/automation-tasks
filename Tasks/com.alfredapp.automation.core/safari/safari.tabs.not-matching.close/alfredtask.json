@@ -7,7 +7,7 @@
         "required" : true,
         "trim" : true
       },
-      "description" : "Text can be present anywhere in the URL, as long as it's contiguous.",
+      "description" : "",
       "label" : "Match For",
       "type" : "textfield",
       "variable" : "match_string"
@@ -22,12 +22,23 @@
       "label" : "All Windows",
       "type" : "checkbox",
       "variable" : "all_windows"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to match for as a regular expression"
+      },
+      "description" : "",
+      "label" : "Regex",
+      "type" : "checkbox",
+      "variable" : "regex"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : ".\/run 'Safari' \"${all_windows}\" \"${match_string}\"",
+  "script" : ".\/run 'Safari' \"${all_windows}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "taskDescription" : "Closes Safari tabs not containing specified text in URL",
   "taskName" : "Close Safari Tabs Not Matching URL"

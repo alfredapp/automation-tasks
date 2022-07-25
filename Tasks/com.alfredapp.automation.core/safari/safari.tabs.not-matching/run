@@ -4,17 +4,23 @@ function alfredArgs(args) {
   return JSON.stringify({ alfredworkflow: { arg: args } })
 }
 
+function lookFor(matchString, inText, useRegex) {
+  if (useRegex) return RegExp(matchString).test(inText)
+  return inText.includes(matchString)
+}
+
 function run(argv) {
   const browser = Application(argv[0])
   const windows = argv[1] === "1" ? browser.windows() : [browser.windows()[0]]
   const outFormat = argv[2]
   const matchString = argv[3]
+  const regex = argv[4] === "1"
 
   const matchingTabs = windows
     .flatMap(window => window.tabs())
     .filter(tab => tab !== null)
     .map(tab => [tab.url(), tab.name()])
-    .filter(tab => !tab[0].includes(matchString))
+    .filter(tab => !lookFor(matchString, tab[0], regex))
 
   switch (outFormat) {
     case "url": return alfredArgs(matchingTabs.map(tab => tab[0]))
