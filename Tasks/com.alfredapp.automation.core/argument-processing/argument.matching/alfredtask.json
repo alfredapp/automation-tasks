@@ -16,7 +16,7 @@
       "config" : {
         "default" : false,
         "required" : false,
-        "text" : "Treat text to \"Match for\" as a regular expression."
+        "text" : "Treat text to match for as a regular expression."
       },
       "description" : "",
       "label" : "Regex",
