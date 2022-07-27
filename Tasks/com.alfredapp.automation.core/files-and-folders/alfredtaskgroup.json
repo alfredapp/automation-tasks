@@ -1,5 +1,4 @@
 {
   "groupDescription" : "Interact with your files, folders, and the Finder",
-  "groupName" : "Files and Folders",
-  "iconFromBundleId" : "com.apple.finder"
+  "groupName" : "Files and Folders"
 }
