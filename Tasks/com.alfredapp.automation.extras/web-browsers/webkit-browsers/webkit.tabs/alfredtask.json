@@ -36,6 +36,17 @@
     },
     {
       "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "If unchecked, only consider the frontmost window"
+      },
+      "description" : "",
+      "label" : "All Windows",
+      "type" : "checkbox",
+      "variable" : "all_windows"
+    },
+    {
+      "config" : {
         "pairs" : [
           [
             "URL",
@@ -59,17 +70,6 @@
       "label" : "Output Format",
       "type" : "popupbutton",
       "variable" : "out_format"
-    },
-    {
-      "config" : {
-        "default" : true,
-        "required" : false,
-        "text" : "If unchecked, only consider the frontmost window"
-      },
-      "description" : "",
-      "label" : "All Windows",
-      "type" : "checkbox",
-      "variable" : "all_windows"
     }
   ],
   "inputMulti" : 0,

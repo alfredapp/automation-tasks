@@ -1,5 +1,5 @@
 {
-  "inputDescription" : "Application name or bundle identifier",
+  "inputDescription" : "Application name, path, or bundle identifier",
   "inputMulti" : 2,
   "inputType" : 0,
   "outputType" : 1,
