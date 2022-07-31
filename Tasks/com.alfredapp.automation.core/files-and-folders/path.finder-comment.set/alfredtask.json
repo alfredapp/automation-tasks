@@ -1,0 +1,45 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "required" : false
+      },
+      "description" : "When configured, passed-in paths are ignored.",
+      "label" : "Folder",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "required" : true,
+        "trim" : true,
+        "verticalsize" : 3
+      },
+      "description" : "",
+      "label" : "Comment",
+      "type" : "textarea",
+      "variable" : "finder_comment"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Act on directory contents"
+      },
+      "description" : "",
+      "label" : "Recursive",
+      "type" : "checkbox",
+      "variable" : "recursive"
+    }
+  ],
+  "inputMulti" : -1,
+  "inputType" : 1,
+  "outputType" : 2,
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/finder-comment \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/finder-comment \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Sets the Finder comment of the passed-in path",
+  "taskName" : "Write Finder Comment"
+}

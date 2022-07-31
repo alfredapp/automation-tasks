@@ -1,0 +1,48 @@
+#!/usr/bin/osascript -l JavaScript
+
+const fileManager = $.NSFileManager.defaultManager
+
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
+}
+
+function isDir(path) {
+  const ref = Ref()
+  fileManager.fileExistsAtPathIsDirectory(path, ref)
+  return ref[0]
+}
+
+function finderItem(path) {
+  // Writability check
+  if (!fileManager.isWritableFileAtPath(path)) throw "Cannot write to path: " + path
+
+  // Split path components
+  const dirComponents = $(path).stringByDeletingLastPathComponent.js.split("/").slice(1)
+  const baseComponent = $(path).lastPathComponent.js
+
+  // Join as Finder item
+  const finderDirpath = dirComponents.reduce(
+    (container, dir) => container.folders[dir],
+    Application("Finder").startupDisk()
+  )
+
+  return isDir(path) ?
+    finderDirpath.folders[baseComponent] :
+    finderDirpath.files[baseComponent]
+}
+
+function run(argv) {
+  const recursive = envVar("recursive") === "1"
+  const finderComment = envVar("finder_comment")
+
+  const paths = argv.flatMap(path => {
+    const finderPath = finderItem(path)
+    if (recursive && isDir(path)) return [finderPath, finderPath.entireContents()].flat()
+    return finderPath
+  })
+
+  paths.forEach(p => p.comment = finderComment)
+}
