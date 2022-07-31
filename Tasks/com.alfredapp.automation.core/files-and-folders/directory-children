@@ -44,10 +44,10 @@ function run(argv) {
     return $.NSFileManager.defaultManager
       .contentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(
         $.NSURL.fileURLWithPathIsDirectory(path, true),
-        [$.NSURLAddedToDirectoryDateKey.js],
-        undefined, undefined
+        [$.NSURLAddedToDirectoryDateKey],
+        $.NSDirectoryEnumerationSkipsHiddenFiles,
+        undefined
       ).js
-      .filter(url => !url.path.lastPathComponent.js.startsWith("."))
   })
 
   switch (sortOrder) {
