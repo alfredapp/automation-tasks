@@ -1,8 +1,8 @@
 {
   "inputMulti" : 2,
   "inputType" : 1,
-  "outputType" : 0,
-  "script" : "const finder = Application(\"Finder\")\n\nfunction run(argv) {\n  argv.forEach(p => finder.duplicate(Path(p)))\n}",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction finderItemToPOSIXPath(finderItem) {\n  return $.NSURL.URLWithString(finderItem.url()).path.js\n}\n\nfunction run(argv) {\n  const finder = Application(\"Finder\")\n\n  const duplicated = argv.map(p => finderItemToPOSIXPath(finder.duplicate(Path(p))))\n  return alfredArgs(duplicated)\n}",
   "scriptType" : 7,
   "taskDescription" : "Creates duplicates of the passed-in path",
   "taskName" : "Duplicate Paths"
