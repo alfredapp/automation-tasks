@@ -1,0 +1,9 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction finderItemToPOSIXPath(fileURL) {\n  return $.NSURL.URLWithString(fileURL.url()).path.js\n}\n\nalfredArgs(Application(\"Finder\").selection().map(p => finderItemToPOSIXPath(p)))",
+  "scriptType" : 7,
+  "taskDescription" : "Returns the paths selected in the Finder",
+  "taskName" : "Get Selection in Finder"
+}
