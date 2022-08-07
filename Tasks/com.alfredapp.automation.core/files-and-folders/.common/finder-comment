@@ -15,7 +15,7 @@ function isDir(path) {
   return ref[0]
 }
 
-function finderItem(path) {
+function pathToFinderItem(path) {
   // Writability check
   if (!fileManager.isWritableFileAtPath(path)) throw "Cannot write to path: " + path
 
@@ -39,7 +39,7 @@ function run(argv) {
   const finderComment = envVar("finder_comment")
 
   const paths = argv.flatMap(path => {
-    const finderPath = finderItem(path)
+    const finderPath = pathToFinderItem(path)
     if (recursive && isDir(path)) return [finderPath, finderPath.entireContents()].flat()
     return finderPath
   })
