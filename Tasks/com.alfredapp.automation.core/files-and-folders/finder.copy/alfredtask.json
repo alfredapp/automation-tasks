@@ -15,7 +15,7 @@
       "config" : {
         "default" : false,
         "required" : false,
-        "text" : "Write file even if it exists"
+        "text" : "Replace file with same name at destination"
       },
       "description" : "",
       "label" : "Overwrite",
@@ -28,5 +28,5 @@
   "outputType" : 0,
   "script" : "on run argv\n  set overwrite to (system attribute \"overwrite\") is \"1\"\n  set targetDir to (POSIX file (system attribute \"save_in\"))\n  set sourcePaths to {}\n\n  repeat with itemNumber from 1 to count of argv\n    try\n      set pathString to item itemNumber of argv\n      copy POSIX file pathString to the end of sourcePaths\n    end try\n  end repeat\n\n  if overwrite then\n    tell application \"Finder\" to duplicate sourcePaths to folder targetDir with replacing\n  else\n    tell application \"Finder\" to duplicate sourcePaths to folder targetDir\n  end if\nend run",
   "scriptType" : 6,
-  "taskName" : "Copy Paths With the Finder"
+  "taskName" : "Copy Path With the Finder"
 }

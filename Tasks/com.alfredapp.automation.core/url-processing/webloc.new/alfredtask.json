@@ -15,7 +15,7 @@
       "config" : {
         "default" : false,
         "required" : false,
-        "text" : "Write file even if it exists"
+        "text" : "Replace file with same name at destination"
       },
       "description" : "",
       "label" : "Overwrite",
