@@ -1,0 +1,32 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "required" : true
+      },
+      "description" : "",
+      "label" : "Move To",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Write file even if it exists"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputType" : 0,
+  "script" : "on run argv\n  set overwrite to (system attribute \"overwrite\") is \"1\"\n  set targetDir to (POSIX file (system attribute \"save_in\"))\n  set sourcePaths to {}\n\n  repeat with itemNumber from 1 to count of argv\n    try\n      set pathString to item itemNumber of argv\n      copy POSIX file pathString to the end of sourcePaths\n    end try\n  end repeat\n\n  if overwrite then\n    tell application \"Finder\" to move sourcePaths to folder targetDir with replacing\n  else\n    tell application \"Finder\" to move sourcePaths to folder targetDir\n  end if\nend run",
+  "scriptType" : 6,
+  "taskName" : "Move Paths With the Finder"
+}
