@@ -4,6 +4,6 @@
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction finderItemToPath(item) {\n  return $.NSURL.URLWithString(item.url()).path.js\n}\n\nfunction run(argv) {\n  const finder = Application(\"Finder\")\n\n  const duplicated = argv.map(p => finderItemToPath(finder.duplicate(Path(p))))\n  return alfredArgs(duplicated)\n}",
   "scriptType" : 7,
-  "taskDescription" : "Creates duplicates of the passed-in path",
-  "taskName" : "Duplicate Paths"
+  "taskDescription" : "Creates duplicate of the passed-in path",
+  "taskName" : "Duplicate Path"
 }

@@ -4,6 +4,6 @@
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.map(path => $(path).stringByDeletingPathExtension.lastPathComponent.js))\n}",
   "scriptType" : 7,
-  "taskDescription" : "Returns name without extension of passed-in path",
+  "taskDescription" : "Returns name without extension of the passed-in path",
   "taskName" : "Get Path Basename Without Extension"
 }
