@@ -3,6 +3,13 @@ import Foundation
 let argv = CommandLine.arguments
 
 // Helpers
+func alfredArgs(_ args: [String]) {
+  let alfredObject: [String: [String: [String]]] = ["alfredworkflow": ["arg": args]]
+  let jsonData: Data = try! JSONSerialization.data(withJSONObject: alfredObject)
+  let jsonString: String = String(data: jsonData, encoding: .utf8)!
+  print(jsonString)
+}
+
 func envVar(_ variable: String) -> String? {
   return ProcessInfo.processInfo.environment[variable]
 }
@@ -32,14 +39,18 @@ func recursePath(_ url: URL) -> [URL] {
   return [url] + fileURLs
 }
 
+func deduplicateStringArray(_ array: [String]) -> [String] {
+  return Array(NSOrderedSet(array: array)).map { String(describing: $0) }
+}
+
 // Usage
 func usage() {
   print(
     """
     Usage: tag <mode> <tags> <recursive> <path...>
 
-      mode: 'add', 'remove', 'set', 'clear'
-      tags: newline-separated list
+      mode: 'read', 'add', 'remove', 'set', 'clear'
+      tags: newline-separated list (leave empty for 'read' and 'clear')
       recursive: '0' (false) or '1' (true)
     """
   )
@@ -62,7 +73,17 @@ let recursive: Bool = argv[3] == "1"
 let initPaths: [URL] = argv.dropFirst(4).map { URL(fileURLWithPath: $0) }
 let allPaths: [URL] = initPaths.flatMap { recursive ? recursePath($0) : [$0] }
 
-// Tag
+// Read tags
+if writeMode == "read" {
+  let allTags: [String] = try allPaths.flatMap {
+    try $0.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
+  }
+
+  alfredArgs(deduplicateStringArray(allTags).sorted())
+  exit(EXIT_SUCCESS)
+}
+
+// Write tags
 try allPaths.forEach { path in
   let currentTags: [String] = try path.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
 
@@ -76,7 +97,7 @@ try allPaths.forEach { path in
     }
   }()
 
-  let finalTags: [Any] = Array(NSOrderedSet(array: wantedTags))  // Do not keep duplicates
+  let finalTags: [String] = deduplicateStringArray(wantedTags)
 
   try (path as NSURL).setResourceValues([.tagNamesKey: finalTags])
 }
