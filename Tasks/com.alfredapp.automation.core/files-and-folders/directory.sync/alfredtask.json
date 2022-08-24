@@ -1,0 +1,33 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "required" : true
+      },
+      "description" : "",
+      "label" : "Origin Folder",
+      "type" : "filepicker",
+      "variable" : "origin_path"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "required" : true
+      },
+      "description" : "",
+      "label" : "Target Folder",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "rsync --archive --progress --delete \"${origin_path}\"\/ \"${target_path}\"",
+  "scriptType" : 5,
+  "taskDescription" : "Replaces the contents of a folder to match another",
+  "taskName" : "Sync Folder Contents"
+}
