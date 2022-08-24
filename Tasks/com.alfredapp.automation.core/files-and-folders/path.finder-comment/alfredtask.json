@@ -1,0 +1,22 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "required" : false
+      },
+      "description" : "When configured, passed-in paths are ignored.",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 1,
+  "outputType" : 1,
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/finder-comment read '' 0 \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/finder-comment read '' 0 \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "scriptType" : 5,
+  "taskDescription" : "Returns the Finder comment of the passed-in path",
+  "taskName" : "Get Finder Comment"
+}

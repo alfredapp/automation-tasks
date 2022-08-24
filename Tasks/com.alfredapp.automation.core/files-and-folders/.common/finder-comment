@@ -9,6 +9,10 @@ function envVar(varName) {
     .objectForKey(varName).js
 }
 
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
 function isDir(path) {
   const ref = Ref()
   fileManager.fileExistsAtPathIsDirectory(path, ref)
@@ -35,14 +39,21 @@ function pathToFinderItem(path) {
 }
 
 function run(argv) {
-  const recursive = envVar("recursive") === "1"
-  const finderComment = envVar("finder_comment")
+  const mode = argv[0]
+  const finderComment = argv[1]
+  const recursive = argv[2] === "1"
+  const initPaths = argv.slice(3)
 
-  const paths = argv.flatMap(path => {
+  const allPaths = initPaths.flatMap(path => {
     const finderPath = pathToFinderItem(path)
     if (recursive && isDir(path)) return [finderPath, finderPath.entireContents()].flat()
     return finderPath
   })
 
-  paths.forEach(p => p.comment = finderComment)
+  switch (mode) {
+    case "read": return alfredArgs(allPaths.map(p => p.comment()))
+    case "set": return allPaths.forEach(p => p.comment = finderComment)
+    case "clear": return allPaths.forEach(p => p.comment = "")
+    default: throw "Unrecognised mode: " + mode
+  }
 }
