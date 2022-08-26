@@ -3,13 +3,13 @@
     {
       "config" : {
         "default" : "",
-        "placeholder" : "e.g. Messages, Safari",
         "required" : false,
-        "trim" : true
+        "trim" : true,
+        "verticalsize" : 6
       },
-      "description" : "Comma-separated list of app names, paths, or bundle identifiers. Add apps to the list on-demand by passing them as arguments: take advantage of the \"Arg and Vars\" and \"Split Arg\" Utilities.",
+      "description" : "Newline-separated list of app names, paths, or bundle identifiers. Add apps to the list on-demand by passing them as arguments: take advantage of the \"Arg and Vars\" and \"Split Arg\" Utilities.",
       "label" : "Relaunch",
-      "type" : "textfield",
+      "type" : "textarea",
       "variable" : "app_list"
     },
     {
