@@ -1,10 +1,24 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. Safari",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "When configured, passed-in apps are ignored.",
+      "label" : "App",
+      "type" : "textfield",
+      "variable" : "target_app"
+    }
+  ],
   "inputDescription" : "Application name, path, or bundle identifier",
-  "inputMulti" : 2,
+  "inputMulti" : -1,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "function run(argv) {\n  try {\n    return argv.every(path => Application(path).running())\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}",
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction isRunning(apps) {\n  try {\n    return apps.every(app => Application(app).running())\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}\n\nfunction run(argv) {\n  const targetApp = envVar(\"target_app\")\n\n  if (targetApp) return isRunning([targetApp])\n  else if (argv[0]) return isRunning(argv)\n  else throw \"Without configuration, expected paths passed-in\"\n}",
   "scriptType" : 7,
-  "taskDescription" : "Returns true if all passed-in apps are running, else returns false",
+  "taskDescription" : "Returns true if all apps are running, else returns false",
   "taskName" : "Is App Running?"
 }
