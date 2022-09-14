@@ -13,7 +13,7 @@ function run(argv) {
   }
 
   // Open in reverse order so they show in given order
-  urls.reverse().forEach(url => {
+  urls.slice().reverse().forEach(url => {
     browser.Window({ mode: windowMode }).make()
     browser.windows[0].activeTab.url = url
     browser.activate()

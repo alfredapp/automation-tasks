@@ -23,6 +23,6 @@ function run(argv) {
   const tabURLs = matchingTabs.map(tab => tab.url())
 
   // Close in reverse order
-  matchingTabs.reverse().forEach(tab => tab.close())
+  matchingTabs.slice().reverse().forEach(tab => tab.close())
   return alfredArgs(tabURLs)
 }
