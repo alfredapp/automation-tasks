@@ -1,8 +1,21 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : ""
+      },
+      "description" : "",
+      "label" : "Remove Extension",
+      "type" : "checkbox",
+      "variable" : "no_extension"
+    }
+  ],
   "inputMulti" : 2,
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.map(path => $(path).lastPathComponent.js))\n}",
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction run(argv) {\n  const noExtension = envVar(\"no_extension\") === \"1\"\n\n  if (noExtension) return alfredArgs(argv.map(path => $(path).stringByDeletingPathExtension.lastPathComponent.js))\n\n  return alfredArgs(argv.map(path => $(path).lastPathComponent.js))\n}",
   "scriptType" : 7,
   "taskDescription" : "Returns name of the passed-in path",
   "taskName" : "Get Path Basename"
