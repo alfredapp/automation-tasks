@@ -4,7 +4,7 @@
       "config" : {
         "default" : true,
         "required" : false,
-        "text" : "If unchecked, only consider the frontmost window"
+        "text" : "Untick to only consider the frontmost window"
       },
       "description" : "",
       "label" : "All Windows",
