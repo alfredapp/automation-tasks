@@ -10,23 +10,12 @@
       "label" : "Path",
       "type" : "filepicker",
       "variable" : "target_path"
-    },
-    {
-      "config" : {
-        "default" : true,
-        "required" : false,
-        "text" : "Act on directory contents"
-      },
-      "description" : "",
-      "label" : "Recursive",
-      "type" : "checkbox",
-      "variable" : "recursive"
     }
   ],
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/finder-comment clear '' \"${recursive}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/finder-comment clear '' \"${recursive}\" \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/finder-comment clear '' \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/finder-comment clear '' \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
   "scriptType" : 5,
   "taskDescription" : "Unsets the Finder comment of the passed-in path",
   "taskName" : "Delete Finder Comment"

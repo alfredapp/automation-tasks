@@ -41,14 +41,7 @@ function pathToFinderItem(path) {
 function run(argv) {
   const mode = argv[0]
   const finderComment = argv[1]
-  const recursive = argv[2] === "1"
-  const initPaths = argv.slice(3)
-
-  const allPaths = initPaths.flatMap(path => {
-    const finderPath = pathToFinderItem(path)
-    if (recursive && isDir(path)) return [finderPath, finderPath.entireContents()].flat()
-    return finderPath
-  })
+  const allPaths = argv.slice(2).map(path => pathToFinderItem(path))
 
   switch (mode) {
     case "read": return alfredArgs(allPaths.map(p => p.comment()))
