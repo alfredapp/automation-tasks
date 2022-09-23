@@ -14,40 +14,43 @@ func envVar(_ variable: String) -> String? {
   return ProcessInfo.processInfo.environment[variable]
 }
 
-func isDir(_ path: URL) -> Bool {
-  do {
-    return try path.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
-  } catch {
-    return false
-  }
-}
-
-func recursePath(_ url: URL) -> [URL] {
-  // Return path early if not directory
-  guard isDir(url) else { return [url] }
-
-  // Return path if cannot get directory contents
-  guard
-    let directoryEnumerator = FileManager.default.enumerator(
-      at: url, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-  else { return [url] }
-
-  // Get paths
-  var fileURLs: [URL] = []
-  for case let fileURL as URL in directoryEnumerator { fileURLs.append(fileURL) }
-
-  return [url] + fileURLs
-}
-
 func deduplicateStringArray(_ array: [String]) -> [String] {
   return Array(NSOrderedSet(array: array)).map { String(describing: $0) }
 }
 
+func isPackage(_ path: URL) throws -> Bool {
+  return try path.resourceValues(forKeys: [.isPackageKey]).isPackage == true
+}
+
+func recursePath(_ url: URL) -> [URL] {
+  // Return early if package (e.g. app bundle)
+  if let isPackage = try? isPackage(url) {
+    if isPackage { return [url] }
+  }
+
+  // Get paths
+  let directoryEnumerator = FileManager.default.enumerator(
+    at: url, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)!
+
+  var fileURLs: [URL] = []
+
+  for case let fileURL as URL in directoryEnumerator {
+    guard let isPackage = try? isPackage(fileURL) else { continue }
+
+    if isPackage { directoryEnumerator.skipDescendants() }
+    fileURLs.append(fileURL)
+  }
+
+  return [url] + fileURLs
+}
+
 // Usage
 func usage() {
+  let binName = URL(fileURLWithPath: argv[0]).lastPathComponent
+
   print(
     """
-    Usage: tag <mode> <tags> <recursive> <path...>
+    Usage: \(binName) <mode> <tags> <recursive> <path...>
 
       mode: 'read', 'add', 'remove', 'set', 'clear'
       tags: newline-separated list (leave empty for 'read' and 'clear')
@@ -73,7 +76,7 @@ let recursive: Bool = argv[3] == "1"
 let initPaths: [URL] = argv.dropFirst(4).map { URL(fileURLWithPath: $0) }
 let allPaths: [URL] = initPaths.flatMap { recursive ? recursePath($0) : [$0] }
 
-// Read tags
+// Read
 if writeMode == "read" {
   let allTags: [String] = try allPaths.flatMap {
     try $0.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
@@ -83,7 +86,7 @@ if writeMode == "read" {
   exit(EXIT_SUCCESS)
 }
 
-// Write tags
+// Write
 try allPaths.forEach { path in
   let currentTags: [String] = try path.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
 
