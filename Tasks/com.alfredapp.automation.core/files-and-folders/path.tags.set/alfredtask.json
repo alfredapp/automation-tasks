@@ -38,7 +38,7 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/tag set \"${new_tags}\" \"${recursive}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/tag set \"${new_tags}\" \"${recursive}\" \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/tag set \"${new_tags}\" \"${recursive}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/tag set \"${new_tags}\" \"${recursive}\" \"${@}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi",
   "scriptType" : 5,
   "taskDescription" : "Replaces all tags in the passed-in path",
   "taskName" : "Set Tags"

@@ -33,7 +33,7 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/directory-children \"${sort_order}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/directory-children \"${sort_order}\" \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/directory-children \"${sort_order}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/directory-children \"${sort_order}\" \"${@}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi",
   "scriptType" : 5,
   "taskDescription" : "Returns contents of configured or passed-in folder",
   "taskName" : "List Folder Contents"

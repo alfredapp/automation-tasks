@@ -26,7 +26,7 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/tag read '' \"${recursive}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/tag read '' \"${recursive}\" \"${@}\"\nelse\n  echo \"Without configuration, expected paths passed-in\" >&2\n  exit 1\nfi",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/tag read '' \"${recursive}\" \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/tag read '' \"${recursive}\" \"${@}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi",
   "scriptType" : 5,
   "taskDescription" : "Returns tags of the passed-in path",
   "taskName" : "Get Tags"

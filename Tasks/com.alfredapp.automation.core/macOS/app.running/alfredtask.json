@@ -17,8 +17,9 @@
   "inputMulti" : -1,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction isRunning(apps) {\n  try {\n    return apps.every(app => Application(app).running())\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}\n\nfunction run(argv) {\n  const targetApp = envVar(\"target_app\")\n\n  if (targetApp) return isRunning([targetApp])\n  else if (argv[0]) return isRunning(argv)\n  else throw \"Without configuration, expected paths passed-in\"\n}",
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction isRunning(apps) {\n  try {\n    return apps.every(app => Application(app).running())\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}\n\nfunction run(argv) {\n  const targetApp = envVar(\"target_app\")\n\n  if (targetApp) return isRunning([targetApp])\n  else if (argv[0]) return isRunning(argv)\n  else throw \"Either a valid input or configuration is required\"\n}",
   "scriptType" : 7,
+  "state" : 0,
   "taskDescription" : "Returns true if all apps are running, else returns false",
   "taskName" : "Is App Running?"
 }
