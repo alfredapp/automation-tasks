@@ -44,8 +44,9 @@
   "inputMulti" : 1,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly output=\"${save_in}\/bin-$(date \"+%F-%H-%M-%S\")\"\n\nif [[ \"${overwrite}\" -eq 0 && -f \"${output}\" ]]; then\n  echo \"File exists: ${output}\" >&2\n  exit 1\nfi\n\ncase \"${in_format}\" in\n  base64) base64 --decode <<< \"${1}\" --output \"${output}\";;\n  hex) xxd -plain -revert <<< \"${1}\" > \"${output}\";;\n  *) echo \"Invalid representation: ${in_format}\" >&2; exit 1;;\nesac\n\necho -n \"${output}\"",
+  "script" : "readonly output=\"${save_in}\/bin-$(date \"+%F-%H-%M-%S\")\"\nmkdir -p \"${save_in}\"\n\nif [[ \"${overwrite}\" -eq 0 && -f \"${output}\" ]]; then\n  echo \"File exists: ${output}\" >&2\n  exit 1\nfi\n\ncase \"${in_format}\" in\n  base64) base64 --decode <<< \"${1}\" --output \"${output}\";;\n  hex) xxd -plain -revert <<< \"${1}\" > \"${output}\";;\n  *) echo \"Invalid representation: ${in_format}\" >&2; exit 1;;\nesac\n\necho -n \"${output}\"",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Binary-decodes passed-in text",
   "taskName" : "Binary Decode Text"
 }
