@@ -16,7 +16,7 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction setWallpaper(path) {\n  Application(\"System Events\").currentDesktop.picture = path\n}\n\nfunction run(argv) {\n  const targetPath = envVar(\"target_path\")\n\n  if (targetPath) return setWallpaper(targetPath)\n  else if (argv[0]) return setWallpaper(argv[0])\n  else throw \"Either a valid input or configuration is required\"\n}",
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction setWallpaper(path) {\n  Application(\"System Events\").currentDesktop.picture = path\n}\n\nfunction run(argv) {\n  const targets = envVar(\"target_path\") ? envVar(\"target_path\").split(\"\\n\") : argv\n\n  if (targets.length === 0) throw \"Either a valid input or configuration is required\"\n\n  return setWallpaper(targets[0]) \n}",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Sets the Desktop wallpaper",

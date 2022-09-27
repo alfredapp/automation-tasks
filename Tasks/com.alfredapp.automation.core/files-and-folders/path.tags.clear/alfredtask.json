@@ -27,7 +27,7 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/tag clear \"${new_tags}\" \"${recursive}\" \"${(f)target_path[@]}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/tag clear \"${new_tags}\" \"${recursive}\" \"${@}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly targets=(\"${(f)target_path[@]}\")\nelif [[ \"${#}\" -gt 0 ]]; then\n  readonly targets=(\"${@}\")\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi\n\n..\/.common\/tag clear \"${new_tags}\" \"${recursive}\" \"${(f)targets[@]}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Deletes all tags from the passed-in path",
