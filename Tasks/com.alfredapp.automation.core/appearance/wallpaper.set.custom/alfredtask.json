@@ -4,9 +4,10 @@
       "config" : {
         "default" : "",
         "filtermode" : 2,
+        "placeholder" : "The passed-in arguments will be used",
         "required" : false
       },
-      "description" : "When configured, passed-in paths are ignored.",
+      "description" : "",
       "label" : "Image",
       "type" : "filepicker",
       "variable" : "target_path"

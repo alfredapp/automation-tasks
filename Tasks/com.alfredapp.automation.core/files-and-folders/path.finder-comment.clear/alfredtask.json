@@ -4,9 +4,10 @@
       "config" : {
         "default" : "",
         "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
         "required" : false
       },
-      "description" : "When configured, passed-in paths are ignored.",
+      "description" : "",
       "label" : "Path",
       "type" : "filepicker",
       "variable" : "target_path"
@@ -15,8 +16,9 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/finder-comment clear '' \"${target_path}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/finder-comment clear '' \"${@}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  ..\/.common\/finder-comment clear '' \"${(f)target_path[@]}\"\nelif [[ \"${#}\" -gt 0 ]]; then\n  ..\/.common\/finder-comment clear '' \"${@}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Unsets the Finder comment of the passed-in path",
   "taskName" : "Delete Finder Comment"
 }
