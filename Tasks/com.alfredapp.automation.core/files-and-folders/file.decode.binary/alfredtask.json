@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "base64",
         "pairs" : [
           [
             "Base64",
@@ -20,8 +21,21 @@
     },
     {
       "config" : {
+        "default" : "",
+        "filtermode" : 2,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "File",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
         "default" : "~\/Desktop",
         "filtermode" : 1,
+        "placeholder" : "",
         "required" : false
       },
       "description" : "File name will be derived from current date and time.",
@@ -41,10 +55,10 @@
       "variable" : "overwrite"
     }
   ],
-  "inputMulti" : 1,
+  "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "readonly output=\"${save_in}\/bin-$(date \"+%F-%H-%M-%S\")\"\nmkdir -p \"${save_in}\"\n\nif [[ \"${overwrite}\" -eq 0 && -f \"${output}\" ]]; then\n  echo \"File exists: ${output}\" >&2\n  exit 1\nfi\n\ncase \"${in_format}\" in\n  base64) base64 --decode \"${1}\" --output \"${output}\";;\n  hex) xxd -plain -revert \"${1}\" > \"${output}\";;\n  *) echo \"Invalid representation: ${in_format}\" >&2; exit 1;;\nesac\n\necho -n \"${output}\"",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly single_input=\"${target_path}\"\nelif [[ \"${#}\" -gt 1 ]]; then\n  echo 'Expecting single input' >&2\n  exit 1\nelif [[ \"${#}\" -eq 1 ]]; then\n  readonly single_input=\"${1}\"\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi\n\nreadonly output=\"${save_in}\/bin-$(date \"+%F-%H-%M-%S\")\"\nmkdir -p \"${save_in}\"\n\nif [[ \"${overwrite}\" -eq 0 && -f \"${output}\" ]]; then\n  echo \"File exists: ${output}\" >&2\n  exit 1\nfi\n\ncase \"${in_format}\" in\n  base64) base64 --decode \"${single_input}\" --output \"${output}\";;\n  hex) xxd -plain -revert \"${single_input}\" > \"${output}\";;\n  *) echo \"Invalid representation: ${in_format}\" >&2; exit 1;;\nesac\n\necho -n \"${output}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Binary-decodes passed-in file",
