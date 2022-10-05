@@ -27,7 +27,7 @@
   "inputMulti" : -1,
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly targets=(\"${(f)target_path[@]}\")\nelif [[ \"${#}\" -gt 0 ]]; then\n  readonly targets=(\"${@}\")\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi\n\n..\/.common\/tag read '' \"${recursive}\" \"${(f)targets[@]}\"",
+  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly targets=(\"${(f)target_path[@]}\")\nelif [[ \"${#}\" -gt 0 ]]; then\n  readonly targets=(\"${@}\")\nelse\n  echo 'Either a valid input or configuration is required' >&2\n  exit 1\nfi\n\n..\/.common\/tag read '' \"${recursive}\" \"${targets[@]}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Returns tags of the passed-in path",
