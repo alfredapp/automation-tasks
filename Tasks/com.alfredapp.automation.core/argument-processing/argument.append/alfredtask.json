@@ -1,0 +1,24 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "",
+        "required" : true,
+        "trim" : false
+      },
+      "description" : "",
+      "label" : "Append",
+      "type" : "textfield",
+      "variable" : "input_string"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.map(arg => arg + envVar(\"input_string\")))\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Appends given text to every argument",
+  "taskName" : "Append to Every Argument"
+}
