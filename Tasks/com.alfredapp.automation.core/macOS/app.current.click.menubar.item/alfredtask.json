@@ -1,0 +1,24 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "required" : true,
+        "trim" : false,
+        "verticalsize" : 6
+      },
+      "description" : "Menubar items to click in order. Example with the Finder:\nView\nSort By\nDate Modified",
+      "label" : "Menubar Breadcrumbs",
+      "type" : "textarea",
+      "variable" : "menubar_items"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nconst systemEvents = Application(\"System Events\")\nconst frontmostProcess = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0]\n\nconst allMenus = envVar(\"menubar_items\").split(\"\\n\")\nconst primaryMenu = allMenus[0]\nconst secondaryMenus = allMenus.slice(1)\n\nsecondaryMenus.reduce(\n  (breadcrumbs, currentMenu) => breadcrumbs.menus[0].menuItems.byName(currentMenu),\n\tfrontmostProcess.menuBars[0].menuBarItems.byName(primaryMenu)\n).click()",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Clicks menubar item from name breadcrumbs",
+  "taskName" : "Click Menubar Item in Frontmost App"
+}
