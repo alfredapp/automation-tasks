@@ -1,0 +1,74 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "current",
+        "pairs" : [
+          [
+            "Current Screen",
+            "current"
+          ],
+          [
+            "Primary Screen",
+            "primary"
+          ],
+          [
+            "Screen with Cursor",
+            "cursor"
+          ],
+          [
+            "Next Screen",
+            "next"
+          ],
+          [
+            "Previous Screen",
+            "previous"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Target",
+      "type" : "popupbutton",
+      "variable" : "target_screen"
+    },
+    {
+      "config" : {
+        "default" : "all_details",
+        "pairs" : [
+          [
+            "All Details",
+            "all_details"
+          ],
+          [
+            "X Origin",
+            "x"
+          ],
+          [
+            "Y Origin",
+            "y"
+          ],
+          [
+            "Width",
+            "width"
+          ],
+          [
+            "Height",
+            "height"
+          ]
+        ]
+      },
+      "description" : "\"All Details\" outputs in JSON format. Other options output a number.",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "#!\/usr\/bin\/osascript -l JavaScript\n\n\/\/ From window-bounds.js\nObjC.import(\"AppKit\")\n\nconst systemEvents = Application(\"System Events\")\nconst screens = $.NSScreen.screens.js\nconst screenPrimary = screens.find(screen => screen.frame.origin.x === 0 && screen.frame.origin.y === 0)\nconst menuBarPadding = $.NSMenu.menuBarHeight + 1 \/\/ Frame begins 1 point below Menu Bar\nconst topWindow = systemEvents.applicationProcesses.where({ frontmost: true })[0].windows.where({ subrole: \"AXStandardWindow\" })[0]\n\n\/\/ $.NSScreen.mainScreen should return screen with active window,\n\/\/ but while it works in Script Editor, when run from osascript it returns the primary screen\n\/\/ Window -> Screen\nfunction getScreenWithWindow(targetWindow) {\n  const windowProperties = targetWindow.properties()\n\n  const windowRect = $.NSMakeRect(\n    windowProperties.position[0],\n    \/\/ Screen coordinates are relative to bottom left, but window coordinates are relative to top left\n    screenPrimary.frame.size.height - windowProperties.position[1] - windowProperties.size[1],\n    windowProperties.size[0],\n    windowProperties.size[1]\n  )\n\n  const windowMiddle = $.NSMakePoint($.NSMidX(windowRect), $.NSMidY(windowRect))\n\n  \/\/ Screen containing window centre\n  return screens.find(screen => {\n    const screenRect = $.NSMakeRect(\n      screen.frame.origin.x,\n      screen.frame.origin.y,\n      screen.frame.size.width,\n      screen.frame.size.height\n    )\n\n    return $.NSPointInRect(windowMiddle, screenRect)\n  })\n}\n\n\/\/ String -> Screen\nfunction getScreenByDesc(screenName) {\n  switch (screenName) {\n    case \"current\":\n      return getScreenWithWindow(topWindow)\n    case \"primary\":\n      return screenPrimary\n    case \"cursor\":\n      return screens.find(screen => $.NSMouseInRect($.NSEvent.mouseLocation, screen.frame, false))\n    case \"next\":\n      return getSideScreen(getScreenWithWindow(topWindow), \"next\")\n    case \"previous\":\n      return getSideScreen(getScreenWithWindow(topWindow), \"previous\")\n    default:\n      throw \"Screen name not recognised: \" + screenName\n  }\n}\n\n\/\/ Screen, String (\"previous\" or \"next\") -> Screen\nfunction getSideScreen(sourceScreen, direction) {\n  const screenCount = screens.length\n  const moveDirection = direction === \"previous\" ? -1 : 1\n  const targetScreenIndex = (screens.indexOf(sourceScreen) + moveDirection) % screens.length \/\/ Loop around array\n  return screens.at(targetScreenIndex)\n}\n\n\/\/ Helpers\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\n\/\/ Main\nfunction run(argv) {\n  const outFormat = envVar(\"out_format\")\n  const screen = getScreenByDesc(envVar(\"target_screen\"))\n\n  const screenBounds = {\n    x: screen.frame[\"origin\"][\"x\"],\n    y: screen.frame[\"origin\"][\"y\"],\n    width: screen.frame[\"size\"][\"width\"],\n    height: screen.frame[\"size\"][\"height\"]\n  }\n\n  switch (outFormat) {\n    case \"all_details\": return alfredArgs(JSON.stringify(screenBounds))\n    case \"x\": return alfredArgs(screenBounds.x)\n    case \"y\": return alfredArgs(screenBounds.y)\n    case \"width\": return alfredArgs(screenBounds.width)\n    case \"height\": return alfredArgs(screenBounds.height)\n  }\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Returns the screens's bounds",
+  "taskName" : "Get Screen Bounds"
+}
