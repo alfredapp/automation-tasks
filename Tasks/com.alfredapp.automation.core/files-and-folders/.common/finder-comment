@@ -1,6 +1,7 @@
 #!/usr/bin/osascript -l JavaScript
 
 const fileManager = $.NSFileManager.defaultManager
+const finder = Application("Finder")
 
 function envVar(varName) {
   return $.NSProcessInfo
@@ -27,15 +28,20 @@ function pathToFinderItem(path) {
   const dirComponents = $(path).stringByDeletingLastPathComponent.js.split("/").slice(1)
   const baseComponent = $(path).lastPathComponent.js
 
+  // Details change if on startup disk or external volume
+  const [disk, breadcrumbs] = dirComponents[0] === 'Volumes' ?
+    [finder.disks.byName(dirComponents[1]), dirComponents.slice(2)] :
+    [finder.startupDisk(), dirComponents]
+
   // Join as Finder item
-  const finderDirpath = dirComponents.reduce(
-    (container, dir) => container.folders[dir],
-    Application("Finder").startupDisk()
+  const finderDirpath = breadcrumbs.reduce(
+    (container, dir) => container.folders.byName(dir),
+    disk
   )
 
   return isDir(path) ?
-    finderDirpath.folders[baseComponent] :
-    finderDirpath.files[baseComponent]
+    finderDirpath.folders.byName(baseComponent) :
+    finderDirpath.files.byName(baseComponent)
 }
 
 function run(argv) {
