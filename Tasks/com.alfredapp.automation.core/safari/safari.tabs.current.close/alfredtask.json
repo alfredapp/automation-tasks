@@ -4,5 +4,7 @@
   "outputType" : 1,
   "script" : ".\/run 'Safari'",
   "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Closes Safari's current tab",
   "taskName" : "Close Current Safari Tab"
 }

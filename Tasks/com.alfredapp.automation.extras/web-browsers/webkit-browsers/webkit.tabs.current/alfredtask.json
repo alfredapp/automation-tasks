@@ -66,6 +66,7 @@
   "outputType" : 1,
   "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.current\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${out_format}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns the URL or title of the frontmost Webkit browser tab",
+  "state" : 0,
+  "taskDescription" : "Returns the URL or title of Webkit browser's current tab",
   "taskName" : "Get Current Webkit Browser Tab"
 }

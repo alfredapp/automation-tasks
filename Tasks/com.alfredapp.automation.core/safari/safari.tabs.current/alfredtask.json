@@ -32,6 +32,7 @@
   "outputType" : 1,
   "script" : ".\/run 'Safari' \"${out_format}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns the URL or title of the frontmost Safari tab",
+  "state" : 0,
+  "taskDescription" : "Returns the URL or title of Safari's current tab",
   "taskName" : "Get Current Safari Tab"
 }

@@ -78,6 +78,7 @@
   "outputType" : 1,
   "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${out_format}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns the URL or title of the frontmost Chromium browser tab",
+  "state" : 0,
+  "taskDescription" : "Returns the URL or title of Chromium browser's current tab",
   "taskName" : "Get Current Chromium Browser Tab"
 }
