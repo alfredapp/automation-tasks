@@ -3,6 +3,18 @@
     {
       "config" : {
         "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Image",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "",
         "placeholder" : "e.g. 640",
         "required" : true,
         "trim" : true
@@ -26,10 +38,12 @@
     }
   ],
   "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 2,
   "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --resampleHeightWidth \"${height}\" \"${width}\" \"${image}\"\ndone",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Aspect ratio may be altered",
   "taskName" : "Resize Image to Exact Dimensions"
 }

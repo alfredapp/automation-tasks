@@ -2,6 +2,19 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Image",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "horizontal",
         "pairs" : [
           [
             "Horizontal",
@@ -20,9 +33,12 @@
     }
   ],
   "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 2,
   "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --flip \"${direction}\" \"${image}\"\ndone",
   "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Flips image horizontally or vertically",
   "taskName" : "Flip Image"
 }

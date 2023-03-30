@@ -1,9 +1,25 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Image",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
   "inputMulti" : 1,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 1,
   "script" : "readonly image=\"${1}\"\n\n..\/get-image-property 'format' \"${image}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns format of passed-in image",
+  "state" : 0,
+  "taskDescription" : "Returns image format",
   "taskName" : "Get Image Format"
 }

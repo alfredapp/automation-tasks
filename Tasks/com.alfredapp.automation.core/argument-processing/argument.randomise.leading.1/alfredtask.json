@@ -4,6 +4,7 @@
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv[Math.floor(Math.random() * argv.length)])\n}",
   "scriptType" : 7,
-  "taskDescription" : "Returns one random passed-in argument",
+  "state" : 0,
+  "taskDescription" : "Returns one random argument",
   "taskName" : "Get Random Argument"
 }

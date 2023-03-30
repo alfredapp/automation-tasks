@@ -1,4 +1,4 @@
 {
-  "groupDescription" : "[Requires macOS Monterey] Resize and reposition the topmost window",
+  "groupDescription" : "[Requires macOS Monterey or above] Resize and reposition the topmost window",
   "groupName" : "Window Management"
 }

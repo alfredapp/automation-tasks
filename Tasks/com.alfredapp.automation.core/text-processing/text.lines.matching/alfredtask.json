@@ -3,7 +3,7 @@
     {
       "config" : {
         "default" : "",
-        "placeholder" : "e.g. bananas",
+        "placeholder" : "e.g. pineapples",
         "required" : true,
         "trim" : false
       },
@@ -29,6 +29,7 @@
   "outputType" : 1,
   "script" : "if [[ \"${regex}\" -eq 1 ]]; then\n  \/usr\/bin\/grep --extended-regexp \"${match_string}\" <<< \"${1}\"\nelse\n  \/usr\/bin\/grep --fixed-strings \"${match_string}\" <<< \"${1}\"\nfi",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Returns lines matching a pattern",
   "taskName" : "Get Matching Lines"
 }

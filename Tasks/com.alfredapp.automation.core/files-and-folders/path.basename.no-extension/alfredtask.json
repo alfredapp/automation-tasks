@@ -1,10 +1,25 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
   "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.map(path => $(path).stringByDeletingPathExtension.lastPathComponent.js))\n}",
   "scriptType" : 7,
   "state" : 2,
-  "taskDescription" : "Returns name without extension of the passed-in path",
+  "taskDescription" : "Returns path name without extension",
   "taskName" : "Get Path Basename Without Extension"
 }

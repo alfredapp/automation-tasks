@@ -1,5 +1,20 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
   "inputMulti" : 1,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 1,
   "script" : "\/usr\/bin\/stat -f '%m' \"${1}\"",

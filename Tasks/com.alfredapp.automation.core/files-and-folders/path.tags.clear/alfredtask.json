@@ -24,12 +24,13 @@
       "variable" : "recursive"
     }
   ],
-  "inputMulti" : -1,
+  "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly targets=(\"${(f)target_path[@]}\")\nelif [[ \"${#}\" -gt 0 ]]; then\n  readonly targets=(\"${@}\")\nelse\n  echo 'Expecting valid input or configuration' >&2\n  exit 1\nfi\n\n..\/.common\/tag clear \"${new_tags}\" \"${recursive}\" \"${targets[@]}\"",
+  "script" : "..\/.common\/tag clear \"${new_tags}\" \"${recursive}\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Deletes all tags from the passed-in path",
+  "taskDescription" : "Deletes all tags from path",
   "taskName" : "Clear Tags"
 }

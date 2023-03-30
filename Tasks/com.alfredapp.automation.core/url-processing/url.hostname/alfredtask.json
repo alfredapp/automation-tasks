@@ -2,6 +2,18 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "URL",
+      "type" : "textfield",
+      "variable" : "url"
+    },
+    {
+      "config" : {
         "default" : true,
         "required" : false,
         "text" : "Also removes www2., www3., and similar."
@@ -13,9 +25,12 @@
     }
   ],
   "inputMulti" : 2,
+  "inputOverride" : "url",
   "inputType" : 2,
   "outputType" : 1,
   "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  const hostnames = argv.map(url => $.NSURL.URLWithString(url).host.js)\n\n  if ($.getenv(\"no_www\") === \"1\") return alfredArgs(hostnames.map(url => url.replace(\/^www\\d*\\.\/, \"\")))\n  return alfredArgs(hostnames)\n}",
   "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Returns hostname from URL",
   "taskName" : "Get URL Hostname"
 }

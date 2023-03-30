@@ -3,6 +3,18 @@
     {
       "config" : {
         "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Image",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "",
         "placeholder" : "e.g. 90",
         "required" : false,
         "trim" : true
@@ -14,9 +26,12 @@
     }
   ],
   "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 2,
   "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --rotate \"${degrees}\" \"${image}\"\ndone",
   "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Rotates image in degrees",
   "taskName" : "Rotate Image"
 }

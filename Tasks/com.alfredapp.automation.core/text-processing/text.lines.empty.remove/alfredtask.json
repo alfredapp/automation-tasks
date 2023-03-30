@@ -17,6 +17,7 @@
   "outputType" : 1,
   "script" : "if [[ \"${all_whitespace}\" -eq 1 ]]; then\n  sed '\/^[[:space:]]*$\/d' <<< \"${1}\"\nelse\n  sed '\/^$\/d' <<< \"${1}\"\nfi",
   "scriptType" : 5,
-  "taskDescription" : "Returns passed-in text, with empty lines removed",
+  "state" : 0,
+  "taskDescription" : "Returns text with empty lines removed",
   "taskName" : "Delete Empty Lines"
 }

@@ -18,6 +18,7 @@
   "outputType" : 1,
   "script" : "# Use \"echo\" to prevent extra newline in \"tail\" STDIN\necho -n \"${1}\" | tail -\"${lines_number}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns number of lines from end of passed-in text",
+  "state" : 0,
+  "taskDescription" : "Returns number of lines from end of text",
   "taskName" : "Get Trailing Lines"
 }

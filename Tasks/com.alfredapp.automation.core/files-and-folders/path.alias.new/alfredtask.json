@@ -2,8 +2,21 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
         "default" : "~\/Desktop",
         "filtermode" : 1,
+        "placeholder" : "",
         "required" : false
       },
       "description" : "",
@@ -13,11 +26,12 @@
     }
   ],
   "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
   "script" : "use framework \"Foundation\"\n\non envVar(varName)\n  (current application's NSProcessInfo's processInfo's environment's objectForKey:varName) as string\nend envVar\n\non run argv\n  set posixTarget to envVar(\"save_in\")\n\n  -- Create destination directory\n  tell current application's NSFileManager's defaultManager to createDirectoryAtPath:posixTarget withIntermediateDirectories:true attributes:(missing value) |error|:(missing value)\n\n  repeat with itemNumber from (count of argv) to 1 by -1\n    set pathString to item itemNumber of argv\n    tell application \"Finder\" to make alias to (POSIX file pathString as alias) at POSIX file posixTarget\n  end repeat\nend run",
   "scriptType" : 6,
   "state" : 0,
-  "taskDescription" : "Creates a shortcut to the passed-in path",
+  "taskDescription" : "Creates shortcut to path",
   "taskName" : "Make Finder Alias"
 }

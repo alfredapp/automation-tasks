@@ -24,12 +24,13 @@
       "variable" : "recursive"
     }
   ],
-  "inputMulti" : -1,
+  "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "if [[ -n \"${target_path}\" ]]; then\n  readonly targets=(\"${(f)target_path[@]}\")\nelif [[ \"${#}\" -gt 0 ]]; then\n  readonly targets=(\"${@}\")\nelse\n  echo 'Expecting valid input or configuration' >&2\n  exit 1\nfi\n\n..\/.common\/tag read '' \"${recursive}\" \"${targets[@]}\"",
+  "script" : "..\/.common\/tag read '' \"${recursive}\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns tags of the passed-in path",
+  "taskDescription" : "Returns tags from path",
   "taskName" : "Get Tags"
 }

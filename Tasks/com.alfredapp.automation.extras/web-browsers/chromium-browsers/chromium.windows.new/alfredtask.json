@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "Google Chrome",
         "pairs" : [
           [
             "Google Chrome",
@@ -49,7 +50,7 @@
     {
       "config" : {
         "default" : "",
-        "placeholder" : "The passed-in URL will be opened",
+        "placeholder" : "The passed-in arguments will be used",
         "required" : false,
         "trim" : true
       },
@@ -70,11 +71,13 @@
       "variable" : "private_window"
     }
   ],
-  "inputMulti" : -1,
+  "inputMulti" : 2,
+  "inputOverride" : "url",
   "inputType" : 2,
   "outputType" : 0,
-  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\nif [[ -n \"${url}\" ]]; then\n  .\/run \"${browser}\" \"${private_window}\" \"${url}\"\nelse\n  .\/run \"${browser}\" \"${private_window}\" \"${@}\"\nfi",
+  "script" : "if [[ \"${popup_browser}\" == 'custom' ]]; then\n  readonly browser=\"${custom_browser}\"\nelse\n  readonly browser=\"${popup_browser}\"\nfi\n\n.\/run \"${browser}\" \"${private_window}\" \"${@}\"",
   "scriptType" : 5,
-  "taskDescription" : "Makes a new Chromium browser window with the passed-in or configured URL",
+  "state" : 0,
+  "taskDescription" : "Makes a new Chromium browser window with URL",
   "taskName" : "Open New Chromium Browser Window"
 }

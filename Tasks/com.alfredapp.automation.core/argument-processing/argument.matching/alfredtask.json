@@ -3,7 +3,7 @@
     {
       "config" : {
         "default" : "",
-        "placeholder" : "e.g. bananas",
+        "placeholder" : "e.g. pineapples",
         "required" : true,
         "trim" : false
       },
@@ -29,6 +29,7 @@
   "outputType" : 1,
   "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst match_string = $.getenv(\"match_string\")\nconst regex = $.getenv(\"regex\") === \"1\" ? true : false\n\nfunction run(argv) {\n  return regex ?\n    alfredArgs(argv.filter(a => a.match(match_string))) :\n    alfredArgs(argv.filter(a => a.includes(match_string)))\n}",
   "scriptType" : 7,
+  "state" : 0,
   "taskDescription" : "Returns arguments matching a pattern",
   "taskName" : "Get Matching Arguments"
 }

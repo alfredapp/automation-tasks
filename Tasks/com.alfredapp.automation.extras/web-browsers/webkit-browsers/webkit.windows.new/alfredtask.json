@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "Safari",
         "pairs" : [
           [
             "Safari",
@@ -37,7 +38,7 @@
     {
       "config" : {
         "default" : "",
-        "placeholder" : "The passed-in URL will be opened",
+        "placeholder" : "The passed-in arguments will be used",
         "required" : false,
         "trim" : true
       },
@@ -47,11 +48,13 @@
       "variable" : "url"
     }
   ],
-  "inputMulti" : -1,
+  "inputMulti" : 2,
+  "inputOverride" : "url",
   "inputType" : 2,
   "outputType" : 0,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.windows.new\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\nif [[ -n \"${url}\" ]]; then\n  \"${run_script}\" \"${browser}\" \"${url}\"\nelse\n  \"${run_script}\" \"${browser}\" \"${@}\"\nfi\n",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.windows.new\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  readonly browser=\"${custom_browser}\"\nelse\n  readonly browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${@}\"",
   "scriptType" : 5,
-  "taskDescription" : "Makes a new Webkit browser window with the passed-in or configured URL",
+  "state" : 0,
+  "taskDescription" : "Makes a new Webkit browser window with URL",
   "taskName" : "Open New Webkit Browser Window"
 }

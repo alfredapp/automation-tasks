@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "%s",
         "pairs" : [
           [
             "Unix time",
@@ -28,6 +29,7 @@
   "outputType" : 1,
   "script" : "date \"+${out_format}\" | tr -d '\\n'",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Returns the current time in a specific format",
   "taskName" : "Get Current Time"
 }

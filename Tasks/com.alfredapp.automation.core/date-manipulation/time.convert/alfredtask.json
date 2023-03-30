@@ -2,6 +2,18 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Time",
+      "type" : "textfield",
+      "variable" : "target_time"
+    },
+    {
+      "config" : {
         "default" : "%s",
         "pairs" : [
           [
@@ -48,6 +60,7 @@
     }
   ],
   "inputMulti" : 1,
+  "inputOverride" : "target_time",
   "inputType" : 0,
   "outputType" : 1,
   "script" : "\/bin\/date -jf \"${in_format}\" \"${1}\" \"+${out_format}\" | tr -d '\\n'",

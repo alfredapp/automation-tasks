@@ -1,9 +1,25 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
   "inputMulti" : 2,
+  "inputOverride" : "target_path",
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "function run(argv) {\n  const finder = Application(\"Finder\")\n  return argv.every(p => finder.exists(Path(p)))\n}",
+  "script" : "function run(argv) {\n  const paths = argv.map(path => $(path).stringByExpandingTildeInPath.js)\n  const finder = Application(\"Finder\")\n  return paths.every(path => finder.exists(Path(path)))\n}",
   "scriptType" : 7,
-  "taskDescription" : "Returns true if all passed-in paths exist, else returns false",
+  "state" : 0,
+  "taskDescription" : "Returns true if all paths exist, else returns false",
   "taskName" : "Does Path Exist?"
 }
