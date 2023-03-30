@@ -7,7 +7,7 @@
         "trim" : false,
         "verticalsize" : 6
       },
-      "description" : "Menubar items to click in order. Example with the Finder:\nView\nSort By\nDate Modified",
+      "description" : "Newline-separated list of menubar items to click in order. Example with the Finder:\nView\nSort By\nDate Modified",
       "label" : "Menubar Breadcrumbs",
       "type" : "textarea",
       "variable" : "menubar_items"
