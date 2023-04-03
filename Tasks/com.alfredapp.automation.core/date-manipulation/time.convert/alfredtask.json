@@ -66,6 +66,6 @@
   "script" : "\/bin\/date -jf \"${in_format}\" \"${1}\" \"+${out_format}\" | tr -d '\\n'",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Converts a given time to a different format",
+  "taskDescription" : "Converts time to a different format",
   "taskName" : "Convert Time Format"
 }
