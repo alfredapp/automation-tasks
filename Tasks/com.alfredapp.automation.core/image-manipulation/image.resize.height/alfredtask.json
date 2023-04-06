@@ -3,7 +3,7 @@
     {
       "config" : {
         "default" : "",
-        "filtermode" : 0,
+        "filtermode" : 2,
         "placeholder" : "The passed-in arguments will be used",
         "required" : false
       },
