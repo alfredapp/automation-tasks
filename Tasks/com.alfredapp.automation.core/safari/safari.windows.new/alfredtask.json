@@ -13,7 +13,7 @@
       "variable" : "url"
     }
   ],
-  "inputMulti" : 2,
+  "inputMulti" : -1,
   "inputOverride" : "url",
   "inputType" : 2,
   "outputType" : 0,
