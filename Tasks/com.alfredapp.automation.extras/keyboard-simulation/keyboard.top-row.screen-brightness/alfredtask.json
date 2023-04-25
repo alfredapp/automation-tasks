@@ -1,0 +1,106 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "screen-brightness-up",
+        "pairs" : [
+          [
+            "Screen Brightness Up",
+            "screen-brightness-up"
+          ],
+          [
+            "Screen Bightness Down",
+            "screen-brightness-down"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Key",
+      "type" : "popupbutton",
+      "variable" : "target_key"
+    },
+    {
+      "config" : {
+        "default" : "1",
+        "pairs" : [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "12",
+            "12"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Presses",
+      "type" : "popupbutton",
+      "variable" : "repeat_number"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "..\/.common\/top-row-keys \"${target_key}\" \"${repeat_number}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Simlate pressing keyboard top-row screen brightness keys",
+  "taskName" : "Press Screen Brightness Keys"
+}
