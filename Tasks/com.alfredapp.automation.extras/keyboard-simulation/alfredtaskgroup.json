@@ -1,3 +1,4 @@
 {
-  "groupName" : "Simulate Keyboard Inputs"
+  "groupDescription" : "Simulate keyboard inputs",
+  "groupName" : "Keyboard Simulation"
 }
