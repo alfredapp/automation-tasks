@@ -75,8 +75,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${out_format}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${out_format}\"",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Returns names and URLs of tabs open in a Webkit browser",
   "taskName" : "Get Webkit Browser Tab List"
 }

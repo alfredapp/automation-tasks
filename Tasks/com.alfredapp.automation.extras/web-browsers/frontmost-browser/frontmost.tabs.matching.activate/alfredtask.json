@@ -38,35 +38,27 @@
       "config" : {
         "pairs" : [
           [
-            "URL",
-            "url"
+            "First Match",
+            "first"
           ],
           [
-            "Title",
-            "title"
-          ],
-          [
-            "URL⇥Title",
-            "url_tab_title"
-          ],
-          [
-            "Title⇥URL",
-            "title_tab_url"
+            "Last Match",
+            "last"
           ]
         ]
       },
-      "description" : "⇥ represents a tab.",
-      "label" : "Output Format",
+      "description" : "",
+      "label" : "Switch To",
       "type" : "popupbutton",
-      "variable" : "out_format"
+      "variable" : "first_last"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "..\/.common\/tabs-not-matching 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-matching-activate 'frontmost_browser' \"${all_windows}\" \"${match_string}\" \"${first_last}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns Safari tabs not containing specified text in URL",
-  "taskName" : "Get Safari Tabs Not Matching URL"
+  "taskDescription" : "Switches to a frontmost browser tab containing specified text in URL",
+  "taskName" : "Switch to Frontmost Browser Tab with Matching URL"
 }

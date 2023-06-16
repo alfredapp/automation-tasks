@@ -1,0 +1,39 @@
+#!/usr/bin/osascript -l JavaScript
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function browserVariant(appName) {
+  const webkitVariants = ["Safari", "Webkit"]
+  const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
+
+  if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
+  if (chromiumVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "chromium" }
+  throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(",")}`)
+}
+
+function lookFor(matchString, inText, useRegex) {
+  if (useRegex) return RegExp(matchString).test(inText)
+  return inText.includes(matchString)
+}
+
+function run(argv) {
+  const browser = argv[0] === "frontmost_browser" ?
+    browserVariant(Application("System Events").applicationProcesses.where({ frontmost: true })[0].name()) :
+    browserVariant(argv[0])
+  const windows = argv[1] === "1" ? browser.app.windows() : [browser.app.windows()[0]]
+  const matchString = argv[2]
+  const regex = argv[3] === "1"
+
+  const matchingTabs = windows
+    .flatMap(window => window.tabs())
+    .filter(tab => tab !== null)
+    .filter(tab => !lookFor(matchString, tab.url(), regex))
+
+  const tabURLs = matchingTabs.map(tab => tab.url())
+
+  // Close in reverse order, otherwise closing tabs may mess with tab indexes
+  matchingTabs.slice().reverse().forEach(tab => tab.close())
+  return alfredArgs(tabURLs)
+}

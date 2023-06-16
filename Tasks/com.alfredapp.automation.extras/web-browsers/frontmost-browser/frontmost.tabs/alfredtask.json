@@ -2,29 +2,6 @@
   "configurableConfig" : [
     {
       "config" : {
-        "default" : "",
-        "placeholder" : "e.g. alfredapp.com",
-        "required" : true,
-        "trim" : true
-      },
-      "description" : "",
-      "label" : "Match For",
-      "type" : "textfield",
-      "variable" : "match_string"
-    },
-    {
-      "config" : {
-        "default" : false,
-        "required" : false,
-        "text" : "Treat text to match for as a regular expression"
-      },
-      "description" : "",
-      "label" : "Regex",
-      "type" : "checkbox",
-      "variable" : "regex"
-    },
-    {
-      "config" : {
         "default" : true,
         "required" : false,
         "text" : "Untick to only consider the frontmost window"
@@ -64,9 +41,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "..\/.common\/tabs-not-matching 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs 'frontmost_browser' \"${all_windows}\" \"${out_format}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns Safari tabs not containing specified text in URL",
-  "taskName" : "Get Safari Tabs Not Matching URL"
+  "taskDescription" : "Returns names and URLs of tabs open in frontmost browser",
+  "taskName" : "Get Frontmost Browser Tab List"
 }

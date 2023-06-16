@@ -64,8 +64,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : ".\/run 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/.common\/tabs-matching 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Returns Safari tabs containing specified text in URL",
   "taskName" : "Get Safari Tabs with Matching URL"
 }

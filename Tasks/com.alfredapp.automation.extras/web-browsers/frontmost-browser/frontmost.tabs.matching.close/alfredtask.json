@@ -33,40 +33,14 @@
       "label" : "All Windows",
       "type" : "checkbox",
       "variable" : "all_windows"
-    },
-    {
-      "config" : {
-        "pairs" : [
-          [
-            "URL",
-            "url"
-          ],
-          [
-            "Title",
-            "title"
-          ],
-          [
-            "URL⇥Title",
-            "url_tab_title"
-          ],
-          [
-            "Title⇥URL",
-            "title_tab_url"
-          ]
-        ]
-      },
-      "description" : "⇥ represents a tab.",
-      "label" : "Output Format",
-      "type" : "popupbutton",
-      "variable" : "out_format"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "..\/.common\/tabs-not-matching 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-matching-close 'frontmost_browser' \"${all_windows}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns Safari tabs not containing specified text in URL",
-  "taskName" : "Get Safari Tabs Not Matching URL"
+  "taskDescription" : "Closes frontmost browser tabs containing specified text in URL",
+  "taskName" : "Close Frontmost Browser Tabs with Matching URL"
 }

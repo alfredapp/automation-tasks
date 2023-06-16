@@ -38,8 +38,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : ".\/run 'Safari' \"${all_windows}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/.common\/tabs-not-matching-close 'Safari' \"${all_windows}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Closes Safari tabs not containing specified text in URL",
   "taskName" : "Close Safari Tabs Not Matching URL"
 }

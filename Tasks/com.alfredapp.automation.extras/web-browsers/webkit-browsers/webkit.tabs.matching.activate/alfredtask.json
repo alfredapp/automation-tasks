@@ -90,8 +90,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/safari.tabs.matching.activate\/run'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${first_last}\" \"${regex}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-matching-activate'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${first_last}\" \"${regex}\"",
   "scriptType" : 5,
+  "state" : 0,
   "taskDescription" : "Switches to a Webkit browser tab containing specified text in URL",
   "taskName" : "Switch to Webkit Browser Tab with Matching URL"
 }

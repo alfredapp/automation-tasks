@@ -2,40 +2,6 @@
   "configurableConfig" : [
     {
       "config" : {
-        "pairs" : [
-          [
-            "Safari",
-            "Safari"
-          ],
-          [
-            "Safari Technology Preview",
-            "Safari Technology Preview"
-          ],
-          [
-            "Custom...",
-            "custom"
-          ]
-        ]
-      },
-      "description" : "",
-      "label" : "Browser",
-      "type" : "popupbutton",
-      "variable" : "popup_browser"
-    },
-    {
-      "config" : {
-        "default" : "",
-        "placeholder" : "e.g. Safari Technology Preview",
-        "required" : false,
-        "trim" : true
-      },
-      "description" : "Pick \"Custom...\" in the popup selection to use a particular browser edition or read from a variable.",
-      "label" : "Custom",
-      "type" : "textfield",
-      "variable" : "custom_browser"
-    },
-    {
-      "config" : {
         "default" : "",
         "placeholder" : "e.g. alfredapp.com",
         "required" : true,
@@ -98,9 +64,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-matching'\n\nif [[ \"${popup_browser}\" == 'custom' ]]; then\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-not-matching 'frontmost_browser' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns Webkit browser tabs containing specified text in URL",
-  "taskName" : "Get Webkit Browser Tabs with Matching URL"
+  "taskDescription" : "Returns frontmost browser tabs not containing specified text in URL",
+  "taskName" : "Get Frontmost Browser Tabs Not Matching URL"
 }

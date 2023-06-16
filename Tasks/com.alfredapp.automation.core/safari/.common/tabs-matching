@@ -4,14 +4,25 @@ function alfredArgs(args) {
   return JSON.stringify({ alfredworkflow: { arg: args } })
 }
 
+function browserVariant(appName) {
+  const webkitVariants = ["Safari", "Webkit"]
+  const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
+
+  if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
+  if (chromiumVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "chromium" }
+  throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(",")}`)
+}
+
 function lookFor(matchString, inText, useRegex) {
   if (useRegex) return RegExp(matchString).test(inText)
   return inText.includes(matchString)
 }
 
 function run(argv) {
-  const browser = Application(argv[0])
-  const windows = argv[1] === "1" ? browser.windows() : [browser.windows()[0]]
+  const browser = argv[0] === "frontmost_browser" ?
+    browserVariant(Application("System Events").applicationProcesses.where({ frontmost: true })[0].name()) :
+    browserVariant(argv[0])
+  const windows = argv[1] === "1" ? browser.app.windows() : [browser.app.windows()[0]]
   const outFormat = argv[2]
   const matchString = argv[3]
   const regex = argv[4] === "1"

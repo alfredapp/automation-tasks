@@ -1,0 +1,49 @@
+#!/usr/bin/osascript -l JavaScript
+
+function browserVariant(appName) {
+  const webkitVariants = ["Safari", "Webkit"]
+  const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
+
+  if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
+  if (chromiumVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "chromium" }
+  throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(",")}`)
+}
+
+function run(argv) {
+  const browser = argv[0] === "frontmost_browser" ?
+    browserVariant(Application("System Events").applicationProcesses.where({ frontmost: true })[0].name()) :
+    browserVariant(argv[0])
+  const windowMode = argv[1] === "1" ? "incognito" : "normal"
+  const urls = argv.slice(2)
+
+  // With no arguments, open empty window
+  if (browser.variant === "webkit") {
+    if (windowMode === "incognito") throw new Error("Webkit browsers do not support opening new Private windows programatically")
+
+    if (urls.length === 0) {
+      browser.app.Document().make()
+      browser.app.activate()
+      return
+    }
+
+    // Open in reverse order so they show in given order
+    urls.slice().reverse().forEach(url => {
+      browser.app.Document({url: url}).make()
+      browser.app.activate()
+    })
+  } else if (browser.variant === "chromium") {
+    // With no arguments, open empty window
+    if (urls.length === 0) {
+      browser.app.Window({ mode: windowMode }).make()
+      browser.app.activate()
+      return
+    }
+
+    // Open in reverse order so they show in given order
+    urls.slice().reverse().forEach(url => {
+      browser.app.Window({ mode: windowMode }).make()
+      browser.app.windows[0].activeTab.url = url
+      browser.app.activate()
+    })
+  }
+}

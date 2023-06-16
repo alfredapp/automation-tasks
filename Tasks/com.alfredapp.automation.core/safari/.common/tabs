@@ -1,0 +1,36 @@
+#!/usr/bin/osascript -l JavaScript
+
+function alfredArgs(args) {
+  return JSON.stringify({ alfredworkflow: { arg: args } })
+}
+
+function browserVariant(appName) {
+  const webkitVariants = ["Safari", "Webkit"]
+  const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
+
+  if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
+  if (chromiumVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "chromium" }
+  throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(",")}`)
+}
+
+function run(argv) {
+  const browser = argv[0] === "frontmost_browser" ?
+    browserVariant(Application("System Events").applicationProcesses.where({ frontmost: true })[0].name()) :
+    browserVariant(argv[0])
+  const windows = argv[1] === "1" ? browser.app.windows() : [browser.app.windows()[0]]
+  const outFormat = argv[2]
+
+  const tabs = windows
+    .flatMap(window => window.tabs())
+    .filter(tab => tab !== null)
+    .map(tab => [tab.url(), tab.name()])
+
+  switch (outFormat) {
+    case "url": return alfredArgs(tabs.map(tab => tab[0]))
+    case "title": return alfredArgs(tabs.map(tab => tab[1]))
+    case "url_tab_title": return alfredArgs(tabs.map(tab => tab[0] + "\t" + tab[1]))
+    case "title_tab_url": return alfredArgs(tabs.map(tab => tab[1] + "\t" + tab[0]))
+    case "url_title": return alfredArgs(tabs.map(tab => tab[0] + "|" + tab[1]))
+    default: throw "Unrecognised type: " + outFormat
+  }
+}
