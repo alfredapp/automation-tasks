@@ -1,0 +1,25 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "URL",
+      "type" : "textfield",
+      "variable" : "url"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputOverride" : "url",
+  "inputType" : 2,
+  "outputType" : 1,
+  "script" : "..\/.common\/tabs-current-url 'Safari' \"${1}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Replaces the URL of Webkit browser's current tab",
+  "taskName" : "Change Current Safari Tab URL"
+}
