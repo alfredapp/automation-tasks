@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "Safari",
         "pairs" : [
           [
             "Safari",
@@ -10,6 +11,10 @@
           [
             "Safari Technology Preview",
             "Safari Technology Preview"
+          ],
+          [
+            "Orion",
+            "Orion"
           ],
           [
             "Custom...",

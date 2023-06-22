@@ -1,7 +1,7 @@
 #!/usr/bin/osascript -l JavaScript
 
 function browserVariant(appName) {
-  const webkitVariants = ["Safari", "Webkit"]
+  const webkitVariants = ["Safari", "Webkit", "Orion"]
   const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
 
   if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
