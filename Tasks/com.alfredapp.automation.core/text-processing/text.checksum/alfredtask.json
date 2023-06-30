@@ -30,7 +30,7 @@
   "inputMulti" : 1,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "case \"${out_format}\" in\n  sha256) shasum --algorithm 256 <<< \"${1}\" | cut -d ' ' -f1 | tr -d '\\n';;\n  sha512) shasum --algorithm 512 <<< \"${1}\" | cut -d ' ' -f1 | tr -d '\\n';;\n  sha1) shasum --algorithm 1 <<< \"${1}\" | cut -d ' ' -f1 | tr -d '\\n';;\n  md5) md5 -qs \"${1}\" | tr -d '\\n';;\n  *) echo \"Invalid algorithm: ${out_format}\" >&2; exit 1;;\nesac",
+  "script" : "case \"${out_format}\" in\n  sha256) \/usr\/bin\/shasum --algorithm 256 <<< \"${1}\" | cut -d ' ' -f1 | tr -d '\\n';;\n  sha512) \/usr\/bin\/shasum --algorithm 512 <<< \"${1}\" | cut -d ' ' -f1 | tr -d '\\n';;\n  sha1) \/usr\/bin\/shasum --algorithm 1 <<< \"${1}\" | cut -d ' ' -f1 | tr -d '\\n';;\n  md5) \/sbin\/md5 -qs \"${1}\" | tr -d '\\n';;\n  *) echo \"Invalid algorithm: ${out_format}\" >&2; exit 1;;\nesac",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Returns the cryptographic hash function of text",
