@@ -36,7 +36,7 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --flip \"${direction}\" \"${image}\"\ndone",
+  "script" : "for image in \"${@}\"\ndo\n  \/usr\/bin\/sips --flip \"${direction}\" \"${image}\"\ndone",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Flips image horizontally or vertically",

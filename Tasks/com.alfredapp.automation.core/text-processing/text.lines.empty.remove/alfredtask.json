@@ -15,7 +15,7 @@
   "inputMulti" : 1,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "if [[ \"${all_whitespace}\" -eq 1 ]]; then\n  \/usr\/bin\/sed '\/^[[:space:]]*$\/d' <<< \"${1}\"\nelse\n  \/usr\/bin\/sed '\/^$\/d' <<< \"${1}\"\nfi",
+  "script" : "if [[ \"${all_whitespace}\" -eq 1 ]]\nthen\n  \/usr\/bin\/sed '\/^[[:space:]]*$\/d' <<< \"${1}\"\nelse\n  \/usr\/bin\/sed '\/^$\/d' <<< \"${1}\"\nfi",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Returns text with empty lines removed",

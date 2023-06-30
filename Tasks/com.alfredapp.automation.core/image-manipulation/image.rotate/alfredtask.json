@@ -29,7 +29,7 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 2,
-  "script" : "for image in \"${@}\"; do\n  \/usr\/bin\/sips --rotate \"${degrees}\" \"${image}\"\ndone",
+  "script" : "for image in \"${@}\"\ndo\n  \/usr\/bin\/sips --rotate \"${degrees}\" \"${image}\"\ndone",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Rotates image in degrees",

@@ -17,7 +17,7 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "for file in \"${@}\"; do\n  # Needs to be run on a file, not a directory\n  if [[ ! -f \"${file}\" ]]; then\n    echo \"Invalid file: ${file}\" >&2\n    exit 1\n  fi\n\n  # If executable, skip to next loop iteration\n  [[ -x \"${file}\" ]] && continue\n\n  # If we reach here, at least one file is not executable\n  echo -n 'false'\n  exit 1\ndone\n\n# If we reach here, all files exist and are executable\necho -n 'true'",
+  "script" : "for file in \"${@}\"\ndo\n  # Needs to be run on a file, not a directory\n  if [[ ! -f \"${file}\" ]]\n  then\n    echo \"Invalid file: ${file}\" >&2\n    exit 1\n  fi\n\n  # If executable, skip to next loop iteration\n  [[ -x \"${file}\" ]] && continue\n\n  # If we reach here, at least one file is not executable\n  echo -n 'false'\n  exit 1\ndone\n\n# If we reach here, all files exist and are executable\necho -n 'true'",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Returns true if all paths are executable, else returns false",
