@@ -1,0 +1,24 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "1",
+        "placeholder" : "",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Trailing Arguments",
+      "type" : "textfield",
+      "variable" : "arguments_number"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputType" : 1,
+  "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst arguments_number = parseInt($.getenv(\"arguments_number\"))\n\nfunction run(argv) {\n  return alfredArgs(argv.slice(0, -arguments_number))\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Returns all arguments but a number of them from end",
+  "taskName" : "Strip Trailing Arguments"
+}
