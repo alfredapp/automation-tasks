@@ -1,47 +1,22 @@
 #!/usr/bin/osascript -l JavaScript
 
-const fileManager = $.NSFileManager.defaultManager
-const finder = Application("Finder")
-
-function envVar(varName) {
-  return $.NSProcessInfo
-    .processInfo
-    .environment
-    .objectForKey(varName).js
-}
-
 function alfredArgs(args) {
   return JSON.stringify({ alfredworkflow: { arg: args } })
 }
 
-function isDir(path) {
-  const ref = Ref()
-  fileManager.fileExistsAtPathIsDirectory(path, ref)
-  return ref[0]
-}
-
 function pathToFinderItem(path) {
   // Writability check
-  if (!fileManager.isWritableFileAtPath(path)) throw "Cannot write to path: " + path
+  if (!$.NSFileManager.defaultManager.isWritableFileAtPath(path)) throw "Cannot write to path: " + path
 
-  // Split path components
-  const dirComponents = $(path).stringByDeletingLastPathComponent.js.split("/").slice(1)
-  const baseComponent = $(path).lastPathComponent.js
-
-  // Details change if on startup disk or external volume
-  const [disk, breadcrumbs] = dirComponents[0] === 'Volumes' ?
-    [finder.disks.byName(dirComponents[1]), dirComponents.slice(2)] :
-    [finder.startupDisk(), dirComponents]
-
-  // Join as Finder item
-  const finderDirpath = breadcrumbs.reduce(
-    (container, dir) => container.folders.byName(dir),
-    disk
-  )
-
-  return isDir(path) ?
-    finderDirpath.folders.byName(baseComponent) :
-    finderDirpath.files.byName(baseComponent)
+  // Convert to Finder item
+  return path
+    .split("/") // Split into components
+    .slice(1) // Ignore the first (empty) component
+    .map(c => c.replace(/:/g, "/")) // Colons in paths are slashes in the Finder
+    .reduce(
+      (parent, child) => parent.items.byName(child), // Merge into Finder item
+      Application("Finder").startupDisk() // Start at the file system root
+    )
 }
 
 function run(argv) {
