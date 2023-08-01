@@ -10,7 +10,7 @@ function browserVariant(appName) {
 
   if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
   if (chromiumVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "chromium" }
-  throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(",")}`)
+  throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(", ")}`)
 }
 
 function lookFor(matchString, inText, useRegex) {
