@@ -2,8 +2,9 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "Application(\"System Events\").appearancePreferences.darkMode()",
+  "script" : "function writeSTDOUT(string) {\n  const nsstring = $.NSString\n    .alloc\n    .initWithString(string)\n    .dataUsingEncoding($.NSUTF8StringEncoding)\n\n  $.NSFileHandle\n    .fileHandleWithStandardOutput\n    .writeData(nsstring)\n}\n\n\/\/ Output as string, without newline\nconst state = Application(\"System Events\").appearancePreferences.darkMode().toString()\nwriteSTDOUT(state)",
   "scriptType" : 7,
+  "state" : 0,
   "taskDescription" : "Returns true if Dark Mode is enabled, else returns false",
   "taskName" : "Get Dark Mode Status"
 }

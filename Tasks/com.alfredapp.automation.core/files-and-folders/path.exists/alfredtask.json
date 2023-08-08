@@ -17,7 +17,7 @@
   "inputOverride" : "target_path",
   "inputType" : 0,
   "outputType" : 1,
-  "script" : "function run(argv) {\n  const paths = argv.map(path => $(path).stringByExpandingTildeInPath.js)\n  const finder = Application(\"Finder\")\n  return paths.every(path => finder.exists(Path(path)))\n}",
+  "script" : "for input in \"${@}\"\ndo\n  # If exists, skip to next loop iteration\n  [[ -e \"${input}\" ]] && continue\n\n  # If we reach here, at least one path does not exist\n  echo -n 'false'\n  exit 1\ndone\n\n# If we reach here, all paths exist\necho -n 'true'",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Returns true if all paths exist, else returns false",
