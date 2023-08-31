@@ -40,7 +40,7 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 1,
-  "script" : "readonly image=\"${1}\"\nreadonly width=\"$(..\/get-image-property 'pixelWidth' \"${image}\")\"\nreadonly height=\"$(..\/get-image-property 'pixelHeight' \"${image}\")\"\n\ncase \"${property}\" in\n  width) echo -n \"${width}\";;\n  height) echo -n \"${height}\";;\n  both) echo -n \"${width}x${height}\";;\n  *) echo \"Invalid dimensions: ${property}\" >&2; exit 1;;\nesac",
+  "script" : "readonly image=\"${1}\"\nreadonly width=\"$(..\/.common\/get-image-property 'pixelWidth' \"${image}\")\"\nreadonly height=\"$(..\/.common\/get-image-property 'pixelHeight' \"${image}\")\"\n\ncase \"${property}\" in\n  width) echo -n \"${width}\";;\n  height) echo -n \"${height}\";;\n  both) echo -n \"${width}x${height}\";;\n  *) echo \"Invalid dimensions: ${property}\" >&2; exit 1;;\nesac",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Returns the pixel width, height, or both of an image",
