@@ -1,0 +1,38 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 2,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "PDF",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "placeholder" : "",
+        "required" : true
+      },
+      "description" : "Files will be named sequentially for each page.",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputOverride" : "target_path",
+  "inputType" : 1,
+  "outputDescription" : "File path array of saved PDFs",
+  "outputType" : 1,
+  "script" : "..\/.common\/pdf-split-pdfs \"${1}\" \"${save_in}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Save PDF pages to individual PDFs",
+  "taskName" : "Extract PDF Pages as PDFs"
+}
