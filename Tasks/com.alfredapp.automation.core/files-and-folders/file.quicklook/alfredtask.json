@@ -13,7 +13,7 @@
       "variable" : "target_path"
     }
   ],
-  "inputMulti" : -1,
+  "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
