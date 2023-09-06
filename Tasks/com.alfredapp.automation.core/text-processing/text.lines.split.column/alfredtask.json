@@ -38,9 +38,11 @@
   ],
   "inputMulti" : 1,
   "inputType" : 0,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "ObjC.import(\"stdlib\")\n\nconst delimiter = $.getenv(\"delimiter\")\nconst column = parseInt($.getenv(\"column\")) - 1 \/\/ Correct user input for zero-based array\nconst trimOutput = $.getenv(\"trim_output\") === \"1\" ? true : false\n\nif (column < 0) throw \"Column number must be higher than zero\"\n\nfunction run(argv) {\n  return argv[0]\n    .split(\"\\n\")\n    .map(line => {\n      return trimOutput ?\n        line.split(delimiter)[column]?.trim() :\n        line.split(delimiter)[column]\n    })\n    .join(\"\\n\")\n}",
   "scriptType" : 7,
-  "taskDescription" : "Splits lines on a delimiter and returns a column",
-  "taskName" : "Get Column from Text"
+  "state" : 0,
+  "taskDescription" : "Split lines on a delimiter and get a column",
+  "taskName" : "Column from Text"
 }

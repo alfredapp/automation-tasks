@@ -39,10 +39,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "File path array of the moves",
   "outputType" : 1,
   "script" : "use framework \"Foundation\"\n\non alfredArgs(args)\n  set jsonData to current application's NSJSONSerialization's dataWithJSONObject:{alfredworkflow:{arg:args}} options:0 |error|:(missing value)\n  return (current application's NSString's alloc's initWithData:jsonData encoding:(current application's NSUTF8StringEncoding)) as text\nend alfredArgs\n\non envVar(varName)\n  (current application's NSProcessInfo's processInfo's environment's objectForKey:varName) as string\nend envVar\n\non run argv\n  set overwrite to envVar(\"overwrite\") is \"1\"\n  set posixTarget to envVar(\"save_in\")\n  set targetDir to (POSIX file posixTarget)\n\n  -- Create destination directory\n  tell current application's NSFileManager's defaultManager to createDirectoryAtPath:posixTarget withIntermediateDirectories:true attributes:(missing value) |error|:(missing value)\n\n  -- Convert to Finder paths\n  set sourcePaths to {}\n\n  repeat with itemNumber from 1 to count of argv\n    try\n      set pathString to item itemNumber of argv\n      copy POSIX file pathString to the end of sourcePaths\n    end try\n  end repeat\n\n  -- Do the operation\n  tell application \"Finder\"\n    if overwrite then\n      set saveFinderPaths to move sourcePaths to folder targetDir with replacing\n    else\n      set saveFinderPaths to move sourcePaths to folder targetDir\n    end if\n  end tell\n\n  -- Force saveFinderPaths into a list as it would not happen for a single file\n  if class of saveFinderPaths is not list then set saveFinderPaths to {saveFinderPaths}\n\n  -- Return resulting POSIX paths\n  set savePaths to {}\n\n  repeat with finderPath in saveFinderPaths\n    copy POSIX path of (finderPath as alias) to the end of savePaths\n  end repeat\n\n  return alfredArgs(savePaths)\nend run",
   "scriptType" : 6,
   "state" : 0,
-  "taskDescription" : "Returns the destination paths of the moved files",
-  "taskName" : "Move Path With the Finder"
+  "taskDescription" : "Move paths leveraging the Finder’s behaviour",
+  "taskName" : "Move With the Finder"
 }

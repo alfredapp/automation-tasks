@@ -20,6 +20,6 @@
   "script" : "on run argv\n  set pathList to {}\n\n  repeat with pathString in argv\n    set end of pathList to POSIX file pathString as alias\n end repeat\n\n  tell application \"Finder\" to delete pathList\nend run",
   "scriptType" : 6,
   "state" : 0,
-  "taskDescription" : "Trashes the path",
+  "taskDescription" : "Trash paths",
   "taskName" : "Send to Trash"
 }

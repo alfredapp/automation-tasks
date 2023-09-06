@@ -21,10 +21,11 @@
   ],
   "inputMulti" : 1,
   "inputType" : 0,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "case \"${out_format}\" in\n  base64) \/usr\/bin\/base64 <<< \"${1}\" | tr -d '\\n';;\n  hex) \/usr\/bin\/xxd -plain <<< \"${1}\" | tr -d '\\n';;\n  *) echo \"Invalid representation: ${out_format}\" >&2; exit 1;;\nesac",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Binary-encodes text",
+  "taskDescription" : "Get binary encodings of text",
   "taskName" : "Binary Encode Text"
 }

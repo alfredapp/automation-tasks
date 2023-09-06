@@ -25,10 +25,11 @@
   ],
   "inputMulti" : 1,
   "inputType" : 0,
+  "outputDescription" : "Integer",
   "outputType" : 1,
   "script" : "# 'characters' uses 'echo -n' so as to not count the newline at end of input\n\ncase \"${metric}\" in\n  words) \/usr\/bin\/wc -w <<< \"${1}\" | tr -d ' \\n';;\n  lines) \/usr\/bin\/wc -l <<< \"${1}\" | tr -d ' \\n';;\n  characters) echo -n \"${1}\" | wc -m | tr -d ' \\n';;\n  *) echo \"Invalid metric: ${metric}\" >&2; exit 1;;\nesac",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns the word, line, or character count from text",
-  "taskName" : "Get Text Metrics"
+  "taskDescription" : "Get word, line, or character count from text",
+  "taskName" : "Text Metrics"
 }

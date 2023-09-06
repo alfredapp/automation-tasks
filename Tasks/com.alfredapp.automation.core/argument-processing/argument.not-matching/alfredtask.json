@@ -26,10 +26,11 @@
   ],
   "inputMulti" : 2,
   "inputType" : 0,
+  "outputDescription" : "Argument array",
   "outputType" : 1,
   "script" : "ObjC.import(\"stdlib\")\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst match_string = $.getenv(\"match_string\")\nconst regex = $.getenv(\"regex\") === \"1\" ? true : false\n\nfunction run(argv) {\n  return regex ?\n    alfredArgs(argv.filter(a => !a.match(match_string))) :\n    alfredArgs(argv.filter(a => !a.includes(match_string)))\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Returns arguments not matching a pattern",
-  "taskName" : "Get Non-matching Arguments"
+  "taskDescription" : "Get arguments not matching a pattern",
+  "taskName" : "Non-matching Arguments"
 }

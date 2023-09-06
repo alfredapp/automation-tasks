@@ -1,9 +1,11 @@
 {
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "File path",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nalfredArgs(Application(\"System Events\").currentDesktop.picture())",
   "scriptType" : 7,
-  "taskDescription" : "Returns path to current wallpaper in current Desktop",
-  "taskName" : "Get Path to Current Wallpaper"
+  "state" : 0,
+  "taskDescription" : "Get path to current wallpaper",
+  "taskName" : "Current Wallpaper"
 }

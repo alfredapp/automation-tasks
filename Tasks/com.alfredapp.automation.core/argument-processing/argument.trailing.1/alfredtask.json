@@ -1,10 +1,11 @@
 {
   "inputMulti" : 2,
   "inputType" : 0,
+  "outputDescription" : "Argument",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.slice(-1)[0])\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Returns last argument",
-  "taskName" : "Get Last Argument"
+  "taskDescription" : "Get last argument",
+  "taskName" : "Last Argument"
 }

@@ -15,10 +15,11 @@
   ],
   "inputMulti" : 1,
   "inputType" : 0,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "\/usr\/bin\/head -\"${lines_number}\" <<< \"${1}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns number of lines from start of text",
-  "taskName" : "Get Leading Lines"
+  "taskDescription" : "Get number of lines from start of text",
+  "taskName" : "Leading Lines"
 }

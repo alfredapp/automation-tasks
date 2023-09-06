@@ -40,10 +40,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Text array or URL array",
   "outputType" : 1,
   "script" : "..\/.common\/tabs 'Safari' \"${all_windows}\" \"${out_format}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns names and URLs of tabs open in Safari",
-  "taskName" : "Get Safari Tab List"
+  "taskDescription" : "Get name and URL of tabs open in Safari",
+  "taskName" : "Safari Tab List"
 }

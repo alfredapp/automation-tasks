@@ -27,10 +27,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "Text array",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction run(argv) {\n  const noExtension = envVar(\"no_extension\") === \"1\"\n  const baseNames = argv.map(path => $(path).lastPathComponent.js)\n\n  if (noExtension) return alfredArgs(baseNames.map(path => $(path).stringByDeletingPathExtension.js))\n  return alfredArgs(baseNames)\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Returns path name",
-  "taskName" : "Get Path Basename"
+  "taskDescription" : "Get path names without folder portion",
+  "taskName" : "Path Basename"
 }

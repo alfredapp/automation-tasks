@@ -1,10 +1,11 @@
 {
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "URL of closed tab",
   "outputType" : 1,
   "script" : "..\/.common\/tabs-current-close 'Safari'",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Closes Safari's current tab",
+  "taskDescription" : "Close Safari's current tab",
   "taskName" : "Close Current Safari Tab"
 }

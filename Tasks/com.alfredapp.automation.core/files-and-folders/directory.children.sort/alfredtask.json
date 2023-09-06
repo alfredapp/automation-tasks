@@ -35,10 +35,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "File path array",
   "outputType" : 1,
   "script" : "..\/.common\/directory-children \"${sort_order}\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns contents of folder",
-  "taskName" : "List Folder Contents"
+  "taskDescription" : "Get contents of folders",
+  "taskName" : "Folder Contents"
 }

@@ -101,6 +101,6 @@
   "script" : "..\/.common\/top-row-keys \"${target_key}\" \"${repeat_number}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Simlate pressing keyboard top-row screen brightness keys",
+  "taskDescription" : "Simulate pressing keyboard top-row screen brightness keys",
   "taskName" : "Press Screen Brightness Keys"
 }

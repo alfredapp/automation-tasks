@@ -20,6 +20,6 @@
   "script" : "ObjC.import(\"AppKit\")\n\nfunction run(argv) {\n  const pboard = $.NSPasteboard.generalPasteboard\n  const image = $.NSImage.alloc.initWithContentsOfFile(argv[0])\n\n  pboard.clearContents\n  pboard.setDataForType(image.TIFFRepresentation, $.NSPasteboardTypeTIFF)\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Saves image to clipboard as data",
+  "taskDescription" : "Save images to clipboard as data",
   "taskName" : "Save Image to Clipboard"
 }

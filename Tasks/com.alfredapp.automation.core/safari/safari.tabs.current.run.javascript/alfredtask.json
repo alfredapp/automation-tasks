@@ -15,10 +15,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/.common\/tabs-current-run-javascript 'Safari' \"${javascript_code}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Executes JavaScript in Safari's current tab",
+  "taskDescription" : "Execute JavaScript in Safari's current tab",
   "taskName" : "Run JavaScript in Safari Tab"
 }

@@ -43,6 +43,6 @@
   "script" : "for file in \"${@}\"\ndo\n  # Needs to be run on a file, not a directory\n  if [[ ! -f \"${file}\" ]]\n  then\n    echo \"Invalid file: ${file}\" >&2\n    exit 1\n  fi\n\n  case \"${target_mode}\" in\n    on) \/bin\/chmod +x \"${file}\";;\n    off) \/bin\/chmod -x \"${file}\";;\n    toggle) [[ -x \"${file}\" ]] && \/bin\/chmod -x \"${file}\" || \/bin\/chmod +x \"${file}\";;\n    *) echo \"Invalid mode: ${target_mode}\" >&2; exit 1;;\n  esac\ndone",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Enables, disabled, or toggles executable permission of files",
+  "taskDescription" : "Enable, disable, or toggle executable permission of files",
   "taskName" : "Make File Executable"
 }

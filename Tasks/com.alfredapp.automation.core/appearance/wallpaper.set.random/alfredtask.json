@@ -1,9 +1,11 @@
 {
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "File path of new wallpaper",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst systemEvents = Application(\"System Events\")\nconst wallpaperDir = systemEvents.currentDesktop.picturesFolder()\nconst wallpaperPaths = systemEvents.folders.byName(wallpaperDir).diskItems().map(p => p.toString())\nconst wallpaperRandom = wallpaperPaths[Math.floor(Math.random() * wallpaperPaths.length)]\n\nsystemEvents.currentDesktop.picture = wallpaperRandom\nalfredArgs(wallpaperRandom)",
   "scriptType" : 7,
-  "taskDescription" : "Uses your current wallpaper folder to select another at random",
+  "state" : 0,
+  "taskDescription" : "Set wallpaper at random from current wallpaper folder",
   "taskName" : "Change Wallpaper at Random"
 }

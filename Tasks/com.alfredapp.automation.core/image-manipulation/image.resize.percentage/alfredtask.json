@@ -43,6 +43,6 @@
   "script" : "for image in \"${@}\"\ndo\n  old_width=\"$(..\/.common\/get-image-property 'pixelWidth' \"${image}\")\"\n\n  if [[ \"${enlarge}\" -eq 0 && \"${percentage}\" -gt 100 ]]\n  then\n    echo \"Desired size would result in scaling up, and the option is turned off: ${image}\" >&2\n    exit 0\n  fi\ndone\n\nfor image in \"${@}\"\ndo\n  fraction=\"$(bc <<< \"scale=4; ${percentage} \/ 100\")\"\n  width=\"$(bc <<< \"scale=4; ${fraction} * ${old_width}\")\"\n\n  \/usr\/bin\/sips --resampleWidth \"${width}\" \"${image}\"\ndone",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Resizes image by a given percentage",
+  "taskDescription" : "Alter image proportions from percentage, maitaining aspect ratio",
   "taskName" : "Resize Image by Percentage"
 }

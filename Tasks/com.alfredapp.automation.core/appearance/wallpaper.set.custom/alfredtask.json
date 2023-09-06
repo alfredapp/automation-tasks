@@ -20,6 +20,6 @@
   "script" : "function run(argv) {\n  Application(\"System Events\").currentDesktop.picture = argv[0]\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Sets the Desktop wallpaper",
+  "taskDescription" : "Set the Desktop wallpaper",
   "taskName" : "Change Wallpaper"
 }

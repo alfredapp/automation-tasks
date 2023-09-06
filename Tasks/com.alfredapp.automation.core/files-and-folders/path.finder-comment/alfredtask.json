@@ -16,10 +16,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/.common\/finder-comment read '' \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns Finder comment of path",
-  "taskName" : "Get Finder Comment"
+  "taskDescription" : "Get Finder comment of paths",
+  "taskName" : "Finder Comment"
 }

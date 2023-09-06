@@ -31,6 +31,6 @@
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/windows-new 'frontmost_browser' \"${private_window}\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Makes a new frontmost browser window with URL",
-  "taskName" : "Open New Frontmost Browser Window"
+  "taskDescription" : "Make new frontmost browser window with URL",
+  "taskName" : "Open New Front Browser Window"
 }

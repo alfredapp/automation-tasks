@@ -59,13 +59,15 @@
       "variable" : "out_format"
     }
   ],
+  "inputDescription" : "Formatted time",
   "inputMulti" : 1,
   "inputOverride" : "target_time",
   "inputType" : 0,
+  "outputDescription" : "Formatted time",
   "outputType" : 1,
   "script" : "\/bin\/date -jf \"${in_format}\" \"${1}\" \"+${out_format}\" | tr -d '\\n'",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Converts time to a different format",
+  "taskDescription" : "Convert time to a different format",
   "taskName" : "Convert Time Format"
 }

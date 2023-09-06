@@ -75,10 +75,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Text or URL",
   "outputType" : 1,
   "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${out_format}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns the URL or title of Chromium browser's current tab",
-  "taskName" : "Get Current Chromium Browser Tab"
+  "taskDescription" : "Get URL or title of Chromium browser's current tab",
+  "taskName" : "Current Chromium Browser Tab"
 }

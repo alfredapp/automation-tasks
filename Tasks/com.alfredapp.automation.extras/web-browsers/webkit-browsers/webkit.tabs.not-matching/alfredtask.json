@@ -103,10 +103,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Text array or URL array",
   "outputType" : 1,
   "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-not-matching'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns Webkit browser tabs not containing specified text in URL",
-  "taskName" : "Get Webkit Browser Tabs Not Matching URL"
+  "taskDescription" : "Get Webkit browser tabs without specified text in URL",
+  "taskName" : "Webkit Browser Tabs Not Matching URL"
 }

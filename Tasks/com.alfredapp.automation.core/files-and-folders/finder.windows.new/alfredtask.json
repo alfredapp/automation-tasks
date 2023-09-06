@@ -5,6 +5,6 @@
   "script" : "on run argv\n  tell application \"Finder\"\n    -- Open in reverse order so they show in given order\n    repeat with itemNumber from count of argv to 1 by -1\n      set pathString to item itemNumber of argv\n      make new Finder window to folder (POSIX file pathString as alias)\n      activate\n    end repeat\n  end tell\nend run",
   "scriptType" : 6,
   "state" : 0,
-  "taskDescription" : "Opens Finder window on folder",
-  "taskName" : "Open New Finder Window"
+  "taskDescription" : "Open Finder windows",
+  "taskName" : "New Finder Window"
 }

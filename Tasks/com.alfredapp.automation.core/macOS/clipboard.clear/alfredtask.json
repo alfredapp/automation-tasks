@@ -4,6 +4,7 @@
   "outputType" : 0,
   "script" : "ObjC.import(\"AppKit\")\n\n$.NSPasteboard.generalPasteboard.clearContents",
   "scriptType" : 7,
-  "taskDescription" : "Removes clipboard contents",
+  "state" : 0,
+  "taskDescription" : "Remove clipboard contents",
   "taskName" : "Clear Clipboard"
 }

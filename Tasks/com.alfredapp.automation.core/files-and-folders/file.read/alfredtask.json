@@ -16,10 +16,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "\/bin\/cat \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns contents of file",
-  "taskName" : "Read File Contents"
+  "taskDescription" : "Get contents of files",
+  "taskName" : "File Contents"
 }

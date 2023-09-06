@@ -33,10 +33,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Integer or JSON",
   "outputType" : 1,
   "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  const outFormat = envVar(\"out_format\")\n  const topWindow = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0].windows.where({ subrole: \"AXStandardWindow\" })[0]\n  const windowProperties = topWindow.properties()\n\n  const windowBounds = {\n    x: windowProperties.position[0],\n    y: windowProperties.position[1],\n    width: windowProperties.size[0],\n    height: windowProperties.size[1]\n  }\n\n  switch (outFormat) {\n    case \"all_details\": return alfredArgs(JSON.stringify(windowBounds))\n    case \"x\": return alfredArgs(windowBounds.x)\n    case \"y\": return alfredArgs(windowBounds.y)\n    case \"width\": return alfredArgs(windowBounds.width)\n    case \"height\": return alfredArgs(windowBounds.height)\n  }\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Returns the topmost window's bounds",
-  "taskName" : "Get Window Bounds"
+  "taskDescription" : "Get the topmost window's bounds",
+  "taskName" : "Window Bounds"
 }

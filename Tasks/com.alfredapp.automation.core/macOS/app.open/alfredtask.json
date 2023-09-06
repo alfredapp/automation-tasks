@@ -24,11 +24,13 @@
       "variable" : "in_background"
     }
   ],
+  "inputDescription" : "Optional app names, paths, or bundle identifiers",
   "inputMulti" : -1,
   "inputType" : 0,
   "outputType" : 0,
   "script" : "ObjC.import(\"stdlib\")\n\nfunction openApp(app, toForeground) {\n  \/\/ \"activate\" does not restore minimised windows, but \"launch\" does\n  app.launch() \/\/ Open app in background\n  if (toForeground) app.activate() \/\/ Bring to front if applicable\n}\n\nfunction run(argv) {\n  const fromVar = $.getenv(\"app_list\")\n    .split(\"\\n\")\n    .flatMap(line => line.split(\",\")) \/\/ Continue to support comma-separation\n    .map(app => app.trim())\n    .filter(app => app.length > 0)\n\n  const toForeground = $.getenv(\"in_background\") === \"0\"\n  const apps = argv.concat(fromVar)\n\n  apps.forEach(app => {\n    try { openApp(Application(app), toForeground) }\n    catch (ignore) { }\n  })\n}",
   "scriptType" : 7,
-  "taskDescription" : "Opens passed-in and configured apps",
+  "state" : 0,
+  "taskDescription" : "Quit passed-in and configured apps",
   "taskName" : "Open Apps"
 }

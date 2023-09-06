@@ -1,10 +1,11 @@
 {
   "inputMulti" : 1,
   "inputType" : 0,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "\/usr\/bin\/head -1 <<< \"${1}\" | tr -d '\\n'",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns first line from text without trailing newline",
+  "taskDescription" : "Get first line from text without trailing newline",
   "taskName" : "Get First Line"
 }

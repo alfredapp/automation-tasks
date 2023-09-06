@@ -32,6 +32,6 @@
   "script" : "for image in \"${@}\"\ndo\n  \/usr\/bin\/sips --rotate \"${degrees}\" \"${image}\"\ndone",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Rotates image in degrees",
+  "taskDescription" : "Rotate images by degrees",
   "taskName" : "Rotate Image"
 }

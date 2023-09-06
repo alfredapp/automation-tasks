@@ -37,10 +37,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "URL array",
   "outputType" : 1,
   "script" : "..\/.common\/tabs-matching-close 'Safari' \"${all_windows}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Closes Safari tabs containing specified text in URL",
-  "taskName" : "Close Safari Tabs with Matching URL"
+  "taskDescription" : "Close Safari tabs with specified text in URL",
+  "taskName" : "Close Safari Tabs Matching URL"
 }

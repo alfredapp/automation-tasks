@@ -31,6 +31,6 @@
   "script" : "..\/.common\/tag clear \"${new_tags}\" \"${recursive}\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Deletes all tags from path",
+  "taskDescription" : "Delete all tags from paths",
   "taskName" : "Clear Tags"
 }

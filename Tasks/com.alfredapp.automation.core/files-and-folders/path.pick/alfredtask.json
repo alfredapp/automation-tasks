@@ -14,9 +14,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "File path",
   "outputType" : 1,
   "script" : "echo -n \"${target_path}\"",
   "scriptType" : 5,
-  "taskDescription" : "Returns the picked file or folder",
+  "state" : 0,
+  "taskDescription" : "Pass through the configured file or folder",
   "taskName" : "Pick Path"
 }

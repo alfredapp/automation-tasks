@@ -1,10 +1,11 @@
 {
   "inputMulti" : -1,
   "inputType" : 0,
+  "outputDescription" : "Integer",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.length)\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Returns argument count",
-  "taskName" : "Get Number of Arguments"
+  "taskDescription" : "Get number of arguments",
+  "taskName" : "Count Arguments"
 }

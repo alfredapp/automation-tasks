@@ -15,10 +15,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript 'frontmost_browser' \"${javascript_code}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Executes JavaScript in frontmost browser's current tab",
-  "taskName" : "Run JavaScript in Frontmost Browser Tab"
+  "taskDescription" : "Execute JavaScript in frontmost browser's current tab",
+  "taskName" : "Run JavaScript in Front Browser Tab"
 }

@@ -16,10 +16,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "File path array of the duplicates",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction finderItemToPath(item) {\n  return $.NSURL.URLWithString(item.url()).path.js\n}\n\nfunction run(argv) {\n  const finder = Application(\"Finder\")\n\n  const duplicated = argv.map(p => finderItemToPath(finder.duplicate(Path(p))))\n  return alfredArgs(duplicated)\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Creates duplicate of path next to original and returns path of copy",
+  "taskDescription" : "Make duplicates of paths next to the originals",
   "taskName" : "Duplicate Path"
 }

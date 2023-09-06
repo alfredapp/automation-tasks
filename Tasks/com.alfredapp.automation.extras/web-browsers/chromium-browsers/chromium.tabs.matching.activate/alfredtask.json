@@ -101,10 +101,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "URL",
   "outputType" : 1,
   "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-matching-activate'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${all_windows}\" \"${match_string}\" \"${first_last}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Switches to a Chromium browser tab containing specified text in URL",
-  "taskName" : "Switch to Chromium Browser Tab with Matching URL"
+  "taskDescription" : "Switch to Chromium browser tab with specified text in URL",
+  "taskName" : "Switch to Chromium Browser Tab Matching URL"
 }

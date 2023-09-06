@@ -27,10 +27,11 @@
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
+  "outputDescription" : "Text array",
   "outputType" : 1,
   "script" : "..\/.common\/tag read '' \"${recursive}\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns tags from path",
-  "taskName" : "Get Tags"
+  "taskDescription" : "Get tags from paths",
+  "taskName" : "List Tags"
 }

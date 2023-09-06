@@ -26,10 +26,11 @@
   ],
   "inputMulti" : 0,
   "inputType" : 0,
+  "outputDescription" : "Formatted time",
   "outputType" : 1,
   "script" : "\/bin\/date \"+${out_format}\" | tr -d '\\n'",
   "scriptType" : 5,
   "state" : 0,
-  "taskDescription" : "Returns the current time in a specific format",
-  "taskName" : "Get Current Time"
+  "taskDescription" : "Get the current time in a specific format",
+  "taskName" : "Current Time"
 }
