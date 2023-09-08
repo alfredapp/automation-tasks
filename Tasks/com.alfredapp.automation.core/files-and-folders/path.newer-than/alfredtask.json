@@ -1,0 +1,77 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "30",
+        "placeholder" : "",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Unit",
+      "type" : "textfield",
+      "variable" : "unit"
+    },
+    {
+      "config" : {
+        "default" : "d",
+        "pairs" : [
+          [
+            "Years",
+            "y"
+          ],
+          [
+            "Months",
+            "m"
+          ],
+          [
+            "Weeks",
+            "w"
+          ],
+          [
+            "Days",
+            "d"
+          ],
+          [
+            "Hours",
+            "H"
+          ],
+          [
+            "Minutes",
+            "M"
+          ],
+          [
+            "Seconds",
+            "S"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Period",
+      "type" : "popupbutton",
+      "variable" : "period"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputOverride" : "target_path",
+  "inputType" : 1,
+  "outputDescription" : "Boolean (\"true\" or \"false\")",
+  "outputType" : 1,
+  "script" : "for input in \"${@}\"\ndo\n  # If modified in period, skip to next loop iteration\n  [[ \"$(date -r \"${input}\" +%s)\" -gt \"$(date -v -\"${unit}${period}\" +%s)\" ]] && continue\n\n  # If we reach here, at least one path is older\n  echo -n 'false'\n  exit 1\ndone\n\n# If we reach here, all paths are newer\necho -n 'true'",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Check if paths were modified before a time frame",
+  "taskName" : "Is Path Newer?"
+}
