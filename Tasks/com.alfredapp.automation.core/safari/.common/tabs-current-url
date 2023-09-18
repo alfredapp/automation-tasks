@@ -4,6 +4,24 @@ function alfredArgs(args) {
   return JSON.stringify({ alfredworkflow: { arg: args } })
 }
 
+function frontmostBrowserName() {
+  const getBrowser = $("~/Library/Application Support/Alfred/Automation/Tasks/com.alfredapp.automation.core/safari/.common/get-frontmost-browser").stringByExpandingTildeInPath.js
+
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
+
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath("/usr/bin/env")
+  task.arguments = [getBrowser]
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
+
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
+
+  if (task.terminationStatus !== 0) throw "Did not find a supported web browser"
+  return stringOut.trim()
+}
+
 function browserVariant(appName) {
   const webkitVariants = ["Safari", "Webkit", "Orion"]
   const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge", "Arc"]
@@ -15,7 +33,7 @@ function browserVariant(appName) {
 
 function run(argv) {
   const browser = argv[0] === "frontmost_browser" ?
-    browserVariant(Application("System Events").applicationProcesses.where({ frontmost: true })[0].name()) :
+    browserVariant(frontmostBrowserName()) :
     browserVariant(argv[0])
   const newURL = argv[1]
 
