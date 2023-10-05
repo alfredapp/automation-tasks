@@ -19,7 +19,7 @@
   "inputType" : 0,
   "outputDescription" : "Boolean (\"true\" or \"false\")",
   "outputType" : 1,
-  "script" : "function writeSTDOUT(string) {\n  const nsstring = $.NSString\n    .alloc\n    .initWithString(string)\n    .dataUsingEncoding($.NSUTF8StringEncoding)\n\n  $.NSFileHandle\n    .fileHandleWithStandardOutput\n    .writeData(nsstring)\n}\n\nfunction run(argv) {\n  try {\n    \/\/ Output as string, without newline\n    const state = argv.every(app => Application(app).running()).toString()\n    writeSTDOUT(state)\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}",
+  "script" : "function writeSTDOUT(string) {\n  const nsstring = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsstring)\n}\n\nfunction run(argv) {\n  try {\n    \/\/ Output as string, without newline\n    const state = argv.every(app => Application(app).running()).toString()\n    writeSTDOUT(state)\n  } catch(error) {\n    if (error.errorNumber === -2700) return false\n  }\n}",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Check if apps are running",
