@@ -3,7 +3,7 @@
   "inputType" : 0,
   "outputDescription" : "File path",
   "outputType" : 1,
-  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction posixPath(finderWindow) {\n  return $.NSURL.alloc.initWithString(finderWindow.url()).fileSystemRepresentation\n}\n\nconst finder = Application(\"Finder\")\n\ntry {\n  alfredArgs(posixPath(finder.finderWindows[0].target))\n} catch { \/\/ Finder windows like \"Recents\" and \"AirDrop\" cause an error\n  alfredArgs(posixPath(finder.desktop))\n}",
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction posixPath(finderWindow) {\n  return $.NSURL.URLWithString(finderWindow.url()).fileSystemRepresentation\n}\n\nconst finder = Application(\"Finder\")\n\ntry {\n  alfredArgs(posixPath(finder.finderWindows[0].target))\n} catch { \/\/ Finder windows like \"Recents\" and \"AirDrop\" cause an error\n  alfredArgs(posixPath(finder.desktop))\n}",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get path to frontmost valid Finder window",
