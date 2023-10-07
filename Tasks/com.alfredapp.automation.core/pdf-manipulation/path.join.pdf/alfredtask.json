@@ -8,7 +8,7 @@
         "required" : false
       },
       "description" : "",
-      "label" : "PDF",
+      "label" : "File",
       "type" : "filepicker",
       "variable" : "target_path"
     },
