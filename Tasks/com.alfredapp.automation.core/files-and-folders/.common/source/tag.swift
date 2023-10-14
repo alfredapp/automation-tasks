@@ -1,6 +1,7 @@
 import Foundation
 
 let argv = CommandLine.arguments
+let minimumArguments = 4
 
 // Helpers
 func alfredArgs(_ args: [String]) {
@@ -50,23 +51,28 @@ func usage() {
 
   print(
     """
+    Edit tags on paths.
+
     Usage: \(binName) <mode> <tags> <recursive> <path...>
 
       mode: 'read', 'add', 'remove', 'set', 'clear'
       tags: newline-separated list (leave empty for 'read' and 'clear')
       recursive: '0' (false) or '1' (true)
+
+    Options:
+      -h, --help   Show this help.
     """
   )
 }
 
-if argv.count < 5 {
+if argv.count < minimumArguments + 1 {
   usage()
-  exit(1)
+  exit(EXIT_FAILURE)
 }
 
 if argv.contains("-h") || argv.contains("--help") {
   usage()
-  exit(0)
+  exit(EXIT_SUCCESS)
 }
 
 // Constants
