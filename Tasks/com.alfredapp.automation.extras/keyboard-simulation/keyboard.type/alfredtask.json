@@ -1,0 +1,48 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "required" : false,
+        "trim" : false,
+        "verticalsize" : 9
+      },
+      "description" : "",
+      "label" : "Text to Type",
+      "type" : "textarea",
+      "variable" : "text_to_type"
+    },
+    {
+      "config" : {
+        "default" : "1000",
+        "pairs" : [
+          [
+            "Fast",
+            "1000"
+          ],
+          [
+            "Medium",
+            "10000"
+          ],
+          [
+            "Slow",
+            "100000"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Typing Speed",
+      "type" : "popupbutton",
+      "variable" : "type_delay"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputOverride" : "text_to_type",
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "..\/.common\/type-text \"${1}\" \"${type_delay}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Simulate typing text",
+  "taskName" : "Type Text"
+}
