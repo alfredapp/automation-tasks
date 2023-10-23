@@ -1,6 +1,6 @@
 import Foundation
 
-let argv = CommandLine.arguments
+let arguments = CommandLine.arguments
 let minimumArguments = 4
 
 // Helpers
@@ -46,8 +46,8 @@ func recursePath(_ url: URL) -> [URL] {
 }
 
 // Usage
-func usage() {
-  let binName = URL(fileURLWithPath: argv[0]).lastPathComponent
+func usage(_ exitStatus: Int32) {
+  let binName = URL(fileURLWithPath: arguments[0]).lastPathComponent
 
   print(
     """
@@ -63,23 +63,18 @@ func usage() {
       -h, --help   Show this help.
     """
   )
+
+  exit(exitStatus)
 }
 
-if argv.count < minimumArguments + 1 {
-  usage()
-  exit(EXIT_FAILURE)
-}
-
-if argv.contains("-h") || argv.contains("--help") {
-  usage()
-  exit(EXIT_SUCCESS)
-}
+if arguments.count < minimumArguments + 1 { usage(EXIT_FAILURE) }
+if arguments.contains("-h") || arguments.contains("--help") { usage(EXIT_SUCCESS) }
 
 // Constants
-let writeMode: String = argv[1]
-let newTags: [String] = argv[2].split(separator: "\n").map { String($0) }
-let recursive: Bool = argv[3] == "1"
-let initPaths: [URL] = argv.dropFirst(4).map { URL(fileURLWithPath: $0) }
+let writeMode: String = arguments[1]
+let newTags: [String] = arguments[2].split(separator: "\n").map { String($0) }
+let recursive: Bool = arguments[3] == "1"
+let initPaths: [URL] = arguments.dropFirst(4).map { URL(fileURLWithPath: $0) }
 let allPaths: [URL] = initPaths.flatMap { recursive ? recursePath($0) : [$0] }
 
 // Read
