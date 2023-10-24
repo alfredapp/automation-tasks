@@ -27,10 +27,10 @@
       "config" : {
         "default" : true,
         "required" : false,
-        "text" : "Untick to only consider the frontmost window"
+        "text" : "Consider windows in addition to the frontmost"
       },
       "description" : "",
-      "label" : "All Windows",
+      "label" : "Windows",
       "type" : "checkbox",
       "variable" : "all_windows"
     }
