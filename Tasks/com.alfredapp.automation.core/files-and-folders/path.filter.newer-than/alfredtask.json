@@ -1,0 +1,64 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "30",
+        "placeholder" : "",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Unit",
+      "type" : "textfield",
+      "variable" : "unit"
+    },
+    {
+      "config" : {
+        "default" : "d",
+        "pairs" : [
+          [
+            "Years",
+            "y"
+          ],
+          [
+            "Months",
+            "m"
+          ],
+          [
+            "Weeks",
+            "w"
+          ],
+          [
+            "Days",
+            "d"
+          ],
+          [
+            "Hours",
+            "H"
+          ],
+          [
+            "Minutes",
+            "M"
+          ],
+          [
+            "Seconds",
+            "S"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Period",
+      "type" : "popupbutton",
+      "variable" : "period"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 1,
+  "outputDescription" : "File path array",
+  "outputType" : 1,
+  "script" : "function alfred_args {\n  \/usr\/bin\/osascript -l JavaScript -e 'function run(argv) { return JSON.stringify({ alfredworkflow: { arg: argv } }) }' \"${@}\"\n}\n\nfiles=()\n\nfor input in \"${@}\"\ndo\n  [[ \"$(date -r \"${input}\" +%s)\" -gt \"$(date -v -\"${unit}${period}\" +%s)\" ]] && files+=(\"${input}\")\ndone\n\nalfred_args \"${files[@]}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Exclude paths which were modified before a time frame from path list",
+  "taskName" : "Filter for Paths Newer Than"
+}
