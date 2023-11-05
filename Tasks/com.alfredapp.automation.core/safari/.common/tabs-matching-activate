@@ -26,8 +26,8 @@ function browserVariant(appName) {
   const webkitVariants = ["Safari", "Webkit", "Orion"]
   const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
 
-  if (webkitVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "webkit" }
-  if (chromiumVariants.some(browserName => browserName.startsWith(appName))) return { app: Application(appName), variant: "chromium" }
+  if (webkitVariants.some(browserName => appName.startsWith(browserName))) return { app: Application(appName), variant: "webkit" }
+  if (chromiumVariants.some(browserName => appName.startsWith(browserName))) return { app: Application(appName), variant: "chromium" }
   throw new Error(`${appName} is not a supported browser: ${webkitVariants.concat(chromiumVariants).join(", ")}`)
 }
 
