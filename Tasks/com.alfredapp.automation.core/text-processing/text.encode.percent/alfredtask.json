@@ -3,7 +3,7 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(encodeURIComponent(argv[0]).replace(\/[!'()*]\/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`))\n}",
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(encodeURIComponent(argv[0].normalize()).replace(\/[!'()*]\/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`))\n}",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get percent-encoded text",
