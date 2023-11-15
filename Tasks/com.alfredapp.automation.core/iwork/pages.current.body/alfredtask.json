@@ -1,0 +1,11 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "Text",
+  "outputType" : 1,
+  "script" : "function writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nwriteSTDOUT(Application(\"Pages\").documents()[0].bodyText())",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get body text of current Pages document",
+  "taskName" : "Current Pages Document Text"
+}

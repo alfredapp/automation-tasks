@@ -1,0 +1,32 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "name",
+        "pairs" : [
+          [
+            "Name",
+            "name"
+          ],
+          [
+            "Path",
+            "path"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "Text or File path",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nconst frontmost = Application(\"Pages\").documents()[0]\n\nswitch (envVar(\"out_format\")) {\n  case \"name\": alfredArgs(frontmost.name()); break\n  case \"path\": alfredArgs(frontmost.file()?.toString()); break\n  default: throw \"Unrecognised type: \" + envVar(\"out_format\")\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get name or path of current Pages document",
+  "taskName" : "Current Pages Document"
+}

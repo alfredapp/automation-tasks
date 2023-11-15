@@ -1,0 +1,71 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~\/Desktop",
+        "filtermode" : 1,
+        "placeholder" : "",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Replace file with same name at destination"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    },
+    {
+      "config" : {
+        "default" : "PDF",
+        "pairs" : [
+          [
+            "PDF",
+            "PDF"
+          ],
+          [
+            "Microsoft PowerPoint",
+            "Microsoft PowerPoint"
+          ],
+          [
+            "HTML",
+            "HTML"
+          ],
+          [
+            "Keynote 09",
+            "Keynote 09"
+          ],
+          [
+            "QuickTime Movie",
+            "QuickTime movie"
+          ],
+          [
+            "Slide Images",
+            "slide images"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "File path of exported file",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction exportPath(document, saveIn, format) {\n  const removeExtension = \/\\.key$\/\n  const extensionMapping = {\n    \"HTML\": \"\",\n    \"QuickTime movie\": \".m4v\",\n    \"PDF\": \".pdf\",\n    \"slide images\": \"\",\n    \"Microsoft PowerPoint\": \".pptx\",\n    \"Keynote 09\": \".key\"\n  }\n\n  return `${saveIn}\/${document.name().replace(removeExtension, \"\")}${extensionMapping[format]}`\n}\n\nconst overwrite = envVar(\"overwrite\") === \"1\"\nconst saveIn = envVar(\"save_in\")\nconst outFormat = envVar(\"out_format\")\nconst fileManager = $.NSFileManager.defaultManager\n\n\/\/ Create destination directory\nfileManager.createDirectoryAtPathWithIntermediateDirectoriesAttributesError(saveIn, true, undefined, undefined)\n\n\/\/ Export file\nconst frontmost = Application(\"Keynote\").documents[0]\nconst outFile = exportPath(frontmost, saveIn, outFormat)\n\nif (!overwrite && fileManager.fileExistsAtPath(outFile)) throw `File exists: ${outFile}`\n\nfrontmost.export({ to: Path(outFile), as: outFormat, withProperties: { movieFormat: \"native size\" } })\nalfredArgs(outFile)",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Export current Keynote document to another format",
+  "taskName" : "Export Current Keynote Document"
+}

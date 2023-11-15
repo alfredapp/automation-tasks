@@ -1,0 +1,71 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~\/Desktop",
+        "filtermode" : 1,
+        "placeholder" : "",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Replace file with same name at destination"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    },
+    {
+      "config" : {
+        "default" : "PDF",
+        "pairs" : [
+          [
+            "PDF",
+            "PDF"
+          ],
+          [
+            "Microsoft Word",
+            "Microsoft Word"
+          ],
+          [
+            "EPUB",
+            "EPUB"
+          ],
+          [
+            "Pages 09",
+            "Pages 09"
+          ],
+          [
+            "Unformatted Text",
+            "unformatted text"
+          ],
+          [
+            "Formatted Text",
+            "formatted text"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "File path of exported file",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction exportPath(document, saveIn, format) {\n  const removeExtension = \/\\.pages$\/\n  const extensionMapping = {\n    \"EPUB\": \"epub\",\n    \"unformatted text\": \".txt\",\n    \"PDF\": \".pdf\",\n    \"Microsoft Word\": \".docx\",\n    \"Pages 09\": \".pages\",\n    \"formatted text\": \".rtf\"\n  }\n\n  return `${saveIn}\/${document.name().replace(removeExtension, \"\")}.${extensionMapping[format]}`\n}\n\nfunction run() {\n  const overwrite = envVar(\"overwrite\") === \"1\"\n  const saveIn = envVar(\"save_in\")\n  const outFormat = envVar(\"out_format\")\n  const fileManager = $.NSFileManager.defaultManager\n  const documents = Application(\"Pages\").documents()\n  const outFiles = documents.map(doc => exportPath(doc, saveIn, outFormat))\n\n  \/\/ If some documents have the same name, cannot proceed\n  const docNames = documents.map(doc => doc.name())\n  if ((new Set(docNames)).size !== docNames.length) throw \"Documents must have different names\"\n\n  \/\/ If not overwriting, check first if files exist\n  if (!overwrite) {\n    documents.forEach(doc => {\n      const outFile = exportPath(doc, saveIn, outFormat)\n      if (fileManager.fileExistsAtPath(outFile)) throw `File exists: ${outFile}`\n    })\n  }\n\n  \/\/ Create destination directory\n  fileManager.createDirectoryAtPathWithIntermediateDirectoriesAttributesError(saveIn, true, undefined, undefined)\n\n  \/\/ Export files\n  documents.forEach(doc => doc.export({ to: Path(exportPath(doc, saveIn, outFormat)), as: outFormat }))\n  return alfredArgs(outFiles)\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Export documents open in Pages to another format",
+  "taskName" : "Export Open Pages Documents"
+}
