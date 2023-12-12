@@ -19,15 +19,14 @@ func deduplicateStringArray(_ array: [String]) -> [String] {
   return Array(NSOrderedSet(array: array)).map { String(describing: $0) }
 }
 
-func isPackage(_ path: URL) throws -> Bool {
-  return try path.resourceValues(forKeys: [.isPackageKey]).isPackage == true
+func isPackage(_ path: URL) -> Bool {
+  guard let isPackage = try? path.resourceValues(forKeys: [.isPackageKey]).isPackage else { return false }
+  return isPackage == true
 }
 
 func recursePath(_ url: URL) -> [URL] {
   // Return early if package (e.g. app bundle)
-  if let isPackage = try? isPackage(url) {
-    if isPackage { return [url] }
-  }
+  if isPackage(url) { return [url] }
 
   // Get paths
   let directoryEnumerator = FileManager.default.enumerator(
@@ -36,9 +35,7 @@ func recursePath(_ url: URL) -> [URL] {
   var fileURLs: [URL] = []
 
   for case let fileURL as URL in directoryEnumerator {
-    guard let isPackage = try? isPackage(fileURL) else { continue }
-
-    if isPackage { directoryEnumerator.skipDescendants() }
+    if isPackage(fileURL) { directoryEnumerator.skipDescendants() }
     fileURLs.append(fileURL)
   }
 
