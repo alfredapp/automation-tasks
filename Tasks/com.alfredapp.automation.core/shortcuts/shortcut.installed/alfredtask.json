@@ -1,0 +1,27 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Shortcut",
+      "type" : "textfield",
+      "variable" : "target_shortcut"
+    }
+  ],
+  "inputDescription" : "Shorcut name",
+  "inputMulti" : 2,
+  "inputOverride" : "target_shortcut",
+  "inputType" : 0,
+  "outputDescription" : "Boolean (\"true\" or \"false\")",
+  "outputType" : 1,
+  "script" : "function writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction run(argv) {\n  \/\/ Output as string, without newline\n  const state = argv.every(shortcut => Application(\"Shortcuts Events\").shortcuts.byName(shortcut).exists()).toString()\n  writeSTDOUT(state)\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Check if shortcuts are installed",
+  "taskName" : "Is Shortcut Installed?"
+}

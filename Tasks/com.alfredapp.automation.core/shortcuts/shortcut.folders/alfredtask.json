@@ -1,0 +1,11 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "Text array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst shortcutFolderNames = Application(\"Shortcuts Events\").folder.name()\nalfredArgs(shortcutFolderNames)",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get names of created shortcut folders",
+  "taskName" : "Shortcut Folders"
+}

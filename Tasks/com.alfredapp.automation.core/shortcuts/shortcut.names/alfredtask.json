@@ -1,0 +1,11 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "Text array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nconst shortcutNames = Application(\"Shortcuts Events\").shortcuts.name()\nalfredArgs(shortcutNames)",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get names of installed shortcuts",
+  "taskName" : "Shortcut Names"
+}
