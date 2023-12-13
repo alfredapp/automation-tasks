@@ -35,9 +35,15 @@ function run(argv) {
   const browser = argv[0] === "frontmost_browser" ?
     browserVariant(frontmostBrowserName()) :
     browserVariant(argv[0])
-  const currentTab = browser.variant === "webkit" ?
-    browser.app.windows[0].currentTab :
-    browser.app.windows[0].activeTab
+
+  const allWindows = browser.app.windows
+
+  if (allWindows.length === 0) {
+    console.log("No windows found.")
+    return
+  }
+
+  const currentTab = browser.variant === "webkit" ? allWindows[0].currentTab : allWindows[0].activeTab
   const tabURL = currentTab.url()
 
   currentTab.close()

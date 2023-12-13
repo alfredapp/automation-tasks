@@ -37,8 +37,14 @@ function run(argv) {
     browserVariant(argv[0])
   const newURL = argv[1]
 
-  browser.variant === "webkit" ?
-    browser.app.windows[0].currentTab.url = newURL :
-    browser.app.windows[0].activeTab.url = newURL
+  const allWindows = browser.app.windows
+
+  if (allWindows.length === 0) {
+    console.log("No windows found.")
+    return
+  }
+
+  const currentTab = browser.variant === "webkit" ? allWindows[0].currentTab : allWindows[0].activeTab
+  currentTab.url = newURL
 }
 

@@ -4,7 +4,7 @@
       "config" : {
         "default" : true,
         "required" : false,
-        "text" : "Untick to only consider the frontmost window"
+        "text" : "Consider windows in addition to the frontmost"
       },
       "description" : "",
       "label" : "All Windows",
@@ -13,6 +13,7 @@
     },
     {
       "config" : {
+        "default" : "url",
         "pairs" : [
           [
             "URL",

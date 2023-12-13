@@ -37,9 +37,16 @@ function run(argv) {
     browserVariant(argv[0])
   const javascriptCode = argv[1]
 
+  const allWindows = browser.app.windows
+
+  if (allWindows.length === 0) {
+    console.log("No windows found.")
+    return
+  }
+
   const output = browser.variant === "webkit" ?
-    browser.app.doJavaScript(javascriptCode, { in: browser.app.windows[0].currentTab }) :
-    browser.app.windows[0].activeTab.execute({ javascript: javascriptCode })
+    browser.app.doJavaScript(javascriptCode, { in: allWindows[0].currentTab }) :
+    allWindows[0].activeTab.execute({ javascript: javascriptCode })
 
   if (output === null) return // Instead of returning null on empy output
   return alfredArgs(output)

@@ -37,9 +37,14 @@ function run(argv) {
     browserVariant(argv[0])
   const outFormat = argv[1]
 
-  const currentTab = browser.variant === "webkit" ?
-    browser.app.windows[0].currentTab :
-    browser.app.windows[0].activeTab
+  const allWindows = browser.app.windows
+
+  if (allWindows.length === 0) {
+    console.log("No windows found.")
+    return
+  }
+
+  const currentTab = browser.variant === "webkit" ? allWindows[0].currentTab : allWindows[0].activeTab
 
   switch (outFormat) {
     case "url": return alfredArgs(currentTab.url())

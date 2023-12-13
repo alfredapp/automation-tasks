@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "Google Chrome",
         "pairs" : [
           [
             "Google Chrome",
@@ -73,7 +74,7 @@
       "config" : {
         "default" : true,
         "required" : false,
-        "text" : "Untick to only consider the frontmost window"
+        "text" : "Consider windows in addition to the frontmost"
       },
       "description" : "",
       "label" : "All Windows",
@@ -82,6 +83,7 @@
     },
     {
       "config" : {
+        "default" : "first",
         "pairs" : [
           [
             "First Match",

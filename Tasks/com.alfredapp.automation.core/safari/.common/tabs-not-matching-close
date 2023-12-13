@@ -40,7 +40,15 @@ function run(argv) {
   const browser = argv[0] === "frontmost_browser" ?
     browserVariant(frontmostBrowserName()) :
     browserVariant(argv[0])
-  const windows = argv[1] === "1" ? browser.app.windows() : [browser.app.windows()[0]]
+
+  const allWindows = browser.app.windows
+
+  if (allWindows.length === 0) {
+    console.log("No windows found.")
+    return
+  }
+
+  const windows = argv[1] === "1" ? allWindows() : [allWindows[0]]
   const matchString = argv[2]
   const regex = argv[3] === "1"
 
