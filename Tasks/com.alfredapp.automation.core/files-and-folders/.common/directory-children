@@ -12,9 +12,7 @@ function alfredArgs(args) {
 }
 
 function isDir(path) {
-  const ref = Ref()
-  $.NSFileManager.defaultManager.fileExistsAtPathIsDirectory(path, ref)
-  return ref[0]
+  return $.NSFileManager.defaultManager.attributesOfItemAtPathError(path, undefined).js["NSFileType"].js === "NSFileTypeDirectory"
 }
 
 function byName(pathsArray) {
