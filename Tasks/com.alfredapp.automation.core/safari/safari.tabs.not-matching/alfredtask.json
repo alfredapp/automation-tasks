@@ -30,7 +30,7 @@
         "text" : "Consider windows in addition to the frontmost"
       },
       "description" : "",
-      "label" : "Windows",
+      "label" : "All Windows",
       "type" : "checkbox",
       "variable" : "all_windows"
     },
