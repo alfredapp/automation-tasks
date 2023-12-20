@@ -38,13 +38,24 @@
       "label" : "Custom",
       "type" : "textfield",
       "variable" : "custom_browser"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow empty result when no windows are open"
+      },
+      "description" : "",
+      "label" : "Scope",
+      "type" : "checkbox",
+      "variable" : "allow_empty"
     }
   ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputDescription" : "URL of closed tab",
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-close'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-close'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${allow_empty}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Close Webkit browser's current tab",

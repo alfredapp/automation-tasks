@@ -2,6 +2,18 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow empty result when no windows are open"
+      },
+      "description" : "",
+      "label" : "Scope",
+      "type" : "checkbox",
+      "variable" : "allow_empty"
+    },
+    {
+      "config" : {
+        "default" : "url",
         "pairs" : [
           [
             "URL",
@@ -31,7 +43,7 @@
   "inputType" : 0,
   "outputDescription" : "Text or URL",
   "outputType" : 1,
-  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current 'frontmost_browser' \"${out_format}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current 'frontmost_browser' \"${allow_empty}\" \"${out_format}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Get URL or title of frontmost browser's current tab",

@@ -14,28 +14,40 @@
     },
     {
       "config" : {
-        "default" : false,
-        "required" : false,
-        "text" : "Treat text to match for as a regular expression"
-      },
-      "description" : "",
-      "label" : "Regex",
-      "type" : "checkbox",
-      "variable" : "regex"
-    },
-    {
-      "config" : {
         "default" : true,
         "required" : false,
-        "text" : "Consider windows in addition to the frontmost"
+        "text" : "Include all windows behind the frontmost"
       },
       "description" : "",
-      "label" : "All Windows",
+      "label" : "Scope",
       "type" : "checkbox",
       "variable" : "all_windows"
     },
     {
       "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow empty result when no windows are open"
+      },
+      "description" : "",
+      "label" : "",
+      "type" : "checkbox",
+      "variable" : "allow_empty"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Treat text to match for as a regular expression"
+      },
+      "description" : "",
+      "label" : "",
+      "type" : "checkbox",
+      "variable" : "regex"
+    },
+    {
+      "config" : {
+        "default" : "url",
         "pairs" : [
           [
             "URL",
@@ -65,7 +77,7 @@
   "inputType" : 0,
   "outputDescription" : "Text array or URL array",
   "outputType" : 1,
-  "script" : "..\/.common\/tabs-matching 'Safari' \"${all_windows}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
+  "script" : "..\/.common\/tabs-matching 'Safari' \"${all_windows}\" \"${allow_empty}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Get Safari tabs with specified text in URL",

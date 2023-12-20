@@ -32,18 +32,37 @@ function browserVariant(appName) {
 }
 
 function run(argv) {
-  const browser = argv[0] === "frontmost_browser" ?
-    browserVariant(frontmostBrowserName()) :
-    browserVariant(argv[0])
-  const newURL = argv[1]
+  const targetBrowser = argv[0]
+  const allowEmptyWindows = argv[1] === "1"
+  const newURL = argv[2]
 
+  // Find browser
+  let browser
+
+  try {
+    browser = targetBrowser === "frontmost_browser" ?
+      browserVariant(frontmostBrowserName()) :
+      browserVariant(targetBrowser)
+  } catch(error) {
+    if (allowEmptyWindows) return
+    throw error
+  }
+
+  // Check if running
+  if (!browser.app.running()) {
+    if (allowEmptyWindows) return
+    throw `${browser.app.name()} is not running.`
+  }
+
+  // Grab windows
   const allWindows = browser.app.windows
 
   if (allWindows.length === 0) {
-    console.log("No windows found.")
-    return
+    if (allowEmptyWindows) return
+    throw "No windows found."
   }
 
+  // Act on tabs
   const currentTab = browser.variant === "webkit" ? allWindows[0].currentTab : allWindows[0].activeTab
   currentTab.url = newURL
 }

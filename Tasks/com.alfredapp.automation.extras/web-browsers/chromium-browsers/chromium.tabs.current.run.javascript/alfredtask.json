@@ -2,6 +2,7 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : "Google Chrome",
         "pairs" : [
           [
             "Google Chrome",
@@ -48,6 +49,17 @@
     },
     {
       "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow empty result when no windows are open"
+      },
+      "description" : "",
+      "label" : "Scope",
+      "type" : "checkbox",
+      "variable" : "allow_empty"
+    },
+    {
+      "config" : {
         "default" : "",
         "required" : true,
         "trim" : true,
@@ -63,7 +75,7 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${javascript_code}\"",
+  "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${allow_empty}\" \"${javascript_code}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Execute JavaScript in Chromium browser's current tab",

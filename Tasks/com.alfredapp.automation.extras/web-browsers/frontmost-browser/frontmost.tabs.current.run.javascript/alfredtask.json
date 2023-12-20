@@ -2,6 +2,17 @@
   "configurableConfig" : [
     {
       "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow empty result when no windows are open"
+      },
+      "description" : "",
+      "label" : "Scope",
+      "type" : "checkbox",
+      "variable" : "allow_empty"
+    },
+    {
+      "config" : {
         "default" : "",
         "required" : true,
         "trim" : true,
@@ -17,7 +28,7 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript 'frontmost_browser' \"${javascript_code}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript 'frontmost_browser' \"${allow_empty}\" \"${javascript_code}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Execute JavaScript in frontmost browser's current tab",

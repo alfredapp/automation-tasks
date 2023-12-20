@@ -37,21 +37,41 @@ function lookFor(matchString, inText, useRegex) {
 }
 
 function run(argv) {
-  const browser = argv[0] === "frontmost_browser" ?
-    browserVariant(frontmostBrowserName()) :
-    browserVariant(argv[0])
+  const targetBrowser = argv[0]
+  const includeAllWindows = argv[1] === "1"
+  const allowEmptyWindows = argv[2] === "1"
+  const matchString = argv[3]
+  const regex = argv[4] === "1"
 
+  // Find browser
+  let browser
+
+  try {
+    browser = targetBrowser === "frontmost_browser" ?
+      browserVariant(frontmostBrowserName()) :
+      browserVariant(targetBrowser)
+  } catch(error) {
+    if (allowEmptyWindows) return
+    throw error
+  }
+
+  // Check if running
+  if (!browser.app.running()) {
+    if (allowEmptyWindows) return
+    throw `${browser.app.name()} is not running.`
+  }
+
+  // Grab windows
   const allWindows = browser.app.windows
 
   if (allWindows.length === 0) {
-    console.log("No windows found.")
-    return
+    if (allowEmptyWindows) return
+    throw "No windows found."
   }
 
-  const windows = argv[1] === "1" ? allWindows() : [allWindows[0]]
-  const matchString = argv[2]
-  const regex = argv[3] === "1"
+  const windows = includeAllWindows ? allWindows() : [allWindows[0]]
 
+  // Act on tabs
   const matchingTabs = windows
     .flatMap(window => window.tabs())
     .filter(tab => tab !== null)

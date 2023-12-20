@@ -1,9 +1,22 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Allow empty result when no windows are open"
+      },
+      "description" : "",
+      "label" : "Scope",
+      "type" : "checkbox",
+      "variable" : "allow_empty"
+    }
+  ],
   "inputMulti" : 0,
   "inputType" : 0,
   "outputDescription" : "URL of closed tab",
   "outputType" : 1,
-  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-close 'frontmost_browser'",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-close 'frontmost_browser' \"${allow_empty}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Close frontmost browser's current tab",
