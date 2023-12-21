@@ -1,0 +1,26 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Shortcut",
+      "type" : "textfield",
+      "variable" : "target_shortcut"
+    }
+  ],
+  "inputDescription" : "Shorcut name",
+  "inputMulti" : 2,
+  "inputOverride" : "target_shortcut",
+  "inputType" : 0,
+  "outputType" : 0,
+  "script" : "for shortcut in \"${@}\"\ndo\n  \/usr\/bin\/shortcuts view \"${shortcut}\"\ndone",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Open shortcuts for editing",
+  "taskName" : "View Shortcut"
+}
