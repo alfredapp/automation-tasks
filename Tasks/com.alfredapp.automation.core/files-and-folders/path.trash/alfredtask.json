@@ -11,13 +11,24 @@
       "label" : "Path",
       "type" : "filepicker",
       "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : true,
+        "required" : false,
+        "text" : "Ask the Finder to trash paths"
+      },
+      "description" : "Trashing via the Finder produces a sound and allows \"Put Back\".",
+      "label" : "Method",
+      "type" : "checkbox",
+      "variable" : "use_finder"
     }
   ],
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
-  "script" : "on run argv\n  set pathList to {}\n\n  repeat with pathString in argv\n    set end of pathList to POSIX file pathString\n  end repeat\n\n  tell application \"Finder\" to delete pathList\nend run",
+  "script" : "-- Required for systemTrash\nuse framework \"Foundation\"\n\n-- Helpers\non systemTrash(paths)\n  set fileManager to current application's NSFileManager's defaultManager\n\n  repeat with pathString in paths\n    set pathURL to (current application's NSURL's fileURLWithPath:(pathString))\n    tell fileManager to trashItemAtURL:pathURL resultingItemURL:(missing value) |error|:(missing value)\n  end repeat\nend systemTrash\n\non finderTrash(paths)\n  set pathList to {}\n\n  repeat with pathString in paths\n    set end of pathList to POSIX file pathString\n  end repeat\n\n  tell application \"Finder\" to delete pathList\nend finderTrash\n\n-- Main\non run argv\n  -- Required because importing Foundation breaks usual \"system attribute\" method\n  set envVars to current application's NSProcessInfo's processInfo()'s environment\n  set useFinder to ((envVars's objectForKey:\"use_finder\") as text is \"1\")\n\n  if useFinder then\n    finderTrash(argv)\n  else\n    systemTrash(argv)\n  end if\nend run",
   "scriptType" : 6,
   "state" : 0,
   "taskDescription" : "Trash paths",
