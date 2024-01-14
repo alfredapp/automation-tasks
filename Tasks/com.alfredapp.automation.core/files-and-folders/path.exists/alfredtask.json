@@ -19,7 +19,7 @@
   "inputType" : 0,
   "outputDescription" : "Boolean (\"true\" or \"false\")",
   "outputType" : 1,
-  "script" : "for input in \"${@}\"\ndo\n  # If exists, skip to next loop iteration\n  [[ -e \"${input}\" ]] && continue\n\n  # If we reach here, at least one path does not exist\n  echo -n 'false'\n  exit 1\ndone\n\n# If we reach here, all paths exist\necho -n 'true'",
+  "script" : "for input in \"${@}\"\ndo\n  # If exists, skip to next loop iteration\n  [[ -e \"${input}\" ]] && continue\n\n  # If we reach here, at least one path does not exist\n  echo -n 'false'\n  exit 0\ndone\n\n# If we reach here, all paths exist\necho -n 'true'",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Check if paths exist",
