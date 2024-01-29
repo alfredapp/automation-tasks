@@ -54,7 +54,7 @@
   "inputType" : 0,
   "outputDescription" : "Text array or URL array",
   "outputType" : 1,
-  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs 'frontmost_browser' \"${all_windows}\" \"${allow_empty}\" \"${allow_empty}\" \"${out_format}\"",
+  "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs 'frontmost_browser' \"${all_windows}\" \"${allow_empty}\" \"${out_format}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Get name and URL of tabs open in frontmost browser",
