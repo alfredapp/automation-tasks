@@ -1,0 +1,27 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputDescription" : "One or more file paths",
+  "inputMulti" : 2,
+  "inputOverride" : "target_path",
+  "inputType" : 0,
+  "outputDescription" : "File path array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.map(path => $(path).stringByAbbreviatingWithTildeInPath.js))\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Replace home folder path with “~”",
+  "taskName" : "Abbreviate with Tilde in Path"
+}
