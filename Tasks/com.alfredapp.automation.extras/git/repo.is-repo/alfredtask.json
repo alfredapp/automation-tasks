@@ -1,0 +1,26 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Folder",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputOverride" : "target_path",
+  "inputType" : 1,
+  "outputDescription" : "Boolean (\"true\" or \"false\")",
+  "outputType" : 1,
+  "script" : "for input in \"${@}\"\ndo\n  # If git repo, skip to next loop iteration\n  git -C \"${input}\" rev-parse --is-inside-work-tree &> \/dev\/null && continue\n\n  # If we reach here, at least one directory is not a git repo\n  echo -n 'false'\n  exit 0\ndone\n\n# If we reach here, all directories are git repos\necho -n 'true'",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Check if folders are Git repositories",
+  "taskName" : "Is Repository?"
+}
