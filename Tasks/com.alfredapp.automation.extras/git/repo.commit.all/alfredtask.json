@@ -29,7 +29,7 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
-  "script" : "for input in \"${@}\"\ndo\n  repo_root=\"$(git -C \"${input}\" rev-parse --show-toplevel)\"\n  git -C \"${repo_root}\" add --all\n  git -C \"${repo_root}\" commit --all --message \"${message}\"\ndone",
+  "script" : "# Validations\nfor input in \"${@}\"\ndo\n  # If git repo, skip to next loop iteration\n  git -C \"${input}\" rev-parse --is-inside-work-tree &> \/dev\/null && continue\n\n  # If we reach here, at least one directory is not a git repo\n  echo \"Not a git repository: ${input}\" >&2\n  exit 1\ndone\n\n# Main\nfor input in \"${@}\"\ndo\n  repo_root=\"$(git -C \"${input}\" rev-parse --show-toplevel)\"\n  git -C \"${repo_root}\" add --all\n  git -C \"${repo_root}\" commit --all --message \"${message}\"\ndone",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Adds and commits all files in repository",
