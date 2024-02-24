@@ -1,4 +1,18 @@
 {
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 1,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Folder",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
   "inputMulti" : 2,
   "inputOverride" : "target_path",
   "inputType" : 1,
