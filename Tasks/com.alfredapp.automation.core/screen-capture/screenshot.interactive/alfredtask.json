@@ -26,7 +26,7 @@
       "config" : {
         "default" : false,
         "required" : false,
-        "text" : "In window capture mode, do not capture the shadow of the window"
+        "text" : "In window capture mode, do not capture the shadow"
       },
       "description" : "",
       "label" : "Ignore Window Shadow",
@@ -37,7 +37,7 @@
       "config" : {
         "default" : false,
         "required" : false,
-        "text" : "In window capture mode, capture the screen instead of the window"
+        "text" : "In window capture mode, capture the screen instead"
       },
       "description" : "",
       "label" : "Force Capture Screen",
