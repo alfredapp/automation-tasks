@@ -18,7 +18,7 @@
   "inputType" : 1,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "\/usr\/bin\/file --mime-type --brief \"${1}\" | tr -d '\\n'",
+  "script" : "..\/.common\/file-mime read '' \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Get MIME type of files",
