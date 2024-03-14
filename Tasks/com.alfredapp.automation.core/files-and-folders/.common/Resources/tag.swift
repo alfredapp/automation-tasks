@@ -64,14 +64,14 @@ func usage(_ exitStatus: Int32) {
   exit(exitStatus)
 }
 
-if arguments.count < minimumArguments + 1 { usage(EXIT_FAILURE) }
 if arguments.contains("-h") || arguments.contains("--help") { usage(EXIT_SUCCESS) }
+if arguments.count < minimumArguments + 1 { usage(EXIT_FAILURE) }
 
 // Constants
 let writeMode: String = arguments[1]
 let newTags: [String] = arguments[2].split(separator: "\n").map { String($0) }
 let recursive: Bool = arguments[3] == "1"
-let initPaths: [URL] = arguments.dropFirst(4).map { URL(fileURLWithPath: $0) }
+let initPaths: [URL] = arguments.dropFirst(minimumArguments).map { URL(fileURLWithPath: $0) }
 let allPaths: [URL] = initPaths.flatMap { recursive ? recursePath($0) : [$0] }
 
 // Read
