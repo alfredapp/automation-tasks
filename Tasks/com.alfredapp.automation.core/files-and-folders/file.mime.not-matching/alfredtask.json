@@ -1,0 +1,37 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 2,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "File",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "e.g. pineapples",
+        "required" : true,
+        "trim" : false
+      },
+      "description" : "",
+      "label" : "Match For",
+      "type" : "textfield",
+      "variable" : "match_string"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputDescription" : "File path array",
+  "outputType" : 1,
+  "script" : "..\/.common\/file-mime filter-not-matching \"${match_string}\" \"${@}\"",
+  "scriptType" : 11,
+  "state" : 0,
+  "taskDescription" : "Get files not matching MIME type",
+  "taskName" : "Non-matching File MIME Type"
+}
