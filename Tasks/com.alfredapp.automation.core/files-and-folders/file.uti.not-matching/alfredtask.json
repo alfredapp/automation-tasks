@@ -26,7 +26,7 @@
     }
   ],
   "inputMulti" : 2,
-  "inputType" : 0,
+  "inputType" : 1,
   "outputDescription" : "File path array",
   "outputType" : 1,
   "script" : "..\/.common\/file-uti filter-not-matching \"${match_string}\" \"${@}\"",
