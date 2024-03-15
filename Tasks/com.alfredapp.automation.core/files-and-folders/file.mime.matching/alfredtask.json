@@ -15,7 +15,7 @@
     {
       "config" : {
         "default" : "",
-        "placeholder" : "e.g. pineapples",
+        "placeholder" : "e.g. image\/png",
         "required" : true,
         "trim" : false
       },
