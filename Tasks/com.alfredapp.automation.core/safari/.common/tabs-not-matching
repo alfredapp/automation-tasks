@@ -85,6 +85,7 @@ function run(argv) {
     case "url_tab_title": return alfredArgs(matchingTabs.map(tab => tab[0] + "\t" + tab[1]))
     case "title_tab_url": return alfredArgs(matchingTabs.map(tab => tab[1] + "\t" + tab[0]))
     case "url_title": return alfredArgs(matchingTabs.map(tab => tab[0] + "|" + tab[1]))
+    case "json": return alfredArgs(JSON.stringify(matchingTabs.map(tab => ({ url: tab[0], title: tab[1] }))))
     default: throw "Unrecognised type: " + outFormat
   }
 }

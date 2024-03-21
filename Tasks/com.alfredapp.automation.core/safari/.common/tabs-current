@@ -71,6 +71,7 @@ function run(argv) {
     case "url_tab_title": return alfredArgs(currentTab.url() + "\t" + currentTab.name())
     case "title_tab_url": return alfredArgs(currentTab.name() + "\t" + currentTab.url())
     case "url_title": return alfredArgs(currentTab.url() + "|" + currentTab.name())
+    case "json": return alfredArgs(JSON.stringify({ url: currentTab.url(), title: currentTab.name() }))
     default: throw "Unrecognised type: " + outFormat
   }
 }

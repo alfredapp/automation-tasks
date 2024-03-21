@@ -64,6 +64,10 @@
           [
             "Title⇥URL",
             "title_tab_url"
+          ],
+          [
+            "JSON",
+            "json"
           ]
         ]
       },

@@ -24,6 +24,7 @@
     },
     {
       "config" : {
+        "default" : "url",
         "pairs" : [
           [
             "URL",
@@ -40,6 +41,10 @@
           [
             "Title⇥URL",
             "title_tab_url"
+          ],
+          [
+            "JSON",
+            "json"
           ]
         ]
       },
