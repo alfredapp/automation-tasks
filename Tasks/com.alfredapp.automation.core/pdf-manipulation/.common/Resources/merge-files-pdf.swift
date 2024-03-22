@@ -46,10 +46,15 @@ joinFiles.forEach { joinFile in
 
   // If input file is image
   if conformsToType(file: joinFile, type: .image) {
-    guard
-      let image = NSImage(contentsOf: joinFile),
-      let page = PDFPage(image: image)
-    else { fatalError("Failed to load file: \(joinFile.path)") }
+    let image = {
+      let imageRef = NSImage(byReferencing: joinFile)
+      // Redraw the image to avoid the "Invalid image orientation, assuming 1." error
+      return NSImage(size: imageRef.size, flipped: false, drawingHandler: { imageRef.draw(in: $0); return true })
+    }()
+
+    guard let page = PDFPage(image: image) else {
+      fatalError("Failed to load file: \(joinFile.path)")
+    }
 
     pdfDocument.insert(page, at: pdfDocument.pageCount)
     return
