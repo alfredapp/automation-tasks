@@ -30,7 +30,7 @@
   "inputType" : 1,
   "outputDescription" : "File Path",
   "outputType" : 1,
-  "script" : "..\/.common\/merge-files-pdf \"${save_in}\/$(date \"+%F-%H-%M-%S\").pdf\" \"${@}\"",
+  "script" : "export CG_PDF_VERBOSE=1\n..\/.common\/merge-files-pdf \"${save_in}\/$(date \"+%F-%H-%M-%S\").pdf\" \"${@}\"",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Combine Images and PDFs into a single PDF",
