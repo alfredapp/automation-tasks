@@ -1,0 +1,25 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "",
+        "required" : false,
+        "trim" : false
+      },
+      "description" : "Text to add between the line number and the line text.",
+      "label" : "Count Separator",
+      "type" : "textfield",
+      "variable" : "separator"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputDescription" : "text",
+  "outputType" : 1,
+  "script" : "readonly digits=\"$(wc -l <<< \"${1}\" | tr -d '\\n ' | wc -c | tr -d '\\n ')\"\n\/usr\/bin\/nl -b a -d . -s \"${separator}\" -w \"${digits}\" <<< \"${1}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Preppend the line number to every line",
+  "taskName" : "Number Lines"
+}
