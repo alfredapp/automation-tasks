@@ -1,0 +1,25 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 2,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "File",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputOverride" : "target_path",
+  "inputType" : 1,
+  "outputType" : 0,
+  "script" : "if [[ \"${1}\" != *.alfredclipboardblob ]]\nthen\n  echo 'You must load a \".alfredclipboardblob\" file saved from the \"Export Clipboard\" Automation Task' >&2\n  exit 1\nfi\n\n..\/.common\/clipboard-import-export import \"${1}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Import clipboard representations from a binary blob",
+  "taskName" : "Restore Clipboard"
+}

@@ -1,0 +1,36 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "~\/Desktop",
+        "filtermode" : 1,
+        "placeholder" : "",
+        "required" : false
+      },
+      "description" : "File name will be derived from current date and time.",
+      "label" : "Save Folder",
+      "type" : "filepicker",
+      "variable" : "save_in"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Replace file with same name at destination"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "File path",
+  "outputType" : 1,
+  "script" : "readonly output=\"${save_in}\/clipboard-$(date \"+%F-%H-%M-%S\").alfredclipboardblob\"\n\/bin\/mkdir -p \"${save_in}\"\n\nif [[ \"${overwrite}\" -eq 0 && -f \"${output}\" ]]\nthen\n  echo \"File exists: ${output}\" >&2\n  exit 1\nfi\n\n..\/.common\/clipboard-import-export export \"${output}\"\nprintf '%s' \"${output}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Export clipboard representations to a binary blob",
+  "taskName" : "Save Clipboard"
+}
