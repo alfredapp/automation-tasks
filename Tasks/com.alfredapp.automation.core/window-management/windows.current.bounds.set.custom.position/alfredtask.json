@@ -28,7 +28,7 @@
   "inputMulti" : 0,
   "inputType" : 0,
   "outputType" : 0,
-  "script" : "if [[ \"$(sw_vers -productVersion | cut -d. -f1)\" -lt 12 ]]\nthen\n  echo 'Setting window bounds requires macOS Monterey (12) or above.' >&2\n  exit 1\nfi\n\n..\/window-bounds.js 'current' 'custom' \"${x}\" \"${y}\" '' ''",
+  "script" : "if [[ \"$(sw_vers -productVersion | cut -d. -f1)\" -lt 12 ]]\nthen\n  echo 'Setting window bounds requires macOS Monterey (12) or above.' >&2\n  exit 1\nfi\n\n..\/.common\/window-bounds.js 'current' 'custom' \"${x}\" \"${y}\" '' ''",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Set custom position for topmost window",
