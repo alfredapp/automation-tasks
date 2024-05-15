@@ -57,7 +57,6 @@ function getScreenByDesc(screenName) {
 
 // Screen, String ("previous" or "next") -> Screen
 function getSideScreen(sourceScreen, direction) {
-  const screenCount = screens.length
   const moveDirection = direction === "previous" ? -1 : 1
   const targetScreenIndex = (screens.indexOf(sourceScreen) + moveDirection) % screens.length // Loop around array
   return screens.at(targetScreenIndex)
