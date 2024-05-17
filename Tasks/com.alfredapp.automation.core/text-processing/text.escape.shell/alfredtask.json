@@ -3,8 +3,8 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "printf '%q' \"${1}\"",
-  "scriptType" : 5,
+  "script" : "# Leave as \/bin\/bash, since printf in \/bin\/zsh (as of 5.9) does not escape characters like ! when in a script\nprintf '%q' \"${1}\"",
+  "scriptType" : 0,
   "state" : 0,
   "taskDescription" : "Get escaped text to use in a Terminal Command",
   "taskName" : "Shell Escape Text"
