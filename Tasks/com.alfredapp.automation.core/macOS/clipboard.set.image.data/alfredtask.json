@@ -14,7 +14,7 @@
     }
   ],
   "inputMulti" : 1,
-  "inputOverride" : "target_app",
+  "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
   "script" : "ObjC.import(\"AppKit\")\n\nfunction run(argv) {\n  const pboard = $.NSPasteboard.generalPasteboard\n  const image = $.NSImage.alloc.initWithContentsOfFile(argv[0])\n\n  pboard.clearContents\n  pboard.setDataForType(image.TIFFRepresentation, $.NSPasteboardTypeTIFF)\n}",
