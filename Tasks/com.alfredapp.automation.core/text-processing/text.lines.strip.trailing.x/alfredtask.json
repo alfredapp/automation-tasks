@@ -17,7 +17,7 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "# Use \"echo\" to prevent extra newline in \"tail\" STDIN\necho -n \"${1}\" | \/usr\/bin\/tail -r | \/usr\/bin\/tail +\"$(bc <<< \"${lines_number} + 1\")\" | \/usr\/bin\/tail -r",
+  "script" : "# Use \"echo\" to prevent extra newline in \"tail\" STDIN\necho -n \"${1}\" | \/usr\/bin\/sed -n -e ':a' -e \"1,${lines_number}\"'!{P;N;D;};N;ba'",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Get all lines but a number of them from end of text",
