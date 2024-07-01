@@ -34,10 +34,10 @@ function run(argv) {
   const windowMode = argv[1] === "1" ? "incognito" : "normal"
   const urls = argv.slice(2)
 
-  // With no arguments, open empty window
   if (browser.variant === "webkit") {
     if (windowMode === "incognito") throw "Webkit browsers do not support opening new Private windows programatically"
 
+    // With no arguments, open empty window
     if (urls.length === 0) {
       browser.app.Document().make()
       browser.app.activate()
