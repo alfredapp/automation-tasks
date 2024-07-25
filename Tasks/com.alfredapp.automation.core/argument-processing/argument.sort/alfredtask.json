@@ -1,0 +1,11 @@
+{
+  "inputMulti" : 2,
+  "inputType" : 0,
+  "outputDescription" : "Argument array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(argv.sort())\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Sort arguments alphabetically",
+  "taskName" : "Sort Arguments"
+}
