@@ -1,0 +1,36 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "name",
+        "pairs" : [
+          [
+            "Name",
+            "name"
+          ],
+          [
+            "Bundle Identifier",
+            "bundle_id"
+          ],
+          [
+            "Path",
+            "path"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "Text or File path",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction frontmostBrowserName() {\n  const getBrowser = $(\"~\/Library\/Application Support\/Alfred\/Automation\/Tasks\/com.alfredapp.automation.core\/safari\/.common\/get-frontmost-browser\").stringByExpandingTildeInPath.js\n\n  const task = $.NSTask.alloc.init\n  const stdout = $.NSPipe.pipe\n\n  task.executableURL = $.NSURL.alloc.initFileURLWithPath(\"\/usr\/bin\/env\")\n  task.arguments = [getBrowser]\n  task.standardOutput = stdout\n  task.launchAndReturnError(false)\n\n  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile\n  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js\n\n  if (task.terminationStatus !== 0) throw \"Did not find a supported web browser\"\n  return stringOut.trim()\n}\n\nconst frontmost = Application(\"System Events\").applicationProcesses.byName(frontmostBrowserName())\n\nswitch (envVar(\"out_format\")) {\n  case \"name\": alfredArgs(frontmost.name()); break\n  case \"bundle_id\": alfredArgs(frontmost.bundleIdentifier()); break\n  case \"path\": alfredArgs($.NSURL.URLWithString(frontmost.applicationFile().url()).path.js); break\n  default: throw \"Unrecognised type: \" + envVar(\"out_format\")\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get name, bundle identifier, or path of frontmost browser",
+  "taskName" : "Identify Front Browser"
+}
