@@ -1,0 +1,60 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "",
+        "required" : true,
+        "trim" : true
+      },
+      "description" : "",
+      "label" : "Key Path",
+      "type" : "textfield",
+      "variable" : "key_path"
+    },
+    {
+      "config" : {
+        "default" : ".",
+        "pairs" : [
+          [
+            "Period",
+            "."
+          ],
+          [
+            "Comma",
+            ","
+          ],
+          [
+            "Colon",
+            ":"
+          ],
+          [
+            "Semicolon",
+            ";"
+          ],
+          [
+            "Slash",
+            "\/"
+          ],
+          [
+            "Pipe",
+            "|"
+          ]
+        ]
+      },
+      "description" : "Given a \"Period\" separator and the JSON:\n\n{ \"fruits\": [\n  { \"name\": \"Apple\", \"colour\": \"Red\" },\n  { \"name\": \"Banana\", \"colour\": \"Yellow\" }\n]}\n\nThe Key Path to get the \"colour\" (Red) of the first item (zero-based indexing, thus count starts at \"0\") in \"fruits\" would be:\n\nfruits.0.colour",
+      "label" : "Key Separator",
+      "type" : "popupbutton",
+      "variable" : "separator"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputDescription" : "JSON",
+  "outputType" : 1,
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction run (argv) {\n  const keyPath = envVar(\"key_path\").split(envVar(\"separator\"))\n  const jsonData = JSON.parse(argv[0])\n\n  const keyValue = keyPath.reduce((object, key) => object[key], jsonData)\n  if (keyValue === undefined) throw `Key not found: ${keyPath.join(\" → \")}`\n  return JSON.stringify(keyValue)\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get value from a JSON key path",
+  "taskName" : "JSON Value"
+}

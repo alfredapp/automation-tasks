@@ -1,0 +1,27 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "defaultvalue" : 2,
+        "markercount" : 11,
+        "maxvalue" : 10,
+        "minvalue" : 0,
+        "onlystoponmarkers" : true,
+        "showmarkers" : true
+      },
+      "description" : "",
+      "label" : "Indentation",
+      "type" : "slider",
+      "variable" : "indentation"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputDescription" : "JSON",
+  "outputType" : 1,
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction run(argv) {\n  return JSON.stringify(\n    JSON.parse(argv[0]),\n    null,\n    parseInt(envVar(\"indentation\"))\n  )\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Pretty print JSON text",
+  "taskName" : "Format JSON"
+}

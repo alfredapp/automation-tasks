@@ -1,0 +1,11 @@
+{
+  "inputMulti" : 1,
+  "inputType" : 0,
+  "outputDescription" : "Text array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction run(argv) {\n  return alfredArgs(\n    Object.keys(\n      JSON.parse(argv[0])))\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get keys from JSON object",
+  "taskName" : "JSON Keys"
+}
