@@ -31,6 +31,6 @@
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nconst frontmost = Application(\"System Events\").applicationProcesses.where({ frontmost: true })[0]\n\nswitch (envVar(\"out_format\")) {\n  case \"name\": alfredArgs(frontmost.name()); break\n  case \"bundle_id\": alfredArgs(frontmost.bundleIdentifier()); break\n  case \"path\": alfredArgs($.NSURL.URLWithString(frontmost.applicationFile().url()).path.js); break\n  default: throw \"Unrecognised type: \" + envVar(\"out_format\")\n}",
   "scriptType" : 7,
   "state" : 0,
-  "taskDescription" : "Get name bundle identifier, or path of frontmost application",
+  "taskDescription" : "Get name, bundle identifier, or path of frontmost application",
   "taskName" : "Identify Front App"
 }
