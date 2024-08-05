@@ -1,0 +1,36 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "name",
+        "pairs" : [
+          [
+            "Name",
+            "name"
+          ],
+          [
+            "Bundle Identifier",
+            "bundle_id"
+          ],
+          [
+            "Path",
+            "path"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Output",
+      "type" : "popupbutton",
+      "variable" : "out_format"
+    }
+  ],
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "Text array or File path array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nconst runningApps = Application(\"System Events\").applicationProcesses.where({ backgroundOnly: false })\n\nswitch (envVar(\"out_format\")) {\n  case \"name\": alfredArgs(runningApps.name()); break\n  case \"bundle_id\": alfredArgs(runningApps.bundleIdentifier()); break\n  case \"path\": alfredArgs(runningApps.applicationFile().map(app => $.NSURL.URLWithString(app.url()).path.js)); break\n  default: throw \"Unrecognised type: \" + envVar(\"out_format\")\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get names, bundle identifiers, or paths of running applications",
+  "taskName" : "Identify Running Apps"
+}
