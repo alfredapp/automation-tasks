@@ -68,8 +68,8 @@ function run(argv) {
   // Act on tabs
   const tabs = windows
     .flatMap(window => window.tabs())
-    .filter(tab => tab !== null)
-    .map(tab => [tab.url(), tab.name()])
+    .map(tab => [tab?.url(), tab?.name()])
+    .filter(tab => tab[0])
 
   switch (outFormat) {
     case "url": return alfredArgs(tabs.map(tab => tab[0]))

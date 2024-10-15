@@ -32,6 +32,7 @@ function browserVariant(appName) {
 }
 
 function lookFor(matchString, inText, useRegex) {
+  if (!inText) return false
   if (useRegex) return RegExp(matchString).test(inText)
   return inText.includes(matchString)
 }
@@ -75,8 +76,8 @@ function run(argv) {
   // Act on tabs
   const matchingTabs = windows
     .flatMap(window => window.tabs())
-    .filter(tab => tab !== null)
-    .map(tab => [tab.url(), tab.name()])
+    .map(tab => [tab?.url(), tab?.name()])
+    .filter(tab => tab[0])
     .filter(tab => lookFor(matchString, tab[0], regex))
 
   switch (outFormat) {
