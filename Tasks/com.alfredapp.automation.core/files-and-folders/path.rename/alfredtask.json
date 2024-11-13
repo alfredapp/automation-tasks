@@ -1,0 +1,60 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 0,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Path",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "",
+        "placeholder" : "",
+        "required" : true,
+        "trim" : false
+      },
+      "description" : "",
+      "label" : "Rename To",
+      "type" : "textfield",
+      "variable" : "new_name"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Replace file with same name at destination"
+      },
+      "description" : "",
+      "label" : "Overwrite",
+      "type" : "checkbox",
+      "variable" : "overwrite"
+    },
+    {
+      "config" : {
+        "default" : false,
+        "required" : false,
+        "text" : "Ignore and rewrite original file extension"
+      },
+      "description" : "",
+      "label" : "Extension",
+      "type" : "checkbox",
+      "variable" : "ignore_extension"
+    }
+  ],
+  "inputMulti" : 1,
+  "inputOverride" : "target_path",
+  "inputType" : 1,
+  "outputDescription" : "File path of the rename",
+  "outputType" : 1,
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction isDir(pathString) {\n  return $.NSFileManager.defaultManager\n    .attributesOfItemAtPathError(pathString, undefined)\n    .js[\"NSFileType\"].js === \"NSFileTypeDirectory\"\n}\n\nfunction isPackage(pathString) {\n  return $.NSURL.fileURLWithPath(pathString)\n    .resourceValuesForKeysError([$.NSURLIsPackageKey.js], undefined)\n    .js[\"NSURLIsPackageKey\"].js\n}\n\nfunction run(argv) {\n  const sourcePath = argv[0]\n  const sourcePathDir = $(sourcePath).stringByDeletingLastPathComponent.js\n  const fileManager = $.NSFileManager.defaultManager\n  const overwrite = envVar(\"overwrite\") === \"1\"\n  const ignoreExtension = envVar(\"ignore_extension\") === \"1\"\n  const sourceExtension = $(sourcePath).pathExtension.js\n  const isFolder = isDir(sourcePath) && !isPackage(sourcePath)\n  const extension = (sourceExtension.length === 0 || isFolder || ignoreExtension) ? \"\" : \".\" + sourceExtension\n  const newName = envVar(\"new_name\") + extension\n  const destinationPath = $(sourcePathDir).stringByAppendingPathComponent(newName).js\n\n  if (fileManager.fileExistsAtPath(destinationPath)) {\n    if (!overwrite) throw \"Path exists: \" + sourcePath\n    fileManager.removeItemAtPathError(destinationPath, undefined)\n  }\n\n  fileManager.moveItemAtPathToPathError(sourcePath, destinationPath, undefined)\n  return destinationPath\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Change names of paths",
+  "taskName" : "Rename Path"
+}
