@@ -66,4 +66,4 @@ joinFiles.forEach { joinFile in
 
 // Write PDF
 pdfDocument.write(to: pdfFile)
-print(pdfFile.path)
+print(pdfFile.path, terminator: "")
