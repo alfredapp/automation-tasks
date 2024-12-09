@@ -1,6 +1,6 @@
 {
   "inputMulti" : 0,
-  "inputType" : 1,
+  "inputType" : 0,
   "outputDescription" : "File path array",
   "outputType" : 1,
   "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction finderItemToPath(item) {\n  return $.NSURL.URLWithString(item.url()).path.js\n}\n\nalfredArgs(Application(\"Finder\").selection().map(p => finderItemToPath(p)))",

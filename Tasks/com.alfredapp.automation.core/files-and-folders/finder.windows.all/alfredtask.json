@@ -1,0 +1,11 @@
+{
+  "inputMulti" : 0,
+  "inputType" : 0,
+  "outputDescription" : "File path array",
+  "outputType" : 1,
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction posixPath(finderWindow) {\n  return $.NSURL.URLWithString(finderWindow.url()).fileSystemRepresentation\n}\n\nconst finder = Application(\"Finder\")\n\ntry {\n  alfredArgs(finder.finderWindows().map(window => posixPath(window.target)))\n} catch { \/\/ Finder windows like \"Recents\" and \"AirDrop\" cause an error\n  alfredArgs(posixPath(finder.desktop))\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Get paths to valid Finder windows and tabs",
+  "taskName" : "Paths to Finder Windows"
+}
