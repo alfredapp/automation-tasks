@@ -17,7 +17,7 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
-  "script" : "\/usr\/bin\/qlmanage -p &>\/dev\/null \"${@}\"",
+  "script" : "..\/.common\/quicklook \"${@}\" 2> \/dev\/null",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Preview paths in Quick Look",
