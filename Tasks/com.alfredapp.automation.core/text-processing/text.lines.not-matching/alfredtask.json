@@ -28,8 +28,8 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "if [[ \"${regex}\" -eq 1 ]]\nthen\n  \/usr\/bin\/grep --invert-match --extended-regexp \"${match_string}\" <<< \"${1}\"\nelse\n  \/usr\/bin\/grep --invert-match --fixed-strings \"${match_string}\" <<< \"${1}\"\nfi",
-  "scriptType" : 5,
+  "script" : "\/\/ The shell may give undesirable results\n\/\/ depending on the presence or absense of a trailing newline\n\/\/ so let's be explicit and try to follow the original text\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction lookFor(matchString, inText, useRegex) {\n  if (!inText) return false\n  if (useRegex) return RegExp(matchString).test(inText)\n  return inText.includes(matchString)\n}\n\nfunction run(argv) {\n  const regex = envVar(\"regex\") === \"1\"\n\n  writeSTDOUT(\n    argv[0]\n    .split(\"\\n\")\n    .filter(line => !lookFor(envVar(\"match_string\"), line, regex))\n    .join(\"\\n\")\n  )\n}",
+  "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get lines not matching a pattern",
   "taskName" : "Non-matching Lines"

@@ -16,8 +16,8 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "if [[ \"${all_whitespace}\" -eq 1 ]]\nthen\n  \/usr\/bin\/sed '\/^[[:space:]]*$\/d' <<< \"${1}\"\nelse\n  \/usr\/bin\/sed '\/^$\/d' <<< \"${1}\"\nfi",
-  "scriptType" : 5,
+  "script" : "\/\/ The shell may give undesirable results\n\/\/ depending on the presence or absense of a trailing newline\n\/\/ so let's be explicit and try to follow the original text\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction emptyLine(string, whitespaceIsEmpty) {\n  if (whitespaceIsEmpty) return RegExp(\"^[ \\t]*$\").test(string)\n  if (string.length === 0) return true\n  return false\n}\n\nfunction run(argv) {\n  const origLines = argv[0].split(\"\\n\")\n  const trailingNewline = origLines.at(-1).length === 0\n  const allWhitespace = envVar(\"all_whitespace\") === \"1\"\n\n  const updatedLines = trailingNewline ?\n    origLines.filter(line => !emptyLine(line, allWhitespace)).concat(\"\") :\n    origLines.filter(line => !emptyLine(line, allWhitespace))\n\n  writeSTDOUT(updatedLines.join(\"\\n\"))\n}",
+  "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get text with empty lines removed",
   "taskName" : "Delete Empty Lines"

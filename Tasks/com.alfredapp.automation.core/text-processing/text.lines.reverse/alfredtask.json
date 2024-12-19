@@ -3,8 +3,8 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "\/usr\/bin\/tail -r <<< \"${1}\"",
-  "scriptType" : 5,
+  "script" : "\/\/ The shell may give undesirable results\n\/\/ depending on the presence or absense of a trailing newline\n\/\/ so let's be explicit and try to follow the original text\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction run(argv) {\n  const origLines = argv[0].split(\"\\n\")\n  const trailingNewline = origLines.at(-1).length === 0\n\n  const updatedLines = trailingNewline ?\n    origLines.slice(0, -1).reverse().concat(\"\") :\n    origLines.reverse()\n\n  writeSTDOUT(updatedLines.join(\"\\n\"))\n}",
+  "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get text lines in inverse order",
   "taskName" : "Reverse Line Order"

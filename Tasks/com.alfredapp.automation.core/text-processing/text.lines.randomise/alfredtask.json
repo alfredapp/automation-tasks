@@ -3,7 +3,7 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "function shuffle(array) {\n  for (let i = array.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [array[i], array[j]] = [array[j], array[i]];\n  }\n\n  return array\n}\n\nfunction run(argv) {\n  return shuffle(argv[0].split(\"\\n\")).join(\"\\n\")\n}",
+  "script" : "function writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction shuffle(array) {\n  for (let i = array.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [array[i], array[j]] = [array[j], array[i]];\n  }\n\n  return array\n}\n\nfunction run(argv) {\n  const origLines = argv[0].split(\"\\n\")\n  const trailingNewline = origLines.at(-1).length === 0\n\n  const updatedLines = trailingNewline ?\n    shuffle(origLines.slice(0, -1)).concat(\"\") :\n    shuffle(origLines)\n\n  writeSTDOUT(updatedLines.join(\"\\n\"))\n}",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get text lines in random order",

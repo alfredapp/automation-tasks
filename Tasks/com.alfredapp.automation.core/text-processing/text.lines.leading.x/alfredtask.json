@@ -17,8 +17,8 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "\/usr\/bin\/head -\"${lines_number}\" <<< \"${1}\"",
-  "scriptType" : 5,
+  "script" : "\/\/ The shell may give undesirable results\n\/\/ depending on the presence or absense of a trailing newline\n\/\/ so let's be explicit and try to follow the original text\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction run(argv) {\n  writeSTDOUT(\n    argv[0]\n    .split(\"\\n\")\n    .slice(0, envVar(\"lines_number\"))\n    .join(\"\\n\")\n  )\n}",
+  "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get number of lines from start of text",
   "taskName" : "Leading Lines"

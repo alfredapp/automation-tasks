@@ -17,8 +17,8 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "# Use \"echo\" to prevent extra newline in \"tail\" STDIN\necho -n \"${1}\" | \/usr\/bin\/sed -n -e ':a' -e \"1,${lines_number}\"'!{P;N;D;};N;ba'",
-  "scriptType" : 5,
+  "script" : "\/\/ The shell may give undesirable results\n\/\/ depending on the presence or absense of a trailing newline\n\/\/ so let's be explicit and try to follow the original text\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction run(argv) {\n  const origLines = argv[0].split(\"\\n\")\n  const trailingNewline = origLines.at(-1).length === 0\n\n  const updatedLines = trailingNewline ?\n    origLines.slice(0, (parseInt(envVar(\"lines_number\")) + 1) * -1).concat(\"\") :\n    origLines.slice(0, parseInt(envVar(\"lines_number\")) * -1)\n\n  writeSTDOUT(updatedLines.join(\"\\n\"))\n}",
+  "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get all lines but a number of them from end of text",
   "taskName" : "Strip Trailing Lines"
