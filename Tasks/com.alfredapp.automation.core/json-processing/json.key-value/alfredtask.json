@@ -52,7 +52,7 @@
   "inputType" : 0,
   "outputDescription" : "JSON",
   "outputType" : 1,
-  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nfunction run (argv) {\n  const keyPath = envVar(\"key_path\").split(envVar(\"separator\"))\n  const jsonData = JSON.parse(argv[0])\n\n  try {\n    const keyValue = keyPath.reduce((object, key) => object[key], jsonData)\n    if (keyValue === undefined) throw undefined\n\n    return typeof keyValue === 'object' ? JSON.stringify(keyValue) : writeSTDOUT(keyValue)\n  } catch {\n    throw `Key not found: ${keyPath.join(\" → \")}`\n  }\n}",
+  "script" : "function alfredArgs(args) {\n  return JSON.stringify({ alfredworkflow: { arg: args } })\n}\n\nfunction envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction run (argv) {\n  const keyPath = envVar(\"key_path\").split(envVar(\"separator\"))\n  const jsonData = JSON.parse(argv[0])\n\n  try {\n    const keyValue = keyPath.reduce((object, key) => object[key], jsonData)\n    if (keyValue === undefined) throw undefined\n\n    return typeof keyValue === 'object' ? JSON.stringify(keyValue) : alfredArgs(keyValue)\n  } catch {\n    throw `Key not found: ${keyPath.join(\" → \")}`\n  }\n}",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get value from a JSON key path",
