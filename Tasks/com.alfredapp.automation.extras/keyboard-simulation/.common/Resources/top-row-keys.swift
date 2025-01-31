@@ -66,5 +66,9 @@ else {
 }
 
 // Press keys
-for _ in 1...targetRepeats { pressKey(targetKey) }
+for _ in 1...targetRepeats {
+  pressKey(targetKey)
+  usleep(10000)  // Prevent repeated presses from being so fast they do not register
+}
+
 usleep(100000)  // Prevent execution from terminating too soon
