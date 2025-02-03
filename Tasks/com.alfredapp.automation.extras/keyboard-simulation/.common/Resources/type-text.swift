@@ -35,7 +35,7 @@ var uChar: UniChar
 var keyEvent: CGEvent? = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: true)
 
 for i in 0..<typeText.count {
-  uChar = UniChar(typeText[typeText.index(typeText.startIndex, offsetBy: i)])
+  uChar = typeText[typeText.index(typeText.startIndex, offsetBy: i)]
   keyEvent?.keyboardSetUnicodeString(stringLength: 1, unicodeString: &uChar)
   keyEvent?.post(tap: .cghidEventTap)
   keyEvent?.type = .keyUp
