@@ -54,7 +54,7 @@ let allPaths: [URL] = arguments.dropFirst(minimumArguments).map { URL(fileURLWit
 // Read
 if (writeMode == .read) {
   let allMIMEs = allPaths.compactMap { fileType($0).preferredMIMEType }
-  guard allMIMEs.count > 0 else { fatalError("Count not determine type") }
+  guard allMIMEs.count > 0 else { fatalError("Could not determine type") }
 
   alfredArgs(allMIMEs)
   exit(EXIT_SUCCESS)
