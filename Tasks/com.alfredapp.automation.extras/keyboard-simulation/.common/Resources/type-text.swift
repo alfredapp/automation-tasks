@@ -29,13 +29,13 @@ if arguments.count != argumentNumber + 1 { usage(EXIT_FAILURE) }
 if arguments.contains("-h") || arguments.contains("--help") { usage(EXIT_SUCCESS) }
 
 // Main
-let typeText = arguments[1].precomposedStringWithCanonicalMapping
+let typeText = arguments[1].precomposedStringWithCanonicalMapping.utf16
 let delaySpeed = UInt32(arguments[2]) ?? 1000
 var uChar: UniChar
 var keyEvent: CGEvent? = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: true)
 
 for i in 0..<typeText.count {
-  uChar = UniChar(typeText.utf16[typeText.utf16.index(typeText.utf16.startIndex, offsetBy: i)])
+  uChar = UniChar(typeText[typeText.index(typeText.startIndex, offsetBy: i)])
   keyEvent?.keyboardSetUnicodeString(stringLength: 1, unicodeString: &uChar)
   keyEvent?.post(tap: .cghidEventTap)
   keyEvent?.type = .keyUp
