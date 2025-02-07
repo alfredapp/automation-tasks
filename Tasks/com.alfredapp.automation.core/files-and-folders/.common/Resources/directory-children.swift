@@ -1,5 +1,9 @@
 import Foundation
 
+let arguments = CommandLine.arguments
+let minimumArguments = 3
+
+// Helpers
 func alfredArgs(_ args: [String]) {
   let alfredObject: [String: [String: [String]]] = ["alfredworkflow": ["arg": args]]
   let jsonData: Data = try! JSONSerialization.data(withJSONObject: alfredObject)
@@ -25,20 +29,39 @@ func byAdded(_ paths: [URL]) -> [URL] {
   }
 }
 
-let sortOrder = CommandLine.arguments[1]
-let dirPaths = Array(CommandLine.arguments.dropFirst(2)).map { URL(fileURLWithPath: $0) }
-
-dirPaths.forEach { if !isDir($0) { fatalError("Not a folder: \($0.path)") } }
-
-let dirContents = dirPaths.flatMap { dirPath -> [URL] in
+func shallowContents(_ path: URL) -> [URL] {
   guard let contents = try? FileManager.default.contentsOfDirectory(
-    at: dirPath,
+    at: path,
     includingPropertiesForKeys: [.addedToDirectoryDateKey],
     options: .skipsHiddenFiles)
-  else { fatalError("Could not get folder contents: \(dirPath.path)") }
+  else { fatalError("Could not get folder contents: \(path.path)") }
 
   return contents
 }
+
+func deepContents(_ path: URL) -> [URL] {
+  guard let directoryEnumerator = FileManager.default.enumerator(
+    at: path,
+    includingPropertiesForKeys: nil,
+    options: .skipsHiddenFiles)
+  else { fatalError("Could not get folder contents: \(path.path)") }
+
+  var files: [URL] = []
+  for case let file as URL in directoryEnumerator { files.append(file) }
+  return files
+}
+
+// Constants
+let sortOrder: String = arguments[1]
+let recursive: Bool = arguments[2] == "1"
+let dirPaths: [URL] = arguments.dropFirst(minimumArguments).map { URL(fileURLWithPath: $0) }
+
+// Main
+dirPaths.forEach { if !isDir($0) { fatalError("Not a folder: \($0.path)") } }
+
+let dirContents = recursive ?
+  dirPaths.flatMap { deepContents($0) } :
+  dirPaths.flatMap { shallowContents($0) }
 
 switch sortOrder {
   case "by_name": alfredArgs(byName(dirContents).map { $0.path })
