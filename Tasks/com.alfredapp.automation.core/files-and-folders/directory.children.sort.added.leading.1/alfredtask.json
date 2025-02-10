@@ -18,7 +18,7 @@
   "inputType" : 1,
   "outputDescription" : "File path",
   "outputType" : 1,
-  "script" : "readonly json_args=\"$(..\/.common\/directory-children 'by_added' \"${@}\")\"\n\n\/usr\/bin\/osascript -l JavaScript -e 'function run(argv) {\n  return JSON.parse(argv[0])[\"alfredworkflow\"][\"arg\"][0]\n}' \"${json_args}\" | tr -d '\\n'",
+  "script" : "readonly json_args=\"$(..\/.common\/directory-children 'by_added' '0' \"${@}\")\"\n\n\/usr\/bin\/osascript -l JavaScript -e 'function run(argv) {\n  return JSON.parse(argv[0])[\"alfredworkflow\"][\"arg\"][0]\n}' \"${json_args}\" | tr -d '\\n'",
   "scriptType" : 5,
   "state" : 0,
   "taskDescription" : "Get path most recently added to folder",
