@@ -1,0 +1,11 @@
+{
+  "inputMulti" : -1,
+  "inputType" : 0,
+  "outputDescription" : "JSON",
+  "outputType" : 1,
+  "script" : "function run(argv) {\n  return JSON.stringify(argv)\n}",
+  "scriptType" : 7,
+  "state" : 0,
+  "taskDescription" : "Translate arguments to a JSON array",
+  "taskName" : "JSON from Arguments"
+}
