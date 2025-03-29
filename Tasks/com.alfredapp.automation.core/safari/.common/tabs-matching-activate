@@ -89,14 +89,16 @@ function run(argv) {
       const wantedTab = firstLast === "first" ? matchingTabs.at(0) : matchingTabs.at(-1)
       window.currentTab = wantedTab
 
-      // Raise window with tab
-      const windowIndex = window.index() - 1
+      // Raise window with tab, which fails if it is on another space
+      try {
+        const windowIndex = window.index() - 1
 
-      Application("System Events")
-        .processes[browser.app.name()]
-        .windows()[windowIndex]
-        .actions["AXRaise"]
-        .perform()
+        Application("System Events")
+          .processes[browser.app.name()]
+          .windows()[windowIndex]
+          .actions["AXRaise"]
+          .perform()
+      } catch  (ignore) { }
 
       // Bring browser to front
       browser.app.activate()
@@ -118,15 +120,17 @@ function run(argv) {
       const wantedTabIndex = wantedTab[1]
       window.activeTabIndex = wantedTabIndex + 1
 
-      // Raise window with tab
-      const windowId = window.id()
-      const windowIndex = windows.findIndex(window => window.id() === windowId)
+      // Raise window with tab, which fails if it is on another space
+      try {
+        const windowId = window.id()
+        const windowIndex = windows.findIndex(window => window.id() === windowId)
 
-      Application("System Events")
-        .processes[browser.app.name()]
-        .windows()[windowIndex]
-        .actions["AXRaise"]
-        .perform()
+        Application("System Events")
+          .processes[browser.app.name()]
+          .windows()[windowIndex]
+          .actions["AXRaise"]
+          .perform()
+      } catch  (ignore) { }
 
       // Bring browser to front
       browser.app.activate()
