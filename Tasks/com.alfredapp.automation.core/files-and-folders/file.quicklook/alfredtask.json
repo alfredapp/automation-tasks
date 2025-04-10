@@ -17,8 +17,8 @@
   "inputOverride" : "target_path",
   "inputType" : 1,
   "outputType" : 0,
-  "script" : "..\/.common\/quicklook \"${@}\" 2> \/dev\/null",
-  "scriptType" : 5,
+  "script" : "..\/.common\/ql \"${@}\"",
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Preview paths in Quick Look",
   "taskName" : "Open in Quick Look"
