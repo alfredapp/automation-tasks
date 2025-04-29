@@ -89,9 +89,9 @@ function getUsableScreenFrame(screen) {
 }
 
 // Object (frame, screen coordinates), Window, Number, Number, Number, Number -> ()
-function reshapeWindow(frame, targetWindow, x, y, width, height) {
-  x = x < frame.x ? frame.x : x
-  y = y < frame.y ? frame.y : y
+function reshapeWindow(frame, targetWindow, targetX, targetY, width, height) {
+  const x = targetX < frame.x ? frame.x : targetX
+  const y = targetY < frame.y ? frame.y : targetY
 
   targetWindow.position = [x, y]
   targetWindow.size = [width, height]
