@@ -1,0 +1,45 @@
+{
+  "configurableConfig" : [
+    {
+      "config" : {
+        "default" : "",
+        "filtermode" : 2,
+        "placeholder" : "The passed-in arguments will be used",
+        "required" : false
+      },
+      "description" : "",
+      "label" : "Image",
+      "type" : "filepicker",
+      "variable" : "target_path"
+    },
+    {
+      "config" : {
+        "default" : "accurate",
+        "pairs" : [
+          [
+            "Fast",
+            "fast"
+          ],
+          [
+            "Accurate",
+            "accurate"
+          ]
+        ]
+      },
+      "description" : "",
+      "label" : "Accurary",
+      "type" : "popupbutton",
+      "variable" : "accuracy"
+    }
+  ],
+  "inputMulti" : 2,
+  "inputOverride" : "target_path",
+  "inputType" : 1,
+  "outputDescription" : "Text",
+  "outputType" : 1,
+  "script" : "..\/.common\/ocr \"${accuracy}\" \"${@}\"",
+  "scriptType" : 5,
+  "state" : 0,
+  "taskDescription" : "Get text from images via Optical Character Recognition",
+  "taskName" : "OCR Image"
+}
