@@ -18,7 +18,7 @@
         "required" : false,
         "text" : "Ask the Finder to trash paths"
       },
-      "description" : "Trashing via the Finder produces a sound and allows \"Put Back\".",
+      "description" : "Trashing via the Finder plays a sound and allows recovery with ⌘Z.",
       "label" : "Method",
       "type" : "checkbox",
       "variable" : "use_finder"
