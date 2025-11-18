@@ -28,7 +28,7 @@
   "inputType" : 0,
   "outputDescription" : "Text",
   "outputType" : 1,
-  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeData(nsdata)\n}\n\nwriteSTDOUT(envVar(\"precision\")\n  .split(\".\")\n  .map(version => $.NSProcessInfo.processInfo.operatingSystemVersion[version])\n  .join(\".\")\n)",
+  "script" : "function envVar(varName) {\n  return $.NSProcessInfo\n    .processInfo\n    .environment\n    .objectForKey(varName).js\n}\n\nfunction writeSTDOUT(string) {\n  const nsdata = $(string).dataUsingEncoding($.NSUTF8StringEncoding)\n  $.NSFileHandle.fileHandleWithStandardOutput.writeDataError(nsdata, undefined)\n}\n\nwriteSTDOUT(envVar(\"precision\")\n  .split(\".\")\n  .map(version => $.NSProcessInfo.processInfo.operatingSystemVersion[version])\n  .join(\".\")\n)",
   "scriptType" : 7,
   "state" : 0,
   "taskDescription" : "Get current running version of macOS",
