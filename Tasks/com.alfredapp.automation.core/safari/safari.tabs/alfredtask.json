@@ -59,7 +59,7 @@
   "outputDescription" : "Text array or URL array",
   "outputType" : 1,
   "script" : "..\/.common\/tabs 'Safari' \"${all_windows}\" \"${allow_empty}\" \"${out_format}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get name and URL of tabs open in Safari",
   "taskName" : "Safari Tab List"

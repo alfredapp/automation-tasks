@@ -30,7 +30,7 @@
   "outputDescription" : "Text array",
   "outputType" : 1,
   "script" : "..\/.common\/tag read '' \"${recursive}\" \"${@}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get tags from paths",
   "taskName" : "List Tags"

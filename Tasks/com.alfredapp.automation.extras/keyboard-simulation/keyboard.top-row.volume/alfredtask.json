@@ -42,7 +42,7 @@
   "inputType" : 0,
   "outputType" : 0,
   "script" : "..\/.common\/top-row-keys \"${target_key}\" \"${repeat_number}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Simulate pressing keyboard top-row volume keys",
   "taskName" : "Press Volume Keys"

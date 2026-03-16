@@ -89,7 +89,7 @@
   "outputDescription" : "File path array of saved images",
   "outputType" : 1,
   "script" : "..\/.common\/pdf-split-images \"${1}\" \"${save_in}\" \"${out_format}\" \"${resolution}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Save PDF pages to individual images",
   "taskName" : "Extract PDF Pages as Images"

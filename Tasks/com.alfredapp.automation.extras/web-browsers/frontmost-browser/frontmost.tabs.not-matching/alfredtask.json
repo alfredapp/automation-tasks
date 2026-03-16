@@ -82,7 +82,7 @@
   "outputDescription" : "Text array or URL array",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-not-matching 'frontmost_browser' \"${all_windows}\" \"${allow_empty}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get frontmost browser tabs without specified text in URL",
   "taskName" : "Front Browser Tabs Not Matching URL"

@@ -38,7 +38,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/.common\/ocr \"${accuracy}\" \"${@}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get text from images via Optical Character Recognition",
   "taskName" : "OCR Image"

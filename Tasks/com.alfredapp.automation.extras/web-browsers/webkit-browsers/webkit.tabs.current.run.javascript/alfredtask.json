@@ -68,7 +68,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${allow_empty}\" \"${javascript_code}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Execute JavaScript in Webkit browser's current tab",
   "taskName" : "Run JavaScript in Webkit browser Tab"

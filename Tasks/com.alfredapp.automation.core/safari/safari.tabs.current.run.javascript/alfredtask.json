@@ -29,7 +29,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/.common\/tabs-current-run-javascript 'Safari' \"${allow_empty}\" \"${javascript_code}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Execute JavaScript in Safari's current tab",
   "taskName" : "Run JavaScript in Safari Tab"

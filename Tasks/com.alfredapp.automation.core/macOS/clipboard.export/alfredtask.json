@@ -29,7 +29,7 @@
   "outputDescription" : "File path",
   "outputType" : 1,
   "script" : "readonly output=\"${save_in}\/clipboard-$(date \"+%F-%H-%M-%S\").alfredclipboardblob\"\n\/bin\/mkdir -p \"${save_in}\"\n\nif [[ \"${overwrite}\" -eq 0 && -f \"${output}\" ]]\nthen\n  echo \"File exists: ${output}\" >&2\n  exit 1\nfi\n\n..\/.common\/clipboard-import-export export \"${output}\"\nprintf '%s' \"${output}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Export clipboard representations to a binary blob",
   "taskName" : "Save Clipboard"

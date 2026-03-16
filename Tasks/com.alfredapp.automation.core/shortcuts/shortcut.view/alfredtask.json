@@ -19,7 +19,7 @@
   "inputType" : 0,
   "outputType" : 0,
   "script" : "for shortcut in \"${@}\"\ndo\n  \/usr\/bin\/shortcuts view \"${shortcut}\"\ndone",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Open shortcuts for editing",
   "taskName" : "View Shortcut"

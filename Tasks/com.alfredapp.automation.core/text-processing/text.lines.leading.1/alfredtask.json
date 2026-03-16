@@ -4,7 +4,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "\/usr\/bin\/head -1 <<< \"${1}\" | tr -d '\\n'",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get first line from text",
   "taskName" : "Get First Line"

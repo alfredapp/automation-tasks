@@ -49,7 +49,7 @@
   "outputDescription" : "File path array",
   "outputType" : 1,
   "script" : "..\/.common\/directory-children \"${sort_order}\" \"${recursive}\" \"${@}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get contents of folders",
   "taskName" : "Folder Contents"

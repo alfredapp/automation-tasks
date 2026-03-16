@@ -18,7 +18,7 @@
   "inputType" : 1,
   "outputType" : 2,
   "script" : "for image in \"${@}\"\ndo\n  \/usr\/bin\/sips --optimizeColorForSharing \"${image}\"\ndone",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Optimise image colours for sharing",
   "taskName" : "Optimise Image Colour"

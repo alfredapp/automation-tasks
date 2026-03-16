@@ -48,7 +48,7 @@
   "outputDescription" : "Text or URL",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current 'frontmost_browser' \"${allow_empty}\" \"${out_format}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get URL or title of frontmost browser's current tab",
   "taskName" : "Current Front Browser Tab"

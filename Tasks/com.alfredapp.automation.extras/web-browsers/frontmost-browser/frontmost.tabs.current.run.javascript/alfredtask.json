@@ -29,7 +29,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-run-javascript 'frontmost_browser' \"${allow_empty}\" \"${javascript_code}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Execute JavaScript in frontmost browser's current tab",
   "taskName" : "Run JavaScript in Front Browser Tab"

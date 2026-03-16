@@ -37,7 +37,7 @@
   "inputType" : 1,
   "outputType" : 2,
   "script" : "for image in \"${@}\"\ndo\n  \/usr\/bin\/sips --flip \"${direction}\" \"${image}\"\ndone",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Mirror images horizontally or vertically",
   "taskName" : "Flip Image"

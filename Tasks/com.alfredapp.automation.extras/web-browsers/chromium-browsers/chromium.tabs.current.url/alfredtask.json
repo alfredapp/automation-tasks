@@ -76,7 +76,7 @@
   "inputType" : 2,
   "outputType" : 0,
   "script" : "readonly run_script='..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-url'\n\nif [[ \"${popup_browser}\" == 'custom' ]]\nthen\n  browser=\"${custom_browser}\"\nelse\n  browser=\"${popup_browser}\"\nfi\n\n\"${run_script}\" \"${browser}\" \"${allow_empty}\" \"${1}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Replace URL of Chromium browser's current tab",
   "taskName" : "Change Current Chromium Browser Tab URL"

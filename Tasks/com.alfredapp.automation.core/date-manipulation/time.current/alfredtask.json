@@ -29,7 +29,7 @@
   "outputDescription" : "Formatted time",
   "outputType" : 1,
   "script" : "\/bin\/date \"+${out_format}\" | tr -d '\\n'",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get the current time in a specific format",
   "taskName" : "Current Time"

@@ -30,7 +30,7 @@
   "inputType" : 1,
   "outputType" : 2,
   "script" : "..\/.common\/finder-comment set \"${finder_comment}\" \"${@}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Set Finder comment of paths",
   "taskName" : "Write Finder Comment"

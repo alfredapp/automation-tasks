@@ -42,7 +42,7 @@
   "inputType" : 1,
   "outputType" : 2,
   "script" : "for image in \"${@}\"\ndo\n  \/usr\/bin\/sips --resampleHeightWidth \"${height}\" \"${width}\" \"${image}\"\ndone",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Alter image proportions, ignoring aspect ratio",
   "taskName" : "Resize Image Exactly"

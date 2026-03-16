@@ -31,7 +31,7 @@
   "inputType" : 0,
   "outputType" : 0,
   "script" : "if [[ \"$(sw_vers -productVersion | cut -d. -f1)\" -lt 12 ]]\nthen\n  echo 'Setting window bounds requires macOS Monterey (12) or above.' >&2\n  exit 1\nfi\n\n..\/.common\/window-bounds.js \"${target_screen}\" 'centre'",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Centre topmost window on specified screen",
   "taskName" : "Send Window to Different Screen"

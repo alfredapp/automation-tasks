@@ -19,7 +19,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "\/bin\/cat \"${@}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get contents of files",
   "taskName" : "File Contents"

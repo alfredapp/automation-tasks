@@ -19,7 +19,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "..\/.common\/pdf-extract-text \"${1}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get all text from PDF",
   "taskName" : "Extract PDF Text"

@@ -39,7 +39,7 @@
   "outputDescription" : "File path to screenshot",
   "outputType" : 1,
   "script" : "function screenshot_file {\n  local -r target_dir=\"${HOME}\/Desktop\"\n  local -r date_name=\"Screenshot $(date '+%F') at $(date '+%H.%M.%S')\"\n\n  if [[ ! -e \"${target_dir}\/${date_name}.png\" ]]\n  then\n    printf '%s\/%s.png' \"${target_dir}\" \"${date_name}\"\n    return\n  fi\n\n  local count=1\n\n  while [[ -e \"${target_dir}\/${date_name} ${count}.png\" ]]\n  do\n    count=\"$((count + 1))\"\n  done\n\n  printf '%s\/%s %s.png' \"${target_dir}\" \"${date_name}\" \"${count}\"\n}\n\nopts=()\nreadonly screenshot=\"$(screenshot_file)\"\n\n[[ \"${to_clipboard}\" -eq 1 ]] && opts+=(-c)\n[[ \"${get_cursor}\" -eq 1 ]] && opts+=(-C)\n[[ \"${all_screens}\" -eq 1 ]] || opts+=(-m)\n\n\/usr\/sbin\/screencapture \"${opts[@]}\" \"${screenshot}\"\n\nprintf '%s' \"${screenshot}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Save image of the entire screen",
   "taskName" : "Full Screen Screenshot"

@@ -18,7 +18,7 @@
   "outputDescription" : "Text",
   "outputType" : 1,
   "script" : "# Use \"echo\" to prevent extra newline in \"tail\" STDIN\necho -n \"${1}\" | \/usr\/bin\/tail -\"${lines_number}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get number of lines from end of text",
   "taskName" : "Trailing Lines"

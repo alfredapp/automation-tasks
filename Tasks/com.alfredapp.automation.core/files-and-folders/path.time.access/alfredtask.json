@@ -19,7 +19,7 @@
   "outputDescription" : "Formatted time",
   "outputType" : 1,
   "script" : "\/usr\/bin\/stat -f '%a' \"${1}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get when paths were last accessed, in Epoch time",
   "taskName" : "Path Access Time"

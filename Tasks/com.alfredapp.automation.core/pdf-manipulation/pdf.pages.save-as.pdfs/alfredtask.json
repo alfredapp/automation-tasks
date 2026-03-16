@@ -31,7 +31,7 @@
   "outputDescription" : "File path array of saved PDFs",
   "outputType" : 1,
   "script" : "..\/.common\/pdf-split-pdfs \"${1}\" \"${save_in}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Save PDF pages to individual PDFs",
   "taskName" : "Extract PDF Pages as PDFs"

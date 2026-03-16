@@ -70,7 +70,7 @@
   "outputDescription" : "URL",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-matching-activate 'frontmost_browser' \"${all_windows}\" \"${allow_empty}\" \"${match_string}\" \"${first_last}\" \"${regex}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Switch to frontmost browser tab with specified text in URL",
   "taskName" : "Switch to Front Browser Tab Matching URL"

@@ -41,7 +41,7 @@
   "inputType" : 0,
   "outputType" : 0,
   "script" : "..\/.common\/type-text \"${1}\" \"${type_delay}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Simulate typing text",
   "taskName" : "Type Text"

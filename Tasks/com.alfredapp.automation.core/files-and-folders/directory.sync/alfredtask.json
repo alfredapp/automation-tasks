@@ -27,7 +27,7 @@
   "inputType" : 0,
   "outputType" : 0,
   "script" : "\/usr\/bin\/rsync --archive --progress --delete \"${origin_path}\"\/ \"${target_path}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Replace the contents of a folder to match another",
   "taskName" : "Sync Folder Contents"

@@ -17,7 +17,7 @@
   "outputDescription" : "URL of closed tab",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-close 'frontmost_browser' \"${allow_empty}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Close frontmost browser's current tab",
   "taskName" : "Close Current Front Browser Tab"

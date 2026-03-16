@@ -41,7 +41,7 @@
   "inputType" : 1,
   "outputType" : 2,
   "script" : "..\/.common\/tag add \"${new_tags}\" \"${recursive}\" \"${@}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Add tags to paths",
   "taskName" : "Add Tags"

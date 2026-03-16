@@ -82,7 +82,7 @@
   "outputDescription" : "Text array or URL array",
   "outputType" : 1,
   "script" : "..\/.common\/tabs-not-matching 'Safari' \"${all_windows}\" \"${allow_empty}\" \"${out_format}\" \"${match_string}\" \"${regex}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Get Safari tabs without specified text in URL",
   "taskName" : "Safari Tabs Not Matching URL"

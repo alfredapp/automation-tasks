@@ -51,7 +51,7 @@
   "outputDescription" : "URL array",
   "outputType" : 1,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-not-matching-close 'frontmost_browser' \"${all_windows}\" \"${allow_empty}\" \"${match_string}\" \"${regex}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Close frontmost browser tabs without specified text in URL",
   "taskName" : "Close Front Browser Tabs Not Matching URL"

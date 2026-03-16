@@ -29,7 +29,7 @@
   "inputType" : 2,
   "outputType" : 0,
   "script" : "..\/..\/..\/..\/com.alfredapp.automation.core\/safari\/.common\/tabs-current-url 'frontmost_browser' \"${allow_empty}\" \"${1}\"",
-  "scriptType" : 5,
+  "scriptType" : 11,
   "state" : 0,
   "taskDescription" : "Replace URL of frontmost browser's current tab",
   "taskName" : "Change Current Front Browser Tab URL"
