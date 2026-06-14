@@ -26,7 +26,4 @@ fi
 readonly property="${1}"
 readonly image="${2}"
 
-/usr/bin/sips --getProperty "${property}" "${image}" | \
-  tail -1 | \
-  sed "s/^ *${property}: //" |
-  tr -d '\n'
+/usr/bin/plutil -extract "${property}" raw -o - - < <(/usr/bin/sips --getProperty 'allxml' "${image}") | tr -d '\n'
