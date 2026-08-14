@@ -5,7 +5,7 @@ import AppKit
 // Constants
 let browserNames: Set<String> = [
   "Safari", "Webkit", "Orion",
-  "Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge", "Arc"
+  "Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave", "Microsoft Edge", "Arc"
 ]
 
 // Grab windows
