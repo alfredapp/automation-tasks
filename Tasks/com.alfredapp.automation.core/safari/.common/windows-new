@@ -20,7 +20,7 @@ function frontmostBrowserName() {
 
 function browserVariant(appName) {
   const webkitVariants = ["Safari", "Webkit", "Orion"]
-  const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave Browser", "Microsoft Edge"]
+  const chromiumVariants = ["Google Chrome", "Chromium", "Opera", "Vivaldi", "Brave", "Microsoft Edge"]
 
   if (webkitVariants.some(browserName => appName.startsWith(browserName))) return { app: Application(appName), variant: "webkit" }
   if (chromiumVariants.some(browserName => appName.startsWith(browserName))) return { app: Application(appName), variant: "chromium" }
